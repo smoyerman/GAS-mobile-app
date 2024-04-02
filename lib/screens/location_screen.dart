@@ -31,14 +31,25 @@ class _MyLocationState extends State<LocationScreen> {
 
   void _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
-    final museumIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/museum.png", 128);
     final hotelIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/hotel.png", 90);
-    final venueIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/location.png", 128);
     final GASIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/GAS.png", 90);
     final metroIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/metro.png", 90);
+    final partyIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/party.png", 90);
 
     setState(() {
       _markers.clear();
+      for (final loc in PartyLocations) {
+        final marker = Marker(
+          markerId: MarkerId(loc["title"]),
+          position: loc["latlng"],
+          infoWindow: InfoWindow(
+            title: loc["title"],
+            snippet: loc["description"],
+          ),
+          icon: partyIcon,
+        );
+        _markers[loc["title"]] = marker;
+      }
       for (final loc in MetroLocations) {
         final marker = Marker(
           markerId: MarkerId(loc["title"]),

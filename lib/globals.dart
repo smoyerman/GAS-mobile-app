@@ -9,15 +9,10 @@ import 'package:flutter/services.dart' show ByteData, rootBundle;
 LatLng center = const LatLng(52.5500, 13.3900);
 var zoom = 12.5;
 
-List<Map> EventLocations =  [
-  {"latlng": const LatLng(52.5400, 13.4050),
-    "title": "Location 1", "description": "Yay for 1"},
-
-  {"latlng": const LatLng(52.5000, 13.4050),
-    "title": "Location 2", "description": "Yay for 1"},
-
-  {"latlng": const LatLng(52.5300, 13.4250),
-    "title": "Location 3", "description": "Yay for 1"},
+List<Map> PartyLocations =  [
+  {"latlng": const LatLng(52.5161321,13.4090756),
+    "title": "Alte Münze",
+    "description": "Closing Party"},
 ];
 
 List<Map> MetroLocations = [
