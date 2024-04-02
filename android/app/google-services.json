@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "115588830626",
+    "project_id": "gas-conference",
+    "storage_bucket": "gas-conference.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115588830626:android:719a77f5bb2edece02cefb",
+        "android_client_info": {
+          "package_name": "com.example.gas_conference"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuAfn3EbC4XSFzbMt4fiGsvFsoEycJeN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

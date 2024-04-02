@@ -1,0 +1,69 @@
+name: layout
+description: >
+  Sample app from "Building Layouts", https://flutter.io/docs/development/ui/layout.
+version: 1.0.0
+
+environment:
+  sdk: ^3.0.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.5
+  google_maps_flutter: ^2.5.0
+  filter_list: ^1.0.2
+  http: ^1.1.0
+  excel: 2.1.0
+  path_provider: ^2.1.1
+  path: ^1.8.3
+  url_launcher: ^6.1.14
+  firebase_core: ^2.17.0
+  firebase_messaging: ^14.6.9
+  rxdart: ^0.27.7
+  flutter_local_notifications: ^16.1.0
+  flutter_launcher_icons: ^0.13.1
+  carousel_slider: ^4.2.1
+  intl: ^0.18.1
+  font_awesome_flutter: ^10.6.0
+  multiselect:
+    git:
+      url: https://github.com/XuannThucc/multiselect
+      ref: 8b1dc71ae4982db4c37d477bb8021ac71badd595
+  getwidget: ^4.0.0
+  shared_preferences: ^2.2.2
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/icons/GASlogo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "images/icons/GASlogo.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "images/icons/GASlogo.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "images/icons/GASlogo.png"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - images/
+    - images/Sponsors/
+    - images/MapIcons/
+    - images/icons/
+    - images/TalkImages/
+    - images/Venues/
+    - images/Exhibitions/
+    - images/Activities/
+    - images/Accomodations/
