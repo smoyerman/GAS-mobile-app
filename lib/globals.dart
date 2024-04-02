@@ -6,7 +6,7 @@ import './main.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 
 /* ========== LOCATION MAP VARIABLES ============ */
-LatLng center = const LatLng(52.5400, 13.4000);
+LatLng center = const LatLng(52.5500, 13.3900);
 var zoom = 12.5;
 
 List<Map> EventLocations =  [
@@ -46,7 +46,7 @@ List<Map> GASLocations = [
   "address": "Provinzstraße 40-44, 13409 Berlin, Germany",
   "website": "https://monopol-berlin.com/en"},
 
-  {"latlng": const LatLng(52.5200, 13.3850),
+  {"latlng": const LatLng(52.567906,13.380952),
     "title": "Berlin Glas", "description": "Conference Studio",
     "address": "Provinzstraße 42a, 13409 Berlin, Germany",
     "website": "https://berlinglassworks.com/"},
