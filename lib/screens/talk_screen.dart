@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:layout/screens/schedule_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
@@ -40,6 +42,46 @@ class _TalkScreenState extends State<TalkScreen> {
 
     print(imageLinks);
 
+    // #docregion Card
+    Widget _buildCard() {
+      return SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+              child: ListTile(
+                title: RichText(
+                    text: TextSpan(
+                  text: item.talkSpeaker,
+                  style: new TextStyle(color: item.website.isNotEmpty ? Colors.blue : Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16),
+                  recognizer: new TapGestureRecognizer()
+                    ..onTap = () { if (item.website.isNotEmpty) { launch(item.website); }
+                    },
+                )),
+                subtitle: Text(DateFormat('EEEE LLLL d - HH:mm-').format(item.talkStartDateTime) +
+                    DateFormat('HH:mm').format(item.talkEndDateTime)),
+
+
+                leading: IconButton(
+                    icon: FaIcon(FontAwesomeIcons.instagram, size: 20,
+                        color: item.socialMedia.isNotEmpty ? Colors.blue : Colors.black),
+                    onPressed: () async {
+                      if (item.socialMedia.isNotEmpty) {
+                        var nativeUrl = "instagram://user?username=" + item.socialMedia;
+                        var webUrl = "https://www.instagram.com/" + item.socialMedia;
+                        if (await canLaunch(nativeUrl)) {
+                          await launch(nativeUrl);
+                        } else if (await canLaunch(webUrl)) {
+                          await launch(webUrl);
+                        } else {
+                          print("can't open Instagram");
+                        }
+                      }}
+                ),
+              ),
+        );
+    }
+    // #enddocregion Card
+
     return Scaffold(
         appBar: AppBar(
             iconTheme: IconThemeData(
@@ -51,7 +93,8 @@ class _TalkScreenState extends State<TalkScreen> {
               fontWeight: FontWeight.w500,
             )),
             backgroundColor: primaryColor),
-        body: ListView(
+
+      body: ListView(
           children: [
             CarouselSlider(
             options: CarouselOptions(),
@@ -63,16 +106,20 @@ class _TalkScreenState extends State<TalkScreen> {
             ))
               .toList(),
             ),
+
             Container(
-              padding: const EdgeInsets.fromLTRB(32,32,32,0),
+              padding: const EdgeInsets.fromLTRB(32, 18, 20, 4),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  item.buildTalkHeader(context),
-                  // TODO: Fix update of state persistence between screens
-                  Column(
+                  Flexible(
+                      child: Text(item.talkTitle,
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      )
+                  ),
+                  Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
+                    children: [
                       IconButton(
                         isSelected: item.talkSaved,
                         icon: const Icon(Icons.star_border_outlined),
@@ -84,14 +131,16 @@ class _TalkScreenState extends State<TalkScreen> {
                         },
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
             ),
+            Center(child: _buildCard()),
+
             textSection
           ],
         ),
-      );
+    );
   }
 
 }

@@ -260,10 +260,52 @@ class TalkTitleItem implements ListItem {
                   ),
                 ),
 
-                Row(
+                ListTile(
+                  leading: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[ IconButton(
+                      icon: FaIcon(FontAwesomeIcons.instagram,
+                      size: 20,
+                      ),
+                      onPressed: () async {
+                      if (socialMedia.isNotEmpty) {
+                        var nativeUrl = "instagram://user?username=" + socialMedia;
+                      var webUrl = "https://www.instagram.com/" + socialMedia;
+                      if (await canLaunch(nativeUrl)) {
+                        await launch(nativeUrl);
+                      } else if (await canLaunch(webUrl)) {
+                        await launch(webUrl);
+                      } else {
+                      print("can't open Instagram");
+                      }
+                      }}
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.link, size: 20),
+                        onPressed: () async {
+                        launch(website);
+                        },
+                      ),
+                      ]),
+                  title: Text(talkSpeaker,
+                      style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 16,
+                      color: Colors.black,
+                      ),
+                  ),
+                  subtitle: Text(DateFormat('EEEE LLLL d - HH:mm-').format(talkStartDateTime) +  //Text(DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime),
+                      DateFormat('HH:mm').format(talkEndDateTime),
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+
+               /*Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      IconButton(
+                      socialMedia.isNotEmpty?IconButton(
                         // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
                           icon: FaIcon(FontAwesomeIcons.instagram,
                             size: 20,
@@ -282,7 +324,7 @@ class TalkTitleItem implements ListItem {
                               print("can't open Instagram");
                             }
                           }
-                      ),
+                      ):null,
                       GestureDetector(
                         onTap: () async {
                           launch(website);
@@ -302,7 +344,7 @@ class TalkTitleItem implements ListItem {
                         ),
                       ),
                     ]
-                ),
+                ),*/
                 Container(
                   padding: const EdgeInsets.fromLTRB(18, 6, 0, 0),
                   child: Text(DateFormat('EEEE LLLL d - HH:mm-').format(talkStartDateTime) +  //Text(DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime),
