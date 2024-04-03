@@ -261,7 +261,7 @@ List<TalkTitleItem> Day1 = [
       'LECMO', 'KILN',
       'In a multimedia presentation that touches on the history of glassmaking and creativity in Latvia, '
           'Marta will describe the creative quest that led to her particular way of working with glass. '
-          'This is a story that can only be told by a glass artist from the Balkans, whose creative life '
+          'This is a story that can only be told by a glass artist from the Baltics, whose creative life '
           'began in times of change. \nIn addition to the slideshow, Marta will complete one of her '
           'signature works of interconnected glass and copper wire. Samples and technical illustrations '
           'will be provided to deepen the audience\'s understanding of this unique and intricate process.',
@@ -436,19 +436,20 @@ List<TalkTitleItem> Day1 = [
   TalkTitleItem('I Feel a Bit Nervous',
       'Silvia Levenson', 'Wilhelm Hallen Main Stage',
       'LECTURE', 'SOCIAL JUSTICE',
-      'Silvia Levenson exists between different realities: between Latin America and Europe, between the '
-          'contemporary art world and the glass world, between concepts and process, between thinking and making.\n'
-          'Even more, she stands between a society that is struggling to change and her desire for justice.'
-          '\nLevenson began exhibiting work made in glass in 1994 and in this presentation, she will show how '
-          'through all these years she has developed work related to society\'s ills: the desaparecidos during '
-          'the Argentinean dictatorship, childhood abuse, violence against women, and '
-          'post-colonialist policies in the world.\nFor 30 years, Levenson has created installations, '
-          'sculptures, and videos aimed at dissolving borders both physical and psychological, and has '
-          'used glass to be able to see what is happening around her.\nLevenson knows that we can hardly '
-          'change the world with art, but we can certainly change the gaze of the beholder. As an artist, '
-          'Levenson cannot look the other way when she reads that 50,000 women are killed worldwide each '
-          'year as a result of femicide. This lecture includes images of Levenson\'s work and also '
-          'of projects in which she participated that involved migrants, refugees, and women.',
+      'Silvia Levenson exists between different realities: between Latin America and Europe, between '
+          'the contemporary art world and the glass world, between concepts and process, between thinking '
+          'and making.\n\nEven more, she stands between a society that is struggling to change and her '
+          'desire for justice.\n\nLevenson began exhibiting work made in glass in 1994 and in this '
+          'presentation, she will show how through all these years she has developed work related '
+          'to society\'s ills: the desaparecidos during the Argentinean dictatorship, childhood abuse, '
+          'violence against women, and post-colonialist policies in the world.\n\nFor 30 years, Levenson has '
+          'created installations, sculptures, and videos aimed at dissolving borders both '
+          'physical and psychological, and has used glass to be able to see what is happening around her.\n\n'
+          'Levenson knows that we can hardly change the world with art, but we can certainly change '
+          'the gaze of the beholder. As an artist, Levenson cannot look the other way when she reads '
+          'that 50,000 women are killed worldwide each year as a result of femicide. This lecture includes '
+          'images of Levenson\'s work and also of projects in which she participated that involved migrants, '
+          'refugees, and women.',
       'http://www.silvialenenson.com', 'silvia_levenson',
       '', DateTime.parse('2024-05-16 10:00:00Z'),
       DateTime.parse('2024-05-16 11:00:00Z'),
@@ -710,7 +711,7 @@ List<TalkTitleItem> Day1 = [
           'discussion and summary of the experience. Pre-registration is required; the link is available on '
           'the GAS website. This event is capped at 35.',
       'https://www.theglassvirus.com/about', 'gayle.matthias',
-      '(Caroline Madden, ), (Jens Pfeifer, ), (Ilse Van Roy, )',
+      '(Caroline Madden, ), (Jens Pfeifer, ), (Jesse Magee, )',
       DateTime.parse('2024-05-16 10:30:00Z'),
       DateTime.parse('2024-05-16 12:00:00Z'),
       false),
@@ -740,16 +741,17 @@ List<TalkTitleItem> Day1 = [
   TalkTitleItem('Grantwriting for Artists',
       'Anne Kenealy', 'Wilhelm Hallen Main Stage',
       'WORKSHOP', '',
-      'Grantwriting is intimidating for most of us. At the same time, securing funding through philanthropic '
-          'organizations can make a big difference in your effectiveness and learning as an artist. In this '
-          'roundtable discussion and workshop, Anne Kenealy will provide the basics of grant writing and '
-          'strategies she has learned over her 30 years of experience. Participants will cover how to research '
-          'and narrow down a list of donor targets, what should be in an artist statement, how to frame the need '
-          'for your project, and how to describe how you will carry it out. Get comfortable with budgets (which '
-          'can be a great method for mapping out a project) and learn what to do when your application is '
-          'accepted or turned down. "No" doesn\'t necessarily mean "no forever!" This 2-hour interactive '
-          'workshop focused mostly on US-specific approaches, will take the mystery out of grant writing--and, '
-          'hopefully, some of the discomfort!',
+      'Grantwriting is intimidating for most of us. At the same time, securing funding through '
+          'philanthropic organizations can make a big difference in your effectiveness and learning '
+          'as an artist. In this roundtable discussion and workshop, Anne Kenealy will provide the '
+          'basics of grant writing and strategies she has learned over her 30 years of experience. '
+          'Participants will cover how to research and narrow down a list of donor targets, what '
+          'should be in an artist statement, how to frame the need for your project, and how to '
+          'describe how you will carry it out. Get comfortable with budgets (which can be a great '
+          'method for mapping out a project) and learn what to do when your application is accepted '
+          'or turned down. "No" doesn\'t necessarily mean "no forever!" This 2-hour interactive '
+          'workshop focused mostly on US-specific approaches, will take the mystery out of grant '
+          'writing--and, hopefully, some of the discomfort!',
       '', 'annegkenealy',
       '',
       DateTime.parse('2024-05-17 12:30:00Z'),

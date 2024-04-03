@@ -15,6 +15,7 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -333,32 +334,29 @@ class TalkTitleItem implements ListItem {
 
 // used to pass messages from event handler to the UI
 final _messageStreamController = BehaviorSubject<RemoteMessage>();
+FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 const primaryColor = Colors.blue;
 const headerTextColor = Colors.white;
 
 Future<void> _updateSharedPreferences(SharedPreferences sharedPreferences, RemoteMessage message) async {
   // read the old lists, append data, and create new lists
-  final formerMessageIdList = sharedPreferences.getStringList('messageIds');
-  final formerMessageDataList = sharedPreferences.getStringList('messageData');
   final formerMessageTitleList = sharedPreferences.getStringList('messageTitle');
   final formerMessageBodyList = sharedPreferences.getStringList('messageBody');
+  final formerMessageTimeList = sharedPreferences.getStringList('messageSentTime');
 
   // append the new data to it
-  formerMessageIdList?.add("${message.messageId}");
-  formerMessageDataList?.add("${message.data}");
   formerMessageTitleList?.add("${message.notification?.title}");
   formerMessageBodyList?.add("${message.notification?.body}");
+  formerMessageTimeList?.add(DateFormat('EEEE LLLL d - HH:mm').format(message.sentTime! as DateTime));
 
   // and save the new list back to storage
-  await sharedPreferences.setStringList('messageIds', formerMessageIdList!);
-  await sharedPreferences.setStringList('messageData', formerMessageDataList!);
   await sharedPreferences.setStringList('messageTitle', formerMessageTitleList!);
   await sharedPreferences.setStringList('messageBody', formerMessageBodyList!);
+  await sharedPreferences.setStringList('messageSentTime', formerMessageTimeList!);
 
-  final List<String>? items = sharedPreferences.getStringList('messageIds');
   if (kDebugMode) {
+    final List<String>? items = sharedPreferences.getStringList('messageTitle');
     print(items);
-    print("is anything happening??");
   }
 
 }
@@ -387,10 +385,9 @@ Future<void> main() async {
 
   // Obtain shared preferences for logging messages.
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  await sharedPreferences.setStringList('messageIds', <String>[]);
-  await sharedPreferences.setStringList('messageData', <String>[]);
   await sharedPreferences.setStringList('messageTitle', <String>[]);
   await sharedPreferences.setStringList('messageBody', <String>[]);
+  await sharedPreferences.setStringList('messageSentTime', <String>[]);
 
   // Initiatlize the app
   await Firebase.initializeApp(
@@ -441,7 +438,7 @@ Future<void> main() async {
     }
 
     _messageStreamController.sink.add(message);
-    //_updateSharedPreferences(sharedPreferences, message);
+    _updateSharedPreferences(sharedPreferences, message);
 
   });
 
@@ -505,16 +502,6 @@ String venueText = 'Our conference presentations will be hosted at two hubs: Wil
     'Provinzstraße (Berlin Glas, Monopol, and Bard College Berlin)';
 String accomodationsTitle = 'ACCOMODATIONS';
 String accomodationsText = 'GAS Partner Hotels';
-/*String exhibitionsTitle = 'EXHIBITIONS';
-String exhibitionsText = 'We have exhibition opportunities available for GAS members and the general public, both in person and online. '
-    'Showcasing the depth and breadth of our membership and exploring a range of poignant topics in the glass '
-    'community, our conference exhibitions offer a unique way for artists to participate from across the globe.';
-String middayInteractiveTitle = 'MIDDAY INTERACTIVE PROGRAMMING';
-String middayInteractiveText = 'NEW THIS YEAR: In response to attendee feedback, we are offering themed interactive '
-    'programming at Wilhelm Hallen during a midday pause in the schedule. Enjoy time to mingle with fellow '
-    'glass enthusiasts, an extended break for lunch, or a beer at our Biergarten at Wilhelm Hallen.';*/
-
-
 
 class _MyHomePageState extends State<MyHomePage> {
   String _lastMessage = "";
@@ -549,11 +536,6 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // TODO: Remove when ready!!! Make Pop Up Instead //
-                /*Text('Last message from Firebase Messaging:',
-                    style: Theme.of(context).textTheme.titleLarge),
-                Text(_lastMessage, style: Theme.of(context).textTheme.bodyLarge),*/
-                /*2*/
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: const Text(
@@ -998,7 +980,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _navigateToUpdateScreen(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateScreen(
+        sharedPreferences: sharedPreferences,
+    )));
   }
 
 }
