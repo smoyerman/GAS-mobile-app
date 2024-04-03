@@ -270,6 +270,9 @@ class TalkTitleItem implements ListItem {
                           ),
                           onPressed: () async {
                             var nativeUrl = "instagram://user?username=" + socialMedia;
+                            if (kDebugMode) {
+                              print(nativeUrl);
+                            }
                             var webUrl = "https://www.instagram.com/" + socialMedia;
                             if (await canLaunch(nativeUrl)) {
                               await launch(nativeUrl);

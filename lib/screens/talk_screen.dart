@@ -28,13 +28,17 @@ class _TalkScreenState extends State<TalkScreen> {
     final allImageLinks = images.map((i) => i.imageLink).toList();
     final imageLinks = allImageLinks.where((map)
                         => map.contains(item.returnSpeaker(context))).toList();
+    if(imageLinks.isEmpty){
+      final imageLinks = allImageLinks.where((map)
+        => map.contains(item.returnSpeaker(context).split(" ")[0])).toList();
+    }
 
-    Widget textSection = Container(
+      Widget textSection = Container(
       padding: const EdgeInsets.fromLTRB(32,12,0,0),
       child: item.buildDescription(context),
     );
 
-    //Navigator.of(context).pop(item);
+    print(imageLinks);
 
     return Scaffold(
         appBar: AppBar(
