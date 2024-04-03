@@ -33,6 +33,7 @@ class UpdateScreen extends StatelessWidget {
       body: SingleChildScrollView(
         physics: ScrollPhysics(),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             GestureDetector(
             onTap: _launchURL,
@@ -47,17 +48,34 @@ class UpdateScreen extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(24,18,20,0),
               child: Text('Keep up to date with all of the GAS happenings. Below are a rolling list of '
                 'updates for the conference, including talk and location changes, new opportunities, and '
-                'ad-hoc gatherings.',
+                'ad-hoc gatherings.\n',
               style: TextStyle(fontSize: 14),
             ),
           ),
-            ListView.builder(
+            Container(
+              margin: EdgeInsets.fromLTRB(24,6,20,8),
+              //padding: const EdgeInsets.only(bottom: 8),
+              child: Text(
+                'MESSAGES',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+              ListView.builder(
               physics: NeverScrollableScrollPhysics(),
+              reverse: true,
               shrinkWrap: true,
-              itemCount: messageTitles?.length,
-              itemBuilder: (BuildContext ctxt, int index) {
-                return new ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+              itemCount: messageTitles!.length,
+              itemBuilder: (context, index) {
+                return Align( // wrap card with Align
+                    child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                  child: Card(
+                  child: ListTile(
+                  contentPadding: EdgeInsets.fromLTRB(36,2,20,2),
+                  leading: Icon(Icons.message_rounded,
+                      color: Colors.blue),
                   title: Text(messageTitles![index] + '\n' + messageSentTime![index],
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
@@ -66,29 +84,12 @@ class UpdateScreen extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
-                );
-              }
-          ),
-        ]
+                ))));
+              },
+            ),
+          ]
       )
       )
-
-      /*new ListView.builder(
-        itemCount: messageTitles?.length,
-          itemBuilder: (BuildContext ctxt, int index) {
-            return new ListTile(
-              contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
-              title: Text(messageTitles![index],
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(messageBodies![index],
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            );
-          }
-      ),*/
       );
 
   }
