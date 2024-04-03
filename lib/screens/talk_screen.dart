@@ -57,28 +57,66 @@ class _TalkScreenState extends State<TalkScreen> {
                     ..onTap = () { if (item.website.isNotEmpty) { launch(item.website); }
                     },
                 )),
-                subtitle: Text(DateFormat('EEEE LLLL d - HH:mm-').format(item.talkStartDateTime) +
-                    DateFormat('HH:mm').format(item.talkEndDateTime)),
-
-
-                leading: IconButton(
-                    icon: FaIcon(FontAwesomeIcons.instagram, size: 20,
-                        color: item.socialMedia.isNotEmpty ? Colors.blue : Colors.black),
-                    onPressed: () async {
-                      if (item.socialMedia.isNotEmpty) {
-                        var nativeUrl = "instagram://user?username=" + item.socialMedia;
-                        var webUrl = "https://www.instagram.com/" + item.socialMedia;
-                        if (await canLaunch(nativeUrl)) {
-                          await launch(nativeUrl);
-                        } else if (await canLaunch(webUrl)) {
-                          await launch(webUrl);
-                        } else {
-                          print("can't open Instagram");
-                        }
-                      }}
-                ),
-              ),
+                subtitle: Text(item.talkType + ': ' + item.talkFocus,
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),),
+                  leading: IconButton(
+              icon: FaIcon(FontAwesomeIcons.instagram, size: 30,
+                  color: item.socialMedia.isNotEmpty ? Colors.blue : Colors.black),
+          onPressed: () async {
+            if (item.socialMedia.isNotEmpty) {
+              var nativeUrl = "instagram://user?username=" + item.socialMedia;
+              var webUrl = "https://www.instagram.com/" + item.socialMedia;
+              if (await canLaunch(nativeUrl)) {
+                await launch(nativeUrl);
+              } else if (await canLaunch(webUrl)) {
+                await launch(webUrl);
+              } else {
+                print("can't open Instagram");
+              }
+            }}
+      ),
+      ),
         );
+    }
+
+    // #docregion Card
+    Widget _buildCard2() {
+      return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.9,
+          child: ListTile(
+            title: RichText(
+              text: TextSpan(
+                style: Theme.of(context).textTheme.headline6,
+                children: [
+                  TextSpan(
+                    text: 'Date: ',
+                    style: TextStyle( fontSize: 14, fontWeight: FontWeight.w800),
+                  ),
+                  TextSpan(
+                    text: DateFormat('EEEE, LLLL d - HH:mm-').format(item.talkStartDateTime) +
+                        DateFormat('HH:mm').format(item.talkEndDateTime),
+                    style: TextStyle( fontSize: 14 ),
+                  ),
+                ],
+              ),
+            ),
+            subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      TextSpan(
+                        text: 'Location: ',
+                        style: TextStyle( fontSize: 14, fontWeight: FontWeight.w800),
+                      ),
+                      TextSpan(
+                        text: item.talkLocation,
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+         ),
+      );
     }
     // #enddocregion Card
 
@@ -136,7 +174,7 @@ class _TalkScreenState extends State<TalkScreen> {
               ),
             ),
             Center(child: _buildCard()),
-
+            Center(child: _buildCard2()),
             textSection
           ],
         ),
