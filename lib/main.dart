@@ -85,6 +85,7 @@ abstract class ListItem {
   String returnFocus(BuildContext context);
   String returnType(BuildContext context);
   String returnFullTime(BuildContext context);
+  String returnCoPresenters(BuildContext context);
 
   //ListItem(this.image, this.name, this.website);
 
@@ -112,15 +113,6 @@ class TalkTitleItem implements ListItem {
       this.talkType, this.talkFocus, this.talkDescription,
       this.website, this.socialMedia, this.coPresenters,
       this.talkStartDateTime, this.talkEndDateTime, this.talkSaved);
-
-  /*@override
-  Widget buildType(BuildContext context) {
-    return Text("$talkFocus $talkType",
-      style: TextStyle(
-        color: Colors.grey[500],
-      ),
-    );
-  }*/
 
   @override
   String returnSpeakerSite(BuildContext context){return website;}
@@ -163,6 +155,11 @@ class TalkTitleItem implements ListItem {
 
   @override
   String returnType(BuildContext context) {return talkType;}
+
+  @override
+  String returnCoPresenters(BuildContext context) {
+    return coPresenters;
+  }
 
   @override
   bool switchSaved(BuildContext context) {

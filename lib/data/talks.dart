@@ -200,14 +200,15 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Dialogue of Wheels, Contemporary Glass Engraving',
-      'Tinne Vroonen', 'Wilhelm Hallen Cold Shop',
+      'Ioana Stelea', 'Wilhelm Hallen Cold Shop',
       'DEMO', 'COLD',
-      'Tinne Vroonen, Anne Wenzel, and Ioana Stelea will showcase glass engraving techniques. Using a '
-          '19th-century lathe driven by a foot pedal and a 20th-century lathe, they will show ways of working '
-          'from different times, and types of wheels, cuts, and effects on glass objects or fragments, '
-          'revealing various patterns and textures that can generate designs. Visuals with the history of '
-          'the process and samples will be available to offer a complete experience.',
-      'https://www.deviantart.com/ivan12' , 'ivanoozz',
+      'Ioana Stelea and Ann Wenzel will showcase glass engraving techniques. '
+          'Using a 19th-century lathe driven by a foot pedal and a 20th-century lathe, they '
+          'will show ways of working from different times, and types of wheels, cuts, and '
+          'effects on glass objects or fragments, revealing various patterns and textures that '
+          'can generate designs. Visuals with the history of the process and samples will be '
+          'available to offer a complete experience.',
+      'https://ioanastelea.weebly.com/' , 'ioanastelea',
       '(Anne Wenzel, https://www.glasgravur-wenzel.de/)',
       DateTime.parse('2024-05-16 14:00:00Z'),
       DateTime.parse('2024-05-16 15:30:00Z'),
@@ -597,7 +598,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
     TalkTitleItem('Reviving Iridescent Magic: A Contemporary Approach to a Centuries-Old Craft from Mesopotamia to the Present',
-      'Fatma	Ciftci', 'Wilhelm Hallen Lecture',
+      'Fatma Ciftci', 'Wilhelm Hallen Lecture',
       'LECTURE', 'TECHNOLOGY',
         'The technique of paste luster is an ancient method of decorating glass. Evidence of its use by '
             'skilled Mesopotamian glass artisans has been found in archaeological excavations, '

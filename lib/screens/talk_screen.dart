@@ -35,12 +35,79 @@ class _TalkScreenState extends State<TalkScreen> {
         => map.contains(item.returnSpeaker(context).split(" ")[0])).toList();
     }
 
+    //print('image links: ');
+    //print(imageLinks);
+
       Widget textSection = Container(
       padding: const EdgeInsets.fromLTRB(32,12,0,0),
       child: item.buildDescription(context),
     );
 
-    print(imageLinks);
+    /*if (item.coPresenters.isNotEmpty) {
+      final coPresenterNames = <String>[];
+      final coPresenterIGs = <String>[];
+      int counter = 0;
+      for (var m in item.coPresenters.split(',')) {
+        if ( counter % 2 == 0 ) {
+          coPresenterNames.add(m.replaceAll('\(',''));
+        }
+        else {
+          coPresenterIGs.add(m.replaceAll('\(',''));
+        }
+        counter++;
+      }
+      print(coPresenterNames);
+    }*/
+
+    Widget _buildCoPresenters() {
+      final coPresenterNames = <String>[];
+      final coPresenterIGs = <String>[];
+      int counter = 0;
+      for (var m in item.coPresenters.split(',')) {
+        if ( counter % 2 == 0 ) { coPresenterNames.add(m.replaceAll('\(','').trim()); }
+        else { coPresenterIGs.add(m.replaceAll('\(','')); }
+        counter++;
+      }
+
+      return SizedBox(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: ListView.builder (
+          shrinkWrap: true,
+          itemCount: coPresenterNames.length,
+              itemBuilder: (BuildContext ctxt, int Index) {
+                return RichText(
+                  text: TextSpan(
+                    children: [
+                      WidgetSpan(
+                        alignment: PlaceholderAlignment.middle,
+                        child: IconButton(
+                            icon: FaIcon(FontAwesomeIcons.instagram, size: 20,
+                                color: coPresenterIGs[Index].isNotEmpty ? Colors.blue : Colors.black),
+                            onPressed: () async {
+                              if (coPresenterIGs[Index].isNotEmpty) {
+                                var nativeUrl = "instagram://user?username=" + coPresenterIGs[Index];
+                                var webUrl = "https://www.instagram.com/" + coPresenterIGs[Index];
+                                if (await canLaunch(nativeUrl)) {
+                                  await launch(nativeUrl);
+                                } else if (await canLaunch(webUrl)) {
+                                  await launch(webUrl);
+                                } else {
+                                  print("can't open Instagram");
+                                }
+                              }}
+                        ),
+                      ),
+                      TextSpan(
+                        text: coPresenterNames[Index],
+                        style: new TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                );
+              }
+          )
+      );
+    };
 
     // #docregion Card
     Widget _buildCard() {
@@ -83,7 +150,7 @@ class _TalkScreenState extends State<TalkScreen> {
     Widget _buildCard2() {
       return SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
-          child: ListTile(
+        child: ListTile(
             title: RichText(
               text: TextSpan(
                 style: Theme.of(context).textTheme.headline6,
@@ -132,7 +199,10 @@ class _TalkScreenState extends State<TalkScreen> {
             )),
             backgroundColor: primaryColor),
 
-      body: ListView(
+      body: SingleChildScrollView(
+      physics: ScrollPhysics(),
+      child: ListView(
+          shrinkWrap: true,
           children: [
             CarouselSlider(
             options: CarouselOptions(),
@@ -173,12 +243,13 @@ class _TalkScreenState extends State<TalkScreen> {
                 ],
               ),
             ),
-            Center(child: _buildCard()),
-            Center(child: _buildCard2()),
+            Center(child: _buildCard(), heightFactor: 0.8),
+            Center(child: _buildCard2(), heightFactor: 0.8),
+            if( item.coPresenters.isNotEmpty ) Center(child: _buildCoPresenters(), heightFactor: 0.8),
             textSection
           ],
         ),
-    );
+    ));
   }
 
 }

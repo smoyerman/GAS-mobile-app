@@ -31,10 +31,10 @@ class _MyLocationState extends State<LocationScreen> {
 
   void _onMapCreated(GoogleMapController controller) async {
     mapController = controller;
-    final hotelIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/hotel.png", 90);
-    final GASIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/GAS.png", 90);
-    final metroIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/metro.png", 90);
-    final partyIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/party.png", 90);
+    final hotelIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/hotel.png", 132);
+    final GASIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/GAS.png", 132);
+    final metroIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/metro.png", 132);
+    final partyIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/party.png", 132);
 
     setState(() {
       _markers.clear();
