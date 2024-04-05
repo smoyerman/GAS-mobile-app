@@ -68,11 +68,15 @@ class _TalkScreenState extends State<TalkScreen> {
         else { coPresenterIGs.add(m.replaceAll('\(','')); }
         counter++;
       }
-
-      return SizedBox(
+      int _count = 0;
+      return Column(
+        children: <Widget> [
+        
+          SizedBox(
           width: MediaQuery.of(context).size.width * 0.9,
           child: ListView.builder (
           shrinkWrap: true,
+          itemExtent: 35.0,
           itemCount: coPresenterNames.length,
               itemBuilder: (BuildContext ctxt, int Index) {
                 return RichText(
@@ -81,6 +85,8 @@ class _TalkScreenState extends State<TalkScreen> {
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
                         child: IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(minWidth: 22, maxWidth: 22),
                             icon: FaIcon(FontAwesomeIcons.instagram, size: 20,
                                 color: coPresenterIGs[Index].isNotEmpty ? Colors.blue : Colors.black),
                             onPressed: () async {
@@ -104,9 +110,10 @@ class _TalkScreenState extends State<TalkScreen> {
                     ],
                   ),
                 );
-              }
+              },
           )
-      );
+      )
+      ]);
     };
 
     // #docregion Card
@@ -245,7 +252,7 @@ class _TalkScreenState extends State<TalkScreen> {
             ),
             Center(child: _buildCard(), heightFactor: 0.8),
             Center(child: _buildCard2(), heightFactor: 0.8),
-            if( item.coPresenters.isNotEmpty ) Center(child: _buildCoPresenters(), heightFactor: 0.8),
+            if( item.coPresenters.isNotEmpty ) Center(child: _buildCoPresenters()),
             textSection
           ],
         ),

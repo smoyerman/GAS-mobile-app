@@ -365,7 +365,7 @@ List<TalkTitleItem> Day1 = [
       DateTime.parse('2024-05-17 15:30:00Z'),
       false),
 
-  TalkTitleItem('',
+  TalkTitleItem('Glass Fabric: Development And Application Of Kente Patterns And Adinkra Symbols In Glass Art',
       'Anthony Amoako Attah', 'Monopol Lecmo',
       'LECMO', 'KILN',
       'This presentation investigates the philosophical, historical, and political representations '
