@@ -259,22 +259,11 @@ class InfoScreen extends StatelessWidget {
               ]
           ),
           ExpansionTile(
-              leading: Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 0.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Container(child: Image.asset("images/Activities/TrunkShow.jpeg",
-                          width: 80,
-                          fit: BoxFit.scaleDown,
-                        ),
-                        ),
-                      ),
-                    ],
+              leading: Container(
+                  child: Image.asset("images/Activities/TrunkShow.jpeg",
+                    width: 80,
+                    fit: BoxFit.fitWidth,
                   ),
-                ),
               ),
               title: Text('Trunk Show',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -359,23 +348,13 @@ class InfoScreen extends StatelessWidget {
               ]
           ),
           ExpansionTile(
-              leading: Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 0.0, left: 10, right: 10),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Container(child: Icon(Icons.co_present,
-                          color: Colors.blue,
-                          size: 60.0,
-                        ),
-                        ),
-                      ),
-                    ],
+              leading: Container(
+                  child: Icon(Icons.co_present,
+                    color: Colors.blue,
+                    size: 60.0,
                   ),
+                  width: 80,
                 ),
-              ),
               title: Text('Research Presentations',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),

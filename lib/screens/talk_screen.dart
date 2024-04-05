@@ -71,7 +71,7 @@ class _TalkScreenState extends State<TalkScreen> {
       int _count = 0;
       return Column(
         children: <Widget> [
-        
+
           SizedBox(
           width: MediaQuery.of(context).size.width * 0.9,
           child: ListView.builder (
