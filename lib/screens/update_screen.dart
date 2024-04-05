@@ -38,10 +38,11 @@ class UpdateScreen extends StatelessWidget {
             GestureDetector(
             onTap: _launchURL,
             child: Image.asset(
-              'images/Berlin email banner 4.png',
+              'images/GAS Berlin Splash - logo only.png',
               width: 600,
-              height: 130,
-              fit: BoxFit.fill,
+              //height: 130,
+              fit: BoxFit.contain,
+              alignment: Alignment.center,
             ),
           ),
           Container(
