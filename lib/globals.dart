@@ -126,6 +126,130 @@ final List<PhotoItem> items = [
   ),
 ];
 
-//List<String> rowdetail = [];
+/* ================ MARKET PHOTOS AND INFO ===================== */
+// MarketItem(this.image, this.name, this.website, this.contact, this.email)
+final List<MarketItem> marketItems = [
+  MarketItem(
+      "images/Market/adam-pyrometrie-logo.jpeg",
+      "Adam Pyrometrie",
+      "https://www.adampyrometrie.com/",
+      "Frederic Demoisson",
+      "judith-roux@protonmail.com",
+      "adampyrometrie"
+  ),
+  MarketItem(
+      "images/Sponsors/MadVerre-logo-sqare-300x300.webp",
+      "MAD Verre & Equipments",
+      "https://mve-france.fr/en/shop/",
+      "Judith Roux",
+      "judith-roux@protonmail.com",
+      "mad_verre_et_equipements"
+  ),
+  MarketItem(
+      "images/Market/ocean-logo.png",
+      "Oceanside Glass and Tile",
+      "https://www.glasstile.com/",
+      "Martina Zerwer",
+      "pbartholomew@glasstile.com",
+      "oceansideglasstile"
+  ),
+  MarketItem(
+      "images/Sponsors/TGK-Logo_1000_1000-300x300.webp",
+      "TGK",
+      "https://www.tgk.de/en/",
+      "Martina Zerwer",
+      "martina.zerwer@tgk.de",
+      "tgk.gmbh"
+  ),
+  MarketItem(
+      "images/Market/Glasma_Logo_Light.png",
+      "Glasma",
+      "https://glasma.com/",
+      "Martin Andersson",
+      "martin.andersson@glasma.com",
+      "studioglassbatch"
+  ),
+  MarketItem(
+      "images/Market/hot-glass-color.png",
+      "Hot Glass Color",
+      "https://hotglasscolor.com/",
+      "Cyrena Stefano",
+      "cyrena@hotglasscolor.com",
+      "hotglasscolorandsupply"
+  ),
+  MarketItem(
+      "images/Market/Logo-nagy-fehér.png",
+      "Rozetta Uvegstudio Bt.",
+      "http://rozettastudio.hu/",
+      "Jozsef Hofecker",
+      "info@rozetta.hu",
+      "jozsef1142"
+  ),
+  MarketItem(
+      "images/Market/cmog-logo.png",
+      "Corning Museum of Glass",
+      "https://home.cmog.org/",
+      "Megan Mathie",
+      "seamanhe@cmog.org",
+      "corningmuseum"
+  ),
+  MarketItem(
+      "images/Sponsors/Glass-Furnace-768x157.jpg",
+      "Glass Furnace",
+      "https://glassfurnace.org/",
+      "Yilmaz Yalcinkaya",
+      "elif@glassfurnace.org",
+      ""
+  ),
+  MarketItem(
+      "images/Market/rath-llc.jpeg",
+      "Rath LLC",
+      "https://www.rath-group.com/en/",
+      "Kenneth Domann",
+      "kenneth.domann@rath-group.com",
+      "" // <-- TODO: To find
+  ),
+  MarketItem(
+      "images/Market/canned-heat.webp",
+      "Canned Heat",
+      "https://www.cannedheatglass.com/",
+      "Cheyenne Malcolm",
+      "vetrovita@gmail.com",
+      "cannedheat1"
+  ),
+  MarketItem(
+      "images/Market/Maruko-Tools.jpg",
+      "Maruko Tools",
+      "https://marukotools.com/index.html",
+      "Kotone Ninagawa",
+      "kninagawa.edu@gmail.com",
+      "" // <-- TODO: see if I can find
+  ),
+  MarketItem(
+      "images/Market/berlin-beads.png",
+      "Berlin Beads",
+      "https://www.berlinbeads.de",
+      "Bouchra Oualla",
+      "info@berlinbeads.de",
+      "berlinbeads"
+  ),
+  MarketItem(
+      "images/Market/urban-glass.png",
+      "Urban Glass",
+      "https://urbanglass.org/",
+      "Kinshasa Peterson",
+      "kinshasa@urbanglass.org",
+      "urbanglass_nyc"
+  ),
+  MarketItem(
+      "images/Market/bomma-glass.png",
+      "Bomma",
+      "https://www.bomma.cz/",
+      "Aneta Hoffmannova",
+      "a.hoffmannova@bomma.cz",
+      "bomma_cz"
+  ),
+];
+
 
 /* ================================ */

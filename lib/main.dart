@@ -34,6 +34,16 @@ class PhotoItem {
   PhotoItem(this.image, this.name, this.website);
 }
 
+class MarketItem {
+  final String image;
+  final String name;
+  final String website;
+  final String contact;
+  final String email;
+  final String ig;
+  MarketItem(this.image, this.name, this.website, this.contact, this.email, this.ig);
+}
+
 /************* CLASS CONSTRUCTION TO ADD SPEAKER IMAGE LIST ***************/
 class SpeakerImage {
   final String imageLink;
@@ -578,7 +588,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                /*Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: const Text(
                     'Where Art + Design Meet',
@@ -587,7 +597,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
+                ),*/
                 const Text(
                     'Wednesday, May 15th - Saturday, May 18th',
                     style: TextStyle(
@@ -866,6 +876,31 @@ class _MyHomePageState extends State<MyHomePage> {
         ]
     );
 
+    Widget marketTitle = Container(
+      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /*2*/
+          Container(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: const Text(
+              'GAS MARKET',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Text(
+            'A central marketplace for exhibitors, the GAS Market has everything from new tools and '
+                'amazing gifts to the opportunity for insider insights and new contacts. This year’s '
+                'marketplace will be held at Wilhelm Hallen.',
+            softWrap: true,
+          ),
+        ],
+      ),
+    );
+
     Widget sponsorTitle = Container(
       padding: const EdgeInsets.fromLTRB(32,0,32,0),
       child: Column(
@@ -886,6 +921,76 @@ class _MyHomePageState extends State<MyHomePage> {
             softWrap: true,
           ),
         ],
+      ),
+      );
+    //);
+
+    Widget marketSection = Container(
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: marketItems.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 1,
+          crossAxisSpacing: 0,
+          mainAxisSpacing: 0,
+        ),
+        itemBuilder: (ctx, index) {
+          return Card(
+            elevation: 5,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                    child: GestureDetector(
+                      onTap: () async {
+                        var url = marketItems[index].website;
+                        launch(url);
+                      }, // Image tapped
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.scaleDown,
+                            image: AssetImage(marketItems[index].image),
+                          ),
+                        ),
+                      ),
+                    )
+                ),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                Expanded(
+                  child: IconButton(
+                      icon: FaIcon(FontAwesomeIcons.instagram,
+                        size: 20,
+                      ),
+                      onPressed: () async {
+                        if (marketItems[index].ig.isNotEmpty) {
+                          var nativeUrl = "instagram://user?username=" + marketItems[index].ig;
+                          var webUrl = "https://www.instagram.com/" + marketItems[index].ig;
+                          if (await canLaunch(nativeUrl)) {
+                            await launch(nativeUrl);
+                          } else if (await canLaunch(webUrl)) {
+                            await launch(webUrl);
+                          } else {
+                            print("can't open Instagram");
+                          }
+                        }}
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.link, size: 20),
+                  onPressed: () async {
+                    launch('mailto:' + marketItems[index].email);
+                  },
+                ),
+              ]),
+          ],
+            ));
+        },
       ),
     );
 
@@ -946,10 +1051,11 @@ class _MyHomePageState extends State<MyHomePage> {
             GestureDetector(
               onTap: _launchURL,
               child: Image.asset(
-                'images/Berlin email banner 4.png',
+                'images/GAS Berlin Splash - logo only.png',
                 width: 600,
-                height: 130,
-                fit: BoxFit.fill,
+                //height: 130,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
               ),
             ),
             titleSection,
@@ -967,6 +1073,9 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsets.fromLTRB(24,0,20,0),
               child: accomodationsContent,
             ),
+            myDivider,
+            marketTitle,
+            marketSection,
             myDivider,
             sponsorTitle,
             sponsorSection,

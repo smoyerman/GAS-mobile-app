@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../globals.dart';
 import '../main.dart';
@@ -26,6 +27,10 @@ class InfoScreen extends StatelessWidget {
         'catch-up with friends, and have some added fun!\nConnect with friends, new and old, and network '
         'with the best of the glass community as you enjoy unique and engaging events across Berlin, Germany.\n'
         'Once you have selected your registration type, you can add tickets to these special events.';
+    String GASMarketTitle = 'GAS MARKET';
+    String GASMarketText = 'A central marketplace for exhibitors, the GAS Market has everything from new tools and '
+        'amazing gifts to the opportunity for insider insights and new contacts. This year’s '
+        'marketplace will be held at Wilhelm Hallen.';
 
     final Uri params = Uri(
         scheme: 'mailto',
@@ -66,7 +71,7 @@ class InfoScreen extends StatelessWidget {
     }
 
     Widget textSection = Container(
-      padding: const EdgeInsets.fromLTRB(32,32,32,10),
+      padding: const EdgeInsets.fromLTRB(32,16,32,10),
       child: const Text(
         'From our exhibitions and portfolio reviews to the Goblet Grab, there are so many ways to become a '
             'part of the conference! \n\nEach GAS annual conference offers exhibitions and activities to give '
@@ -391,6 +396,82 @@ class InfoScreen extends StatelessWidget {
                   ),
                 )
               ]
+          ),
+        ]
+    );
+
+    Widget GASMarketContent = Column(
+        children: <Widget>[
+          ExpansionTile(
+            title: Text('Market Participants',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Tuesday, May 14 - Saturday, May 18'),
+            children: <Widget> [
+    Container(
+    padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+    child: GridView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: marketItems.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 1,
+        childAspectRatio: 3,
+        crossAxisSpacing: 0,
+        mainAxisSpacing: 0,
+      ),
+      itemBuilder: (ctx, index) {
+        return  Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Expanded(
+                    child: GestureDetector(
+                      onTap: () async {
+                        var url = marketItems[index].website;
+                        launch(url);
+                      }, // Image tapped
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.scaleDown,
+                            image: AssetImage(marketItems[index].image),
+                          ),
+                        ),
+                      ),
+                    )
+                ),
+                IconButton(
+                            icon: FaIcon(FontAwesomeIcons.instagram,
+                              size: 20,
+                            ),
+                            onPressed: () async {
+                              if (marketItems[index].ig.isNotEmpty) {
+                                var nativeUrl = "instagram://user?username=" + marketItems[index].ig;
+                                var webUrl = "https://www.instagram.com/" + marketItems[index].ig;
+                                if (await canLaunch(nativeUrl)) {
+                                  await launch(nativeUrl);
+                                } else if (await canLaunch(webUrl)) {
+                                  await launch(webUrl);
+                                } else {
+                                  print("can't open Instagram");
+                                }
+                              }}
+                        ),
+                      IconButton(
+                        icon: Icon(Icons.link, size: 20),
+                        onPressed: () async {
+                          launch('mailto:' + marketItems[index].email);
+                        },
+                      ),
+                    ]);
+              //],
+            //));
+        //);
+      },
+    ),
+    ),
+            ],
           ),
         ]
     );
@@ -738,18 +819,24 @@ class InfoScreen extends StatelessWidget {
           )),
           backgroundColor: primaryColor),
       body: ListView(
-        //SingleChildScrollView(
           children: <Widget>[
             GestureDetector(
             onTap: _launchURL,
             child: Image.asset(
-              'images/Berlin email banner 4.png',
+              'images/GAS Berlin Splash - logo only.png',
               width: 600,
-              height: 130,
-              fit: BoxFit.fill,
+              //height: 130,
+              fit: BoxFit.contain,
+              alignment: Alignment.center,
             ),
             ),
         textSection,
+        myDivider,
+        buildTitleWidget(GASMarketTitle, GASMarketText),
+        Container(
+          margin: EdgeInsets.fromLTRB(24,0,20,0),
+          child: GASMarketContent,
+        ),
         myDivider,
         buildTitleWidget(specialEventsTitle, specialEventsText),
         Container(
@@ -763,7 +850,6 @@ class InfoScreen extends StatelessWidget {
           child: exhibitionsContent,
         ),
         myDivider,
-
         buildTitleWidget(middayInteractiveTitle, middayInteractiveText),
       Container(
         margin: EdgeInsets.fromLTRB(24,0,20,0),
