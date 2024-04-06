@@ -99,8 +99,10 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                                 'HISTORY','SOCIAL JUSTICE','CAREER','COMMUNITY',
                                   'TECHNOLOGY','EDUCATION','SUSTAINABILITY','OTHER'];
 
-  List<String> talkLocationFilters = ['Berlin Glas','Monopol','Wilhelm Hallen',
-                                'Film Fest','Conference Hotel'];
+  List<String> talkLocationFilters = ['WH','Berlin Glas','Monopol','Bard'];
+
+  /*List<String> talkLocationFilters = ['Berlin Glas','Monopol','Wilhelm Hallen',
+                                'Film Fest','Conference Hotel'];*/
 
   List<String> selectedTypeFilters = [];
   List<String> selectedTopicFilters = [];
@@ -130,28 +132,23 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
           /*Text("Filter: ",
               style: TextStyle(fontWeight: FontWeight.bold,
               fontSize: 16,)),*/
-
-          SizedBox(width: 10),
-          Container(
+          SizedBox(width: 20),
+          DefaultTextStyle.merge(
+            style: TextStyle(
+              //color: Colors.grey[400],
+              fontSize: 10,
+            ),
+          child: Container(
           height:40,
-          width: 100,
+          width: 160,
           alignment: Alignment.topLeft,
           //width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.fromLTRB(0,10,40,10),
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(50)),
-
-            child: Theme(
-              data: Theme.of(context).copyWith(
-                canvasColor: Colors.black,
-                textTheme: const TextTheme(
-                  displayMedium: TextStyle(
-                    fontSize: 72,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              child: DropDownMultiSelect(
+                color: Colors.white, borderRadius: BorderRadius.circular(50),
+            ),
+            child: DropDownMultiSelect(
+            //selected_values_style: TextStyle(color: Colors.white),
             whenEmpty: 'TYPE',
             options: talkTypeFilters,
             selectedValues: selectedTypeFilters,
@@ -163,7 +160,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             },
           ),
             ),
-        ),
+          ),],),
           Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -180,8 +177,8 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               ),
             ],
           ),
-      ],
-      ),
+      //],
+      //),
 
         Row (
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -206,8 +203,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               },
             ),
           ),
-
-    ]),
+        ]),
 
         ListView.builder(
         shrinkWrap: true,
@@ -272,7 +268,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
         },
         itemCount: days.length,
         ),
-    ] );
+    ]);
   }
 
 }

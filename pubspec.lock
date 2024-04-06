@@ -504,12 +504,11 @@ packages:
   multiselect:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "8b1dc71ae4982db4c37d477bb8021ac71badd595"
-      resolved-ref: "8b1dc71ae4982db4c37d477bb8021ac71badd595"
-      url: "https://github.com/XuannThucc/multiselect"
-    source: git
-    version: "0.0.7"
+      name: multiselect
+      sha256: "8d0c4a7b89bee6c5e5e4a25ecba68c796dafc1917492d5606f0caa3947d5905a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   navigation_builder:
     dependency: transitive
     description:

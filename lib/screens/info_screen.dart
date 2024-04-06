@@ -402,7 +402,9 @@ class InfoScreen extends StatelessWidget {
 
     Widget GASMarketContent = Column(
         children: <Widget>[
-          ExpansionTile(
+    Theme(
+    data: ThemeData().copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
             title: Text('Market Participants',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
@@ -472,7 +474,7 @@ class InfoScreen extends StatelessWidget {
     ),
     ),
             ],
-          ),
+          ),),
         ]
     );
 
