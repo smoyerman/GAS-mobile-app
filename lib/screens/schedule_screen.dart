@@ -73,17 +73,42 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
 
       // Focus of Talk Only
       if (selectedTypeFilters.length > 0) {
+        List<String> selectedTypeFiltersLower = selectedTypeFilters.map((type)=>type.toLowerCase()).toList();
         _sortedTalksFiltered = _sortedTalksFiltered.where((map) =>
-            selectedTypeFilters.contains(map.talkType)).toList();
+            selectedTypeFiltersLower.contains(map.talkType.toLowerCase())).toList();
       }
 
       // Topic of Talk Only
-      if (selectedTopicFilters.length > 0) {
+      /*if (selectedTopicFilters.length > 0) {
         _sortedTalksFiltered = _sortedTalksFiltered.where((map) =>
             selectedTopicFilters.contains(map.talkFocus)).toList();
-      }
+      }*/
 
-      // Location Filter
+      // Location Filter - fix me, just adjust the list
+      if (selectedLocationFilters.length > 0) {
+        List<String> LocFilters = [];
+        for (var item in selectedLocationFilters) {
+          if (item == "Wilhelm") {
+            List<String> Wilhelm = ["Wilhelm Hallen Lecture",
+              "Wilhelm Hallen Main Stage", "Wilhelm Hallen Panel",
+              "Wilhelm Hallen Cold Shop", "Wilhelm Hallen"
+            ];
+            LocFilters.addAll(Wilhelm);
+          }
+          if (item == "Berlin Glas") {
+            LocFilters.add("Berlin Glas");
+            LocFilters.add("Berlin Glas Lecmo");
+            LocFilters.add("Berlin Glas");
+          }
+          if (item == "Monopol") {
+            LocFilters.add("Monopol Flame Shop");
+            LocFilters.add("Monopol Lecmo");
+          }
+        }
+        print(LocFilters);
+        _sortedTalksFiltered = _sortedTalksFiltered.where((map) =>
+            LocFilters.contains(map.talkLocation)).toList();
+      }
 
     });
   }
@@ -92,14 +117,13 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
     setState(() {});
   }
 
-  List<String> talkTypeFilters = ['DEMO','LECMO','LECTURE','PANEL','PERFORMANCE',
-                              'WORKSHOP','OTHER'];
+  List<String> talkTypeFilters = ['Demo','Lecmo','Lecture','Panel','Performance', 'Workshop'];
 
   List<String> talkTopicFilters = ['HOT','FLAME','COLD','NEON','KILN','MOLD',
                                 'HISTORY','SOCIAL JUSTICE','CAREER','COMMUNITY',
                                   'TECHNOLOGY','EDUCATION','SUSTAINABILITY','OTHER'];
 
-  List<String> talkLocationFilters = ['WH','Berlin Glas','Monopol','Bard'];
+  List<String> talkLocationFilters = ['Wilhelm','Berlin Glas','Monopol','Bard'];
 
   /*List<String> talkLocationFilters = ['Berlin Glas','Monopol','Wilhelm Hallen',
                                 'Film Fest','Conference Hotel'];*/
@@ -136,7 +160,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
           DefaultTextStyle.merge(
             style: TextStyle(
               //color: Colors.grey[400],
-              fontSize: 10,
+              //fontSize: 10,
             ),
           child: Container(
           height:40,
@@ -149,7 +173,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             ),
             child: DropDownMultiSelect(
             //selected_values_style: TextStyle(color: Colors.white),
-            whenEmpty: 'TYPE',
+            whenEmpty: 'Type',
             options: talkTypeFilters,
             selectedValues: selectedTypeFilters,
             onChanged: (value) {
@@ -160,7 +184,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             },
           ),
             ),
-          ),],),
+          ),
           Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -177,27 +201,27 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               ),
             ],
           ),
-      //],
-      //),
+      ],
+      ),
 
         Row (
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
           Container(
-            height:30,
-            width: 200,
+            height:40,
+            width: 120,
             alignment: Alignment.topLeft,
             //width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.fromLTRB(0,10,40,10),
 
             child: DropDownMultiSelect(
-              whenEmpty: 'FOCUS',
-              options: talkTopicFilters,
-              selectedValues: selectedTopicFilters,
+              whenEmpty: 'Site',
+              options: talkLocationFilters,
+              selectedValues: selectedLocationFilters,
               onChanged: (value) {
                 setState(() {
-                  selectedTopicFilters = value;
+                  selectedLocationFilters = value;
                   _filterSortedTalks();
                 });
               },
