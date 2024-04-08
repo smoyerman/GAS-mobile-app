@@ -56,5 +56,7 @@
      <array>
          <string>instagram</string>
      </array>
+     <key>NSLocationWhenInUseUsageDescription</key>
+     <string>Provides locations of conference sites to users on a live map via google maps API.</string>
 </dict>
 </plist>

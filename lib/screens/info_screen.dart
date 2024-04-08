@@ -467,9 +467,6 @@ class InfoScreen extends StatelessWidget {
                         },
                       ),
                     ]);
-              //],
-            //));
-        //);
       },
     ),
     ),

@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'package:flutter/gestures.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'globals.dart';
-//import './data/talks.dart';
 import './screens/schedule_screen.dart';
 import './screens/location_screen.dart';
 import './screens/info_screen.dart';
@@ -16,15 +14,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'firebase_options.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+//import 'package:flutter/gestures.dart';
+//import './data/talks.dart';
 
 // Uncomment lines 3 and 6 to view the visual layout at runtime.
 // import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
-import 'firebase_options.dart';
-// FlutterFire's Firebase Cloud Messaging plugin
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 /************* CLASS CONSTRUCTION TO ADD SPONSOR PHOTO ITEMS ***************/
 class PhotoItem {
