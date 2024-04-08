@@ -199,8 +199,9 @@ class TalkTitleItem implements ListItem {
   Widget buildTitle(BuildContext context) {
     return Text(
       talkTitle,
-      style: TextStyle(fontWeight: FontWeight.bold,
+      style: TextStyle(fontWeight: FontWeight.w500,
         fontSize: 14,
+        //color: Colors.blue,
       ),
     );
   }
@@ -227,6 +228,7 @@ class TalkTitleItem implements ListItem {
 
   @override
   Widget buildSpeakerCard(BuildContext context) {
+    String talkDesc = "$talkLocation\n$talkType" + (talkFocus.isNotEmpty ? " - $talkFocus" : "");
     return Text.rich(
       TextSpan(
         children: <TextSpan>[
@@ -239,7 +241,7 @@ class TalkTitleItem implements ListItem {
             ),
           ),
           TextSpan(
-            text: "$talkLocation: $talkFocus - $talkType",
+            text: talkDesc,
             style: TextStyle(
               fontSize: 12,
             ),
@@ -588,16 +590,6 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /*Container(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: const Text(
-                    'Where Art + Design Meet',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),*/
                 const Text(
                     'Wednesday, May 15th - Saturday, May 18th',
                     style: TextStyle(

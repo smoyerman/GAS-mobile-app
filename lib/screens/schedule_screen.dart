@@ -78,12 +78,6 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             selectedTypeFiltersLower.contains(map.talkType.toLowerCase())).toList();
       }
 
-      // Topic of Talk Only
-      /*if (selectedTopicFilters.length > 0) {
-        _sortedTalksFiltered = _sortedTalksFiltered.where((map) =>
-            selectedTopicFilters.contains(map.talkFocus)).toList();
-      }*/
-
       // Location Filter - fix me, just adjust the list
       if (selectedLocationFilters.length > 0) {
         List<String> LocFilters = [];
@@ -149,7 +143,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
   return Column(
       children: <Widget>[
       Row (
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           //SizedBox(width: 30),
@@ -167,7 +161,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
           width: 160,
           alignment: Alignment.topLeft,
           //width: MediaQuery.of(context).size.width,
-          margin: EdgeInsets.fromLTRB(0,10,40,10),
+          margin: EdgeInsets.fromLTRB(0,10,10,10),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(50),
             ),
@@ -183,6 +177,25 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               });
             },
           ),
+            ),
+          ),
+          Container(
+            height:40,
+            width: 120,
+            alignment: Alignment.topLeft,
+            //width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.fromLTRB(0,10,0,10),
+
+            child: DropDownMultiSelect(
+              whenEmpty: 'Site',
+              options: talkLocationFilters,
+              selectedValues: selectedLocationFilters,
+              onChanged: (value) {
+                setState(() {
+                  selectedLocationFilters = value;
+                  _filterSortedTalks();
+                });
+              },
             ),
           ),
           Column(
@@ -204,7 +217,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
       ],
       ),
 
-        Row (
+        /*Row (
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -227,7 +240,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               },
             ),
           ),
-        ]),
+        ]),*/
 
         ListView.builder(
         shrinkWrap: true,
