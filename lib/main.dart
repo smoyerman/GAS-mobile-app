@@ -17,10 +17,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-//import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-//import 'package:flutter/gestures.dart';
-//import './data/talks.dart';
-
 // Uncomment lines 3 and 6 to view the visual layout at runtime.
 // import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
@@ -867,31 +863,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ]
     );
 
-    Widget marketTitle = Container(
-      padding: const EdgeInsets.fromLTRB(32,0,32,0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /*2*/
-          Container(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: const Text(
-              'GAS MARKET',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          Text(
-            'A central marketplace for exhibitors, the GAS Market has everything from new tools and '
-                'amazing gifts to the opportunity for insider insights and new contacts. This year’s '
-                'marketplace will be held at Wilhelm Hallen.',
-            softWrap: true,
-          ),
-        ],
-      ),
-    );
-
     Widget sponsorTitle = Container(
       padding: const EdgeInsets.fromLTRB(32,0,32,0),
       child: Column(
@@ -914,76 +885,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       );
-    //);
-
-    Widget marketSection = Container(
-      padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: marketItems.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          childAspectRatio: 1,
-          crossAxisSpacing: 0,
-          mainAxisSpacing: 0,
-        ),
-        itemBuilder: (ctx, index) {
-          return Card(
-            elevation: 5,
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                    child: GestureDetector(
-                      onTap: () async {
-                        var url = marketItems[index].website;
-                        launch(url);
-                      }, // Image tapped
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.scaleDown,
-                            image: AssetImage(marketItems[index].image),
-                          ),
-                        ),
-                      ),
-                    )
-                ),
-                Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                Expanded(
-                  child: IconButton(
-                      icon: FaIcon(FontAwesomeIcons.instagram,
-                        size: 20,
-                      ),
-                      onPressed: () async {
-                        if (marketItems[index].ig.isNotEmpty) {
-                          var nativeUrl = "instagram://user?username=" + marketItems[index].ig;
-                          var webUrl = "https://www.instagram.com/" + marketItems[index].ig;
-                          if (await canLaunch(nativeUrl)) {
-                            await launch(nativeUrl);
-                          } else if (await canLaunch(webUrl)) {
-                            await launch(webUrl);
-                          } else {
-                            print("can't open Instagram");
-                          }
-                        }}
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.link, size: 20),
-                  onPressed: () async {
-                    launch('mailto:' + marketItems[index].email);
-                  },
-                ),
-              ]),
-          ],
-            ));
-        },
-      ),
-    );
 
     Widget sponsorSection = Container(
       padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
@@ -1064,9 +965,9 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsets.fromLTRB(24,0,20,0),
               child: accomodationsContent,
             ),
-            myDivider,
-            marketTitle,
-            marketSection,
+            //myDivider,
+            //marketTitle,
+            //marketSection,
             myDivider,
             sponsorTitle,
             sponsorSection,

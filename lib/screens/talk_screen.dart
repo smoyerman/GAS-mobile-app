@@ -2,10 +2,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:layout/screens/schedule_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+//import 'package:layout/screens/schedule_screen.dart';
 
 class TalkScreen extends StatefulWidget {
 

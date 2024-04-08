@@ -5,7 +5,6 @@ import 'package:multiselect/multiselect.dart';
 import '../data/talks.dart';
 import './talk_screen.dart';
 import '../main.dart';
-//import 'package:flutter/widgets.dart';
 
 class ScheduleScreen extends StatelessWidget {
   final List<SpeakerImage> images;
@@ -146,10 +145,6 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          //SizedBox(width: 30),
-          /*Text("Filter: ",
-              style: TextStyle(fontWeight: FontWeight.bold,
-              fontSize: 16,)),*/
           SizedBox(width: 20),
           DefaultTextStyle.merge(
             style: TextStyle(
@@ -216,31 +211,6 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
           ),
       ],
       ),
-
-        /*Row (
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-          Container(
-            height:40,
-            width: 120,
-            alignment: Alignment.topLeft,
-            //width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.fromLTRB(0,10,40,10),
-
-            child: DropDownMultiSelect(
-              whenEmpty: 'Site',
-              options: talkLocationFilters,
-              selectedValues: selectedLocationFilters,
-              onChanged: (value) {
-                setState(() {
-                  selectedLocationFilters = value;
-                  _filterSortedTalks();
-                });
-              },
-            ),
-          ),
-        ]),*/
 
         ListView.builder(
         shrinkWrap: true,

@@ -461,7 +461,7 @@ class InfoScreen extends StatelessWidget {
                               }}
                         ),
                       IconButton(
-                        icon: Icon(Icons.link, size: 20),
+                        icon: Icon(Icons.email_outlined, size: 20),
                         onPressed: () async {
                           launch('mailto:' + marketItems[index].email);
                         },
