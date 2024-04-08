@@ -215,7 +215,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Lathe Riders - International Cold Working',
-      'Lothar Böttcher', 'Wilhelm Hallen Cold Shop',
+      'Lothar Bottcher', 'Wilhelm Hallen Cold Shop',
       'DEMO', 'COLD',
       'The Lathe Riders will show how art, design, and craft are united at the crossroads of the cold shop, '
           'and that the process of cold working is an integral part of the hand-made glass community. '
@@ -231,7 +231,7 @@ List<TalkTitleItem> Day1 = [
 
   /* IMAGES NOT LOADING */
   TalkTitleItem('Engraving-white Unicorn',
-      'Jára Šára', 'Wilhelm Hallen Cold Shop',
+      'Jara Sara', 'Wilhelm Hallen Cold Shop',
       'DEMO', 'COLD',
       'The Czech Republic, formerly Bohemia, inherited and preserves the ancient craft of glass engraving '
           'in its purest and most fundamental form. With global social and economic as well as aesthetic '
@@ -507,7 +507,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
     TalkTitleItem('Translucent Narratives: A Journey through Romanian Glass Art.',
-      'Alexandra Mureșan', 'Wilhelm Hallen Lecture',
+      'Alexandra Muresan', 'Wilhelm Hallen Lecture',
       'LECTURE', 'HISTORY',
         'Alexandra Muresan invites us to delve into the intriguing recent history of Romanian glass '
             'art through the narratives of three distinct glass works created by Romanian artists '
@@ -718,7 +718,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Creating Training and Networking Opportunities to Support Emerging Glass Makers',
-      'Sarah Höchstetter', 'Wilhelm Hallen Panel',
+      'Sarah Hochstetter', 'Wilhelm Hallen Panel',
       'PANEL', 'CAREER',
       'From 2018 to 2022, Bild-Werk Frauenau, a forum for glass and art in Germany, together with partners '
           'from Bornholm, Denmark, and Graz, Austria, delivered an EU-funded project called GLASS WORKS: '
