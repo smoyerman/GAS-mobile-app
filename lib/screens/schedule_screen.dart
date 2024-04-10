@@ -93,12 +93,14 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             LocFilters.add("Berlin Glas Lecmo");
             LocFilters.add("Berlin Glas");
           }
-          if (item == "Monopol") {
+          if (item == "Provinzstraße") {
+            LocFilters.add("Provinzstraße Flame Shop");
+          }
+          /*if (item == "Monopol") {
             LocFilters.add("Monopol Flame Shop");
             LocFilters.add("Monopol Lecmo");
-          }
+          }*/
         }
-        print(LocFilters);
         _sortedTalksFiltered = _sortedTalksFiltered.where((map) =>
             LocFilters.contains(map.talkLocation)).toList();
       }
@@ -116,7 +118,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                                 'HISTORY','SOCIAL JUSTICE','CAREER','COMMUNITY',
                                   'TECHNOLOGY','EDUCATION','SUSTAINABILITY','OTHER'];
 
-  List<String> talkLocationFilters = ['Wilhelm','Berlin Glas','Monopol','Bard'];
+  List<String> talkLocationFilters = ['Wilhelm','Berlin Glas','Provinzstraße','Bard'];
 
   /*List<String> talkLocationFilters = ['Berlin Glas','Monopol','Wilhelm Hallen',
                                 'Film Fest','Conference Hotel'];*/
@@ -153,7 +155,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             ),
           child: Container(
           height:40,
-          width: 160,
+          width: 140,
           alignment: Alignment.topLeft,
           //width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.fromLTRB(0,10,10,10),
@@ -176,7 +178,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
           ),
           Container(
             height:40,
-            width: 120,
+            width: 150,
             alignment: Alignment.topLeft,
             //width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.fromLTRB(0,10,0,10),
