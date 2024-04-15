@@ -478,6 +478,205 @@ class InfoScreen extends StatelessWidget {
     Widget specialEventsContent = Column(
         children: <Widget>[
           ExpansionTile(
+            title: Text('GAS Market',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Wed, 15 may – Fri, 17 May | 9:30–17:00\nSaturday, 18 May | 9:30–15:00'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Wilhelm Hallen\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Thank you to our GAS Market Sponsor, TGK. The GAS Market gathers the best vendors, '
+                            'educational organizations, and more into one easily browsable marketplace.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Free to the public\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: Text('First Timers Meetup',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Wednesday, 15 May | 15:30 - 16:30'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('GAS Market at Wilhelm Hallen\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Meet fellow first-time conference attendees with GAS Board members! '
+                            'Look at the conference schedule, ask questions, and get excited '
+                            'for the conference.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: Text('Conference Kick-Off',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Wednesday, 15 May | 17:00–20:00'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Wilhelm Hallen\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'We welcome all conference attendees, presenters, and partners to join '
+                            'us as we launch Berlin 2024 and pay tribute to members of our community.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Cash bar + food trucks on site.\n'
+                        '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: Text('Exhibition Opening',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Wednesday, 15 May | 17:00–20:00 pm'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Wilhelm Hallen\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Explore the talent of GAS Members and students at the opening '
+                            'for CONNECTIONS 2024 and EVOLUTION 2024, our annual juried exhibitions.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • On view: Thursday, 16 May through Saturday, 18 May, 9:00–17:00 daily\n'
+                        '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: Text('Kids Oasis at Berlin Glas',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Thurs, 16 May to Sat, 18 May \n10:00-12:00 and 14:00–17:00'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Berlin Glas Garden at Provinzstraße Conference Hub\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Enjoy a free kids’ area with daily programming sponsored by Berlin Glas Youth '
+                  'Outreach! Children aged 7 and up can be signed in for programming during open hours '
+                  'while parents view demonstrations. Children age 6 and under must be accompanied by parent '
+                  'or guardian.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: Text('Green Pavilion',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Thurs, 16 May – Sat, 18 May | 9:00–17:00'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Near Wilhelm Hallen Biergarten\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Curious about green ways of working with glass? Come to our Green '
+                            'Pavilion to see furnaces using recycled glass, explore green resources, '
+                            'and see TRACE 2024, our annual juried green exhibition.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Free to the public\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          ExpansionTile(
             title: Text('Closing Night Party',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
@@ -511,7 +710,7 @@ class InfoScreen extends StatelessWidget {
               ),
             ],
           ),
-          ExpansionTile(
+          /*ExpansionTile(
             title: Text('Stained Glass Workshop',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
@@ -688,7 +887,7 @@ class InfoScreen extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ),*/
         ]
     );
 

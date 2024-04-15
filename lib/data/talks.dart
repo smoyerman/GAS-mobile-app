@@ -864,7 +864,9 @@ List<TalkTitleItem> Day1 = [
   TalkTitleItem('Blown Away',
       'Jonathan Capps', 'Berlin Glas',
       'DEMO', 'HOT',
-      '',
+      'Join Blown Away Season 4’s Jonathan Capps for a star-studded sculpting session! Capps will revisit '
+          'a theme he explored during the show, channeling his love for family and the environment into '
+          'a gravity defying hot construction. So hot it’s ice cold - don’t miss it!',
       '', 'jonnycappucino',
       '',
       DateTime.parse('2024-05-18 10:00:00Z'),
