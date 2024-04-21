@@ -24,9 +24,8 @@ class InfoScreen extends StatelessWidget {
         'networks, and more!';
     String specialEventsTitle = 'SPECIAL EVENTS';
     String specialEventsText = 'Each year, our conference offers a number of special events for you to network, '
-        'catch-up with friends, and have some added fun!\nConnect with friends, new and old, and network '
-        'with the best of the glass community as you enjoy unique and engaging events across Berlin, Germany.\n'
-        'Once you have selected your registration type, you can add tickets to these special events.';
+        'catch-up with friends, and have some added fun!\n\nConnect with friends, new and old, and network '
+        'with the best of the glass community as you enjoy unique and engaging events across Berlin, Germany.';
     String GASMarketTitle = 'GAS MARKET';
     String GASMarketText = 'A central marketplace for exhibitors, the GAS Market has everything from new tools and '
         'amazing gifts to the opportunity for insider insights and new contacts. This year’s '
@@ -85,84 +84,102 @@ class InfoScreen extends StatelessWidget {
     Widget middayInteractiveProgrammingContent = Column(
       children: <Widget>[
         ExpansionTile(
-          title: Text('Education + Institutions',
+          title: Text('Education & Institutions',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          subtitle: Text('Thursday, May 16'),
+          subtitle: Text('Thursday, 16 May | 12:00 - 14:00'),
           children: <Widget>[
             ListTile(
-                dense:true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-                visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                title: Text(
-                  'Enjoy workshops by The Glass Virus and presentations by glass '
-                  'programs and institutions from around the world.\n',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
+              contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+              title: Text('Wilhelm Hallen Main Stage\n',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              subtitle: RichText(
+                text: TextSpan(
+                  style: Theme.of(context).textTheme.headline6,
+                  children: [
+                    const TextSpan(
+                      text: 'Enjoy workshops by The Glass Virus and presentations by glass '
+                          'programs and institutions from around the world.\n\n',
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '   • Conference Pass Holders: Included\n',
+                      style: TextStyle( fontSize: 14 ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
         ExpansionTile(
-          title: Text('Career + Small Business Development',
+          title: Text('Career & Small Business Development',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          subtitle: Text('Friday, May 17'),
+          subtitle: Text('Friday, 17 May | 12:00–14:00'),
           children: <Widget>[
             ListTile(
-                dense:true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-                visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                title: RichText(
-                  text: TextSpan(
+              contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+              title: Text('Wilhelm Hallen Main Stage\n',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              subtitle: RichText(
+                text: TextSpan(
                   style: Theme.of(context).textTheme.headline6,
                   children: [
-                  const TextSpan(
-                  text: 'Learn about how to develop your career or small business. Anna Mlasowsky will '
-                    'hold a roundtable discussion on career development. Anne Kenealy will host a workshop on grant writing. '
-                    'Both events will require advanced sign-ups – reserve your spot for the roundtable discussion ',
-                  style: TextStyle(fontSize: 14),
-                  ),
-                new TextSpan(
-                  text: 'here',
-                  style: new TextStyle(color: Colors.blue, fontSize: 14),
-                  recognizer: new TapGestureRecognizer()
-                  ..onTap = () { launch('https://docs.google.com/forms/d/e/1FAIpQLScbE3GB_crBKxZ1rl0fVOSmcUIlA2pGTEZq6yN3hlw4v5SIIg/viewform');
-                  },
+                    const TextSpan(
+                      text: 'Learn about how to develop your career or small business. '
+                          'Anna Mlasowsky will hold a roundtable discussion on career development. '
+                          'Anne Kenealy will host a workshop on grant writing. This workshop will '
+                          'require advanced sign-ups.\n\n',
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '   • Conference Pass Holders: Included\n',
+                      style: TextStyle( fontSize: 14 ),
+                    ),
+                  ],
                 ),
-            const TextSpan(
-              text: ' + the grant writing workshop ',
-              style: TextStyle(fontSize: 14),
+              ),
             ),
-            new TextSpan(
-              text: 'here',
-              style: new TextStyle(color: Colors.blue, fontSize: 14),
-              recognizer: new TapGestureRecognizer()
-              ..onTap = () { launch('https://docs.google.com/forms/d/e/1FAIpQLSc5bgfvASOfzLLEUQ-ihPyND0eRQ9qwQPJL_R6g9q23AM2zDw/viewform');
-              },
-            ),
-            const TextSpan(
-              text: '.\n',
-              style: TextStyle(fontSize: 14),
-            ),
-    ],
-    ),
-    ),
-            )],
+            ],
     ),
         ExpansionTile(
-          title: Text('Self-Care + Wellness',
+          title: Text('Self Care & Wellness',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          subtitle: Text('Saturday, May 18'),
+          subtitle: Text('Saturday, 18 May | 12:00–14:00 '),
           children: <Widget>[
             ListTile(
-                dense:true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-                visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                title: Text(
-                  'Close out a busy conference with programming centered around self-care and '
-                      'wellness! Hannah Guisewhite will be teaching ways for glassmakers to take care of their bodies.\n',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )),
+              contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+              title: Text('Wilhelm Hallen Main Stage\n',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              subtitle: RichText(
+                text: TextSpan(
+                  style: Theme.of(context).textTheme.headline6,
+                  children: [
+                    const TextSpan(
+                      text: 'Close out a busy conference with programming centered around '
+                          'self-care and wellness! Hannah Guisewhite will be teaching ways for '
+                          'glassmakers to take care of their bodies.\n\n',
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '   • Conference Pass Holders: Included\n',
+                      style: TextStyle( fontSize: 14 ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
     ]
@@ -180,41 +197,50 @@ class InfoScreen extends StatelessWidget {
                 ),
               ],
             ),
-            title: Text('Goblet Grab',
+            title: Text('Goblet Grab + Sip',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
+            subtitle: Text('17 May | 15:30–17:00'),
             children: <Widget>[
               ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: RichText(
-                    text: TextSpan(
-                    style: Theme.of(context).textTheme.headline6,
-                    children: [
-                    const TextSpan(
-                    text: 'Always fast-paced and full of entertainment, the Goblet Grab is a fun and funky '
-                      'conference tradition that never fails to generate excitement! Open to the public '
-                      'during the conference, donations and purchases from this free event help us to '
-                      'support the ongoing operations of GAS all year long.\n\nPre-register your goblet '
-                      'grab donation ',
-                    style: TextStyle(fontSize: 14),
-                    ),
-                    new TextSpan(
-                    text: 'here',
-                    style: new TextStyle(color: Colors.blue, fontSize: 14),
-                    recognizer: new TapGestureRecognizer()
-                    ..onTap = () { launch('https://docs.google.com/forms/d/1ZGCJWotpsCNfF8ctDXIoYuadbY3UKc4YQPokjPSjxrU/edit');
-                      },
-                    ),
-                      const TextSpan(
-                        text: '!',
-                        style: TextStyle(fontSize: 14),
-                      ),
-                  ],
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Wilhelm Hallen\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
+                subtitle: RichText(
+                  text: TextSpan(
+                      style: Theme.of(context).textTheme.headline6,
+                      children: [
+                        const TextSpan(
+                          text: 'Always fast-paced and full of entertainment, '
+                              'the Goblet Grab is a fun and funky conference '
+                              'tradition that never fails to generate excitement! '
+                              'Open to the public during the conference, donations '
+                              'and purchases from this event help us to support the '
+                              'ongoing operations of GAS all year long.\n\n',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                        const TextSpan(
+                          text: 'Donors: ',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const TextSpan(
+                          text: 'Drinking vessel donations may be made in person at the '
+                              'Registration Desk in Wilhelm Hallen on Wednesday and Thursday '
+                              'from 9:00–16:00 and Friday from 9:00–14:00.\n',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ]
+                  ),
                 ),
-          )
+              ),
           ]
           ),
           ExpansionTile(
@@ -230,37 +256,32 @@ class InfoScreen extends StatelessWidget {
               title: Text('Portfolio Review',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
+              subtitle: Text('17 May  | 12:00–14:00'),
               children: <Widget>[
                 ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: RichText(
+                  contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                  title: Text('Educational Resource Area at Wilhelm Hallen\n',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: RichText(
                     text: TextSpan(
-                      style: Theme.of(context).textTheme.headline6,
-                      children: [
-                        const TextSpan(
-                          text: 'Gallery owners, curators, educators, and artists will be available to review portfolios '
-                              'of GAS conference attendees. Reviews will last 15-20 minutes each, and a limited number of '
-                              'slots will be available on a first-come, first-served basis to those who sign up online. '
-                              'If necessary a waiting list will be kept in case of cancellations. Sign up ',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        new TextSpan(
-                          text: 'here',
-                          style: new TextStyle(color: Colors.blue, fontSize: 14),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () { launch('https://www.signupgenius.com/go/10C0B4EABA62AA2F8C07-48053598-berlin#/');
-                            },
-                        ),
-                        const TextSpan(
-                          text: '!',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ],
+                        style: Theme.of(context).textTheme.headline6,
+                        children: [
+                          const TextSpan(
+                            text: 'Curators, educators, and artists will be available to review portfolios of '
+                    'GAS conference attendees. Reviews will last 20-30 minutes each, and a limited '
+                    'number of slots will be available on a walk-up, first-come, first-served basis. '
+                    'A waiting list will be kept in case of cancellations. \n\nSpecial thanks to this '
+                    'year’s reviewers: Michael Endo, Caroline Madden, Scott Chaseling, '
+                    'Angel Monzon. \n',
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ]
                     ),
                   ),
-                )
+                ),
               ]
           ),
           ExpansionTile(
@@ -273,37 +294,35 @@ class InfoScreen extends StatelessWidget {
               title: Text('Trunk Show',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
+              subtitle: Text('16 May | 17:00–20:00'),
               children: <Widget>[
-                ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.headline6,
-                      children: [
-                        const TextSpan(
-                          text: 'New this year, shop glass jewelry from around the world at the Wilhelm Hallen! '
-                              'Interested in participating? Contact ',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        new TextSpan(
-                          text: 'jennifer@glassart.org',
-                          style: new TextStyle(color: Colors.blue, fontSize: 14),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () { launch(jenniferUrl);
-                            },
-                        ),
-                        const TextSpan(
-                          text: ' for more info.',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ]
+          ListTile(
+            contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+            title: Text('Wilhelm Hallen Main Stage\n',
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            subtitle: RichText(
+            text: TextSpan(
+            style: Theme.of(context).textTheme.headline6,
+            children: [
+            const TextSpan(
+            text: 'All that glitters is glass! Up your jewelry game by purchasing '
+          'your new favorite piece at our jewelry trunk show. Artists with jewelry '
+          'for sale include: Jeanne-Sophie Aas, Noa Agasi, Ivan Bestari, William '
+          'Rudy Faulkner, Nathalie Fluckinger, Jason Hitchcock, and Katherine Huskie.\n\n',
+            style: TextStyle(
+            fontSize: 14,
+            ),
+            ),
+            TextSpan(
+            text: '   • Free to the Public\n',
+            style: TextStyle( fontSize: 14 ),
+            ),
+                    ]
+                ),
+            ),
           ),
+    ]),
           ExpansionTile(
               leading: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -314,45 +333,51 @@ class InfoScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              title: Text('Film Festival',
+              title: Text('Film Festival Opening',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
+              subtitle: Text('16 May | 17:30–20:30'),
               children: <Widget>[
                 ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: RichText(
+                  contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                  title: Text('Wilhelm Hallen Main Stage\n',
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: RichText(
                     text: TextSpan(
                       style: Theme.of(context).textTheme.headline6,
                       children: [
                         const TextSpan(
-                          text: 'The Glass Art Society is pleased to announce the inaugural GAS Film Festival, '
-                              'a celebration at the intersection of glass art and film.\n\nGlass artists and '
-                              'filmmakers from around the world are invited to submit films of any length for '
-                              'screenings which will take place both in-person and virtually. In-person screenings '
-                              'will occur in tandem with the annual GAS Conference, this year to be held from '
-                              'May 15-18, 2024, in Berlin, Germany. Learn more ',
-                          style: TextStyle(fontSize: 14),
+                          text: 'Lights, camera, action: enjoy our Film Festival opening and explore '
+                              'the ways glass artists and filmmakers are combining glass and film! The '
+                              'Film Festival was juried by Ayana Morris of Newark Moonlight Cinema and '
+                              'the GAS Board and Staff. Learn more about all the Film Festival entries '
+                              'by scanning the QR code.\n\n',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
                         ),
-                        new TextSpan(
-                          text: 'here',
-                          style: new TextStyle(color: Colors.blue, fontSize: 14),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () { launch('https://www.glassart.org/programs/gas-film-festival/');
-                            },
+                        TextSpan(
+                          text: '   • Conference Pass Holders: Included\n\n',
+                          style: TextStyle( fontSize: 14 ),
                         ),
-                        const TextSpan(
-                          text: '.',
-                          style: TextStyle(fontSize: 14),
+                        TextSpan(
+                          text: 'Additional screenings: ',
+                          style: TextStyle( fontSize: 14, fontWeight: FontWeight.w600),
                         ),
+                        TextSpan(
+                        text: 'Selections from our Film Festival will be screened at '
+                            'Wilhelm Hallen on Friday from 11:30–14:00 and Saturday from 12:00-16:30.',
+                        style: TextStyle( fontSize: 14 ),
+                        ),
+
                       ],
                     ),
                   ),
-                )
+                ),
               ]
           ),
-          ExpansionTile(
+          /*ExpansionTile(
               leading: Container(
                   child: Icon(Icons.co_present,
                     color: Colors.blue,
@@ -396,7 +421,7 @@ class InfoScreen extends StatelessWidget {
                   ),
                 )
               ]
-          ),
+          ),*/
         ]
     );
 
@@ -408,7 +433,7 @@ class InfoScreen extends StatelessWidget {
             title: Text('Market Participants',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Tuesday, May 14 - Saturday, May 18'),
+            subtitle: Text('Wed, 15 May - Sat, 18 May'),
             children: <Widget> [
     Container(
     padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
@@ -423,7 +448,7 @@ class InfoScreen extends StatelessWidget {
         mainAxisSpacing: 0,
       ),
       itemBuilder: (ctx, index) {
-        return  Row(
+        return Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Expanded(
@@ -443,7 +468,7 @@ class InfoScreen extends StatelessWidget {
                       ),
                     )
                 ),
-                IconButton(
+                marketItems[index].ig.isNotEmpty ? IconButton(
                             icon: FaIcon(FontAwesomeIcons.instagram,
                               size: 20,
                             ),
@@ -459,7 +484,7 @@ class InfoScreen extends StatelessWidget {
                                   print("can't open Instagram");
                                 }
                               }}
-                        ),
+                        ) : SizedBox(),
                       IconButton(
                         icon: Icon(Icons.email_outlined, size: 20),
                         onPressed: () async {
@@ -481,7 +506,7 @@ class InfoScreen extends StatelessWidget {
             title: Text('GAS Market',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Wed, 15 may – Fri, 17 May | 9:30–17:00\nSaturday, 18 May | 9:30–15:00'),
+            subtitle: Text('Wed, 15 May – Fri, 17 May | 9:30–17:00\nSaturday, 18 May | 9:30–15:00'),
             children: <Widget>[
               ListTile(
                 contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
@@ -612,7 +637,7 @@ class InfoScreen extends StatelessWidget {
             title: Text('Kids Oasis at Berlin Glas',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Thurs, 16 May to Sat, 18 May \n10:00-12:00 and 14:00–17:00'),
+            subtitle: Text('Thurs, 16 May - Sat, 18 May \n10:00-12:00 and 14:00–17:00'),
             children: <Widget>[
               ListTile(
                 contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
@@ -677,10 +702,81 @@ class InfoScreen extends StatelessWidget {
           ),
 
           ExpansionTile(
+            title: Text('Student Meet-Up',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Thursday, 16 May | 13:30-15:00'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('GAS Market at Wilhelm Hallen\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Join your hosts, GAS Student Board Representatives Jocelyn Chan and Leia Guo, '
+                            'for an afternoon of networking and information sharing. Look at the conference '
+                            'schedule together, ask and answer questions to orient yourself to the day ahead, and find'
+                            ' new friends to help you explore the magic of Berlin! Snacks will be provided. Attend '
+                            'the Student Meet-Up and Conference Kick Off to receive tickets for our student-exclusive '
+                            'giveaway! Each student can have up to three tickets to win fabulous prizes like gift cards, '
+                            'color, and tools from our generous donors. '
+                            'Prizes will be drawn and announced at the Flame Off at Monopol on Friday night.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          ExpansionTile(
+            title: Text('Flame Off',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Friday, 17 May | 17:30–20:00'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Monopol Flame Shop\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Get your flame on at Monopol as flameworkers take the stage.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          ExpansionTile(
             title: Text('Closing Night Party',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Saturday, May 18 at 20:00'),
+            subtitle: Text('Saturday, 18 May | 19:30 - 24:00'),
             children: <Widget>[
               ListTile(
                 contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
@@ -917,11 +1013,20 @@ class InfoScreen extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: '2024 JURORS:\n'
-                            '   • Carolyn Herrera-Perez, Curator, USA\n'
-                            '   • Katherine Huskie, Artist, UK\n'
-                            '   • Richard Meitner, Artist, The Netherlands\n\n'
-                            'The GAS Member Exhibition is generously supported by The Glass Furnace.\n',
+                        text: '2024 JURORS:\n',
+                        style: TextStyle( fontSize: 14, fontWeight: FontWeight.w500 ),
+                      ),
+                      WidgetSpan(
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(12,0,0,0),
+                            child: Text('• Carolyn Herrera-Perez, Curator, USA\n'
+                                '• Katherine Huskie, Artist, UK\n'
+                                '• Richard Meitner, Artist, The Netherlands\n',
+                                style: TextStyle( fontSize: 14 )),
+                          )
+                      ),
+                      TextSpan(
+                        text: '\nThe GAS Member Exhibition is generously supported by The Glass Furnace.\n',
                         style: TextStyle( fontSize: 14 ),
                       ),
                     ],
@@ -953,11 +1058,20 @@ class InfoScreen extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: '2024 JURORS:\n'
-                            '   • Jens Pfeifer, Artist, The Netherlands\n'
-                            '   • Alyssa Rose Radtke, Artist, USA\n'
-                            '   • Leo Tecosky, Artist, USA\n\n'
-                            'The GAS Student Exhibition is generously supported by Warm Glass UK.\n',
+                        text: '2024 JURORS:\n',
+                        style: TextStyle( fontSize: 14, fontWeight: FontWeight.w500),
+                      ),
+                      WidgetSpan(
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(12,0,0,0),
+                            child: Text('• Jens Pfeifer, Artist, The Netherlands\n'
+                                '• Alyssa Rose Radtke, Artist, USA\n'
+                                '• Leo Tecosky, Artist, USA\n',
+                                style: TextStyle( fontSize: 14 )),
+                          )
+                      ),
+                      TextSpan(
+                        text: '\nThe GAS Student Exhibition is generously supported by Warm Glass UK.\n',
                         style: TextStyle( fontSize: 14 ),
                       ),
                     ],
@@ -989,12 +1103,18 @@ class InfoScreen extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: '2024 JURORS:\n'
-                            '   • Hannah Gibson, Artist, UK\n'
-                            '   • Riikka Latva-Somppi, Artist, Researcher + Curator, Finland\n'
-                            '   • Paul Musgrove, Artist + Gallery Owner, Scotland\n'
-                            '   • Ivan Bestari Minar Pradipta, Artist + Designer, Indonesia\n\n',
-                        style: TextStyle( fontSize: 14 ),
+                        text: '2024 JURORS:\n',
+                        style: TextStyle( fontSize: 14, fontWeight: FontWeight.w500),
+                      ),
+                      WidgetSpan(
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(12,0,0,0),
+                            child: Text('• Hannah Gibson, Artist, UK\n'
+                                '• Riikka Latva-Somppi, Artist, Researcher + Curator, Finland\n'
+                                '• Paul Musgrove, Artist + Gallery Owner, Scotland\n'
+                                '• Ivan Bestari Minar Pradipta, Artist + Designer, Indonesia\n',
+                                style: TextStyle( fontSize: 14 )),
+                          )
                       ),
                     ],
                   ),
@@ -1042,10 +1162,10 @@ class InfoScreen extends StatelessWidget {
           child: specialEventsContent,
         ),
         myDivider,
-        buildTitleWidget(exhibitionsTitle, exhibitionsText),
+        buildTitleWidget(activitiesTitle, activitiesText),
         Container(
           margin: EdgeInsets.fromLTRB(24,0,20,0),
-          child: exhibitionsContent,
+          child: activitiesContent,
         ),
         myDivider,
         buildTitleWidget(middayInteractiveTitle, middayInteractiveText),
@@ -1054,10 +1174,10 @@ class InfoScreen extends StatelessWidget {
         child: middayInteractiveProgrammingContent, // <-- Maybe put these on collapsible
       ),
         myDivider,
-        buildTitleWidget(activitiesTitle, activitiesText),
+        buildTitleWidget(exhibitionsTitle, exhibitionsText),
         Container(
           margin: EdgeInsets.fromLTRB(24,0,20,0),
-          child: activitiesContent,
+          child: exhibitionsContent,
         ),
         myDivider,
         ],

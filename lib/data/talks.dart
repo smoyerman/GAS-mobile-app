@@ -14,6 +14,15 @@ TalkTitleItem(this.talkTitle, this.talkSpeaker, this.talkLocation,
  */
 List<TalkTitleItem> Day1 = [
 
+  /*TalkTitleItem('Conference Kick-Off', '', 'Wilhelm Hallen Main Stage',
+      'EVENT', 'HOT',
+      'Meet fellow first-time conference attendees with GAS Board members! Look '
+          'at the conference schedule, ask questions, and get excited for the conference.',
+      '' , '', '',
+      DateTime.parse('2024-05-15 17:00:00Z'),
+      DateTime.parse('2024-05-15 20:30:00Z'),
+      false),*/
+
   TalkTitleItem('Re-Generate', 'Simone Fezer', 'Berlin Glas',
       'DEMO', 'HOT',
       'Fezer will demonstrate the process behind one of her signature pieces, consisting of a multitude '
@@ -502,8 +511,8 @@ List<TalkTitleItem> Day1 = [
             'and knowledge transfer, as well as its network, the exhibition, book and project website, '
             'while looking deeper into some of the works.',
       'https://glass-handformedmatter.kh-berlin.de', 'glass_handformedmatter',
-      '', DateTime.parse('2024-05-16 11:00:00Z'),
-        DateTime.parse('2024-05-16 12:00:00Z'),
+      '', DateTime.parse('2024-05-16 15:00:00Z'),
+        DateTime.parse('2024-05-16 16:00:00Z'),
       false),
 
     TalkTitleItem('Translucent Narratives: A Journey through Romanian Glass Art.',
@@ -516,8 +525,8 @@ List<TalkTitleItem> Day1 = [
             'social shifts on their artistic creation and vision. This lecture broadens perspectives '
             'on global glass art while highlighting the alchemic qualities of the medium.',
       'https://www.instagram.com/alexandramuresanglass', 'alexandramuresanglass',
-      '', DateTime.parse('2024-05-16 15:00:00Z'),
-        DateTime.parse('2024-05-16 16:00:00Z'),
+      '', DateTime.parse('2024-05-16 10:30:00Z'),
+        DateTime.parse('2024-05-16 11:30:00Z'),
       false),
 
     TalkTitleItem('Is glass queer? Or is it just me?',
@@ -704,16 +713,33 @@ List<TalkTitleItem> Day1 = [
   TalkTitleItem('The Glass Virus: On the Hybrid II',
       'Gayle Matthias', 'Wilhelm Hallen Panel',
       'PANEL', 'EDUCATION',
-      'The Glass Virus is a think tank for educational strategies. They aim to reach a greater understanding '
-          'of pedagogy through discursive methodologies. At the GAS Conference, lead educators will explore '
-          'the phenomena of Hybrid Creative Practices through moderator-led discussion and creative activities. '
-          'Participants will be randomly assigned to a group. At the end, all groups will meet for a joint '
-          'discussion and summary of the experience. Pre-registration is required; the link is available on '
-          'the GAS website. This event is capped at 35.',
+      'The Glass Virus, a Think Tank for educational strategies, aims to reach a greater understanding '
+          'of pedagogy through discursive methodologies. At GAS, lead educators will explore the phenomena '
+          'of Hybrid Creative Practices through a panel introduction, moderator led discussion and creative '
+          'activities. Participants will be required to join a workshop group. At the end of the workshops, '
+          'all groups will meet for a joint discussion and summary of the experience. Pre-registration is '
+          'recommended. This event will take place in the Panel Area and Lecture Area. Total capacity is 70 '
+          'participants.',
       'https://www.theglassvirus.com/about', 'gayle.matthias',
       '(Caroline Madden, ), (Jens Pfeifer, ), (Jesse Magee, )',
       DateTime.parse('2024-05-16 10:30:00Z'),
       DateTime.parse('2024-05-16 12:00:00Z'),
+      false),
+
+  TalkTitleItem('The Glass Virus: On the Hybrid II',
+      'Gayle Matthias', 'Wilhelm Hallen Lecture',
+      'WORKSHOP', '',
+      'The Glass Virus, a Think Tank for educational strategies, aims to reach a greater understanding '
+          'of pedagogy through discursive methodologies. At GAS, lead educators will explore the phenomena '
+          'of Hybrid Creative Practices through a panel introduction, moderator led discussion and creative '
+          'activities. Participants will be required to join a workshop group. At the end of the workshops, '
+          'all groups will meet for a joint discussion and summary of the experience. Pre-registration is '
+          'recommended. This event will take place in the Panel Area and Lecture Area. Total capacity is 70 '
+          'participants.',
+      'https://www.theglassvirus.com/about', 'gayle.matthias',
+      '(Caroline Madden, ), (Jens Pfeifer, ), (Jesse Magee, )',
+      DateTime.parse('2024-05-16 12:00:00Z'),
+      DateTime.parse('2024-05-16 14:30:00Z'),
       false),
 
   TalkTitleItem('Creating Training and Networking Opportunities to Support Emerging Glass Makers',
@@ -754,7 +780,7 @@ List<TalkTitleItem> Day1 = [
           'writing--and, hopefully, some of the discomfort!',
       '', 'annegkenealy',
       '',
-      DateTime.parse('2024-05-17 12:30:00Z'),
+      DateTime.parse('2024-05-17 12:00:00Z'),
       DateTime.parse('2024-05-17 14:00:00Z'),
       false),
 
@@ -775,7 +801,7 @@ List<TalkTitleItem> Day1 = [
           'strategies to reduce the possible negative long-term effects that can arise with this beautiful art.',
       '', 'travelinghandsbyhannah',
       '',
-      DateTime.parse('2024-05-18 13:00:00Z'),
+      DateTime.parse('2024-05-18 12:00:00Z'),
       DateTime.parse('2024-05-18 14:00:00Z'),
       false),
 
@@ -813,7 +839,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Rroaring Glass',
-      'JanHein van Stiphout', '',
+      'JanHein van Stiphout', 'Green Pavilion',
       'PERFORMANCE', '',
       'Curiosity about the sound generated when heating small tubes on the torch led to the development '
           'of this performance piece. Against a background of live improvised music, van Stiphout will '
@@ -826,14 +852,14 @@ List<TalkTitleItem> Day1 = [
           'and sound.',
       'http://www.janheinvanstiphout.com/', '',
       '',
-      DateTime.parse('2000-01-01 00:00:00Z'),
-      DateTime.parse('2000-01-01 00:00:00Z'),
+      DateTime.parse('2024-05-15 18:30:00Z'),
+      DateTime.parse('2024-05-15 19:30:00Z'),
       false),
 
   TalkTitleItem('Diamond point engraving with AI design',
-      'Siobhan Healy', '',
+      'Healy Arts', 'Wilhelm Hallen Cold Shop',
       'WORKSHOP', '',
-      'Healey will combine Artificial Intelligence (AI) design with the traditional craft of diamond '
+      'Healy will combine Artificial Intelligence (AI) design with the traditional craft of diamond '
           'point engraving on glass. Participants will have the opportunity to use an AI design program '
           'to inspire their hand-engraved work, using the skill of diamond point engraving. The workshop '
           'also offers an opportunity to experience and discuss the development of AI and the questions '
@@ -841,11 +867,11 @@ List<TalkTitleItem> Day1 = [
           'AI? Or is it another tool that we can utilize for creativity? Pre-registration suggested.',
       'http://www.healyarts.com/', 'HealyArtsScotland',
       '',
-      DateTime.parse('2000-01-01 00:00:00Z'),
-      DateTime.parse('2000-01-01 00:00:00Z'),
+      DateTime.parse('2024-05-16 12:30:00Z'),
+      DateTime.parse('2024-05-16 14:00:00Z'),
       false),
 
-  TalkTitleItem('Dialogue and Resource Sharing',
+  TalkTitleItem('What, Why, How Think Tank',
       'Anna Mlasowsky', 'Wilhelm Hallen Lecture',
       'WORKSHOP', '',
       'What, Why, How is not a lecture but a platform for collective dialogue & resource sharing, for '
@@ -857,10 +883,10 @@ List<TalkTitleItem> Day1 = [
       'https://www.annamlasowsky.com/', 'annamlasowsky',
       '',
       DateTime.parse('2024-05-17 12:00:00Z'),
-      DateTime.parse('2024-05-17 13:30:00Z'),
+      DateTime.parse('2024-05-17 14:00:00Z'),
       false),
 
-  // TODO: FInish his social media info
+  // TODO: Finish his social media info
   TalkTitleItem('Blown Away',
       'Jonathan Capps', 'Berlin Glas',
       'DEMO', 'HOT',

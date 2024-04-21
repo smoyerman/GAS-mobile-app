@@ -85,7 +85,7 @@ class _TalkScreenState extends State<TalkScreen> {
                     children: [
                       WidgetSpan(
                         alignment: PlaceholderAlignment.middle,
-                        child: IconButton(
+                        child: coPresenterIGs[Index].isNotEmpty ? IconButton(
                             padding: EdgeInsets.zero,
                             constraints: const BoxConstraints(minWidth: 22, maxWidth: 22),
                             icon: FaIcon(FontAwesomeIcons.instagram, size: 20,
@@ -102,7 +102,7 @@ class _TalkScreenState extends State<TalkScreen> {
                                   print("can't open Instagram");
                                 }
                               }}
-                        ),
+                        ) : SizedBox(),
                       ),
                       TextSpan(
                         text: coPresenterNames[Index],
@@ -134,22 +134,22 @@ class _TalkScreenState extends State<TalkScreen> {
                 )),
                 subtitle: Text(item.talkType + ': ' + item.talkFocus,
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),),
-                  leading: IconButton(
-              icon: FaIcon(FontAwesomeIcons.instagram, size: 30,
-                  color: item.socialMedia.isNotEmpty ? Colors.blue : Colors.black),
-          onPressed: () async {
-            if (item.socialMedia.isNotEmpty) {
-              var nativeUrl = "instagram://user?username=" + item.socialMedia;
-              var webUrl = "https://www.instagram.com/" + item.socialMedia;
-              if (await canLaunch(nativeUrl)) {
-                await launch(nativeUrl);
-              } else if (await canLaunch(webUrl)) {
-                await launch(webUrl);
-              } else {
-                print("can't open Instagram");
-              }
-            }}
-      ),
+                  leading: item.socialMedia.isNotEmpty ? IconButton(
+                    icon: FaIcon(FontAwesomeIcons.instagram, size: 30,
+                        color: item.socialMedia.isNotEmpty ? Colors.blue : Colors.black),
+                onPressed: () async {
+                  if (item.socialMedia.isNotEmpty) {
+                    var nativeUrl = "instagram://user?username=" + item.socialMedia;
+                    var webUrl = "https://www.instagram.com/" + item.socialMedia;
+                    if (await canLaunch(nativeUrl)) {
+                      await launch(nativeUrl);
+                    } else if (await canLaunch(webUrl)) {
+                      await launch(webUrl);
+                    } else {
+                      print("can't open Instagram");
+                    }
+                  }}
+            ) : SizedBox(),
       ),
         );
     }

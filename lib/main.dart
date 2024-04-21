@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -434,11 +435,16 @@ Future<void> main() async {
 
   // Obtain shared preferences for logging messages.
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  await sharedPreferences.setStringList('messageTitle', <String>[]);
-  await sharedPreferences.setStringList('messageBody', <String>[]);
-  await sharedPreferences.setStringList('messageSentTime', <String>[]);
 
-  // Initiatlize the app
+  // Init shared preferences; ensuring there's none from before
+  try {sharedPreferences.getStringList('messageTitle');}
+  catch (e) {await sharedPreferences.setStringList('messageTitle', <String>[]);}
+  try {sharedPreferences.getStringList('messageBody');}
+  catch (e) {await sharedPreferences.setStringList('messageBody', <String>[]);}
+  try {sharedPreferences.getStringList('messageSentTime');}
+  catch (e) {await sharedPreferences.setStringList('messageSentTime', <String>[]);}
+
+  // Initialize the app
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -652,7 +658,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget textSection = Container(
       padding: const EdgeInsets.fromLTRB(32, 20, 32, 0),
       child: const Text(
-        'The annual GAS conference will invite glass '
+        'The annual GAS conference brings glass '
         'enthusiasts from around the world to discover the vibrant energy '
         'of Berlin, Germany. From the sparkling glass panes of the Reichstag '
         'Dome to the iconic murals of Berlin’s East Side Gallery, conference '
@@ -660,11 +666,46 @@ class _MyHomePageState extends State<MyHomePage> {
         'program in equal measure. The conference theme is Berlin: Where '
         'Art + Design Meet, focusing on the space where art meets design, '
         'the synergy between the two, and the relationships between artists '
-        'and designers. Exciting add-ons for conference registration will '
-        'include a half-day trip for attendees wishing to experience the '
-        'highlights of Berlin and excursions to other glassy locations in '
-        'Germany.',
+        'and designers.',
         softWrap: true,
+      ),
+    );
+
+    Widget registrationSection = Container(
+    padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      child: RichText(
+        text: TextSpan(
+          style: Theme.of(context).textTheme.headline6,
+          children: [
+            const TextSpan(
+            text: 'REGISTRATION\n\n',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
+            ),
+            const TextSpan(
+              text: 'Wilhelm Hallen Main Hall\n',
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+      const TextSpan(
+        text: '15 - 18 May  |  09:00 – 12:30 + 13:30 – 17:00\n\n',
+        style: TextStyle(
+        fontSize: 14,
+      ),
+    ),
+            TextSpan(
+              text: 'In addition to registration, the same site '
+                  'will host Info, T-Shirt Sales, the Educational Resource Center, '
+                  'Lounge and Charging Station, Goblet Grab Drop Off, and GAS Market '
+                  'every day of the conference.',
+              style: TextStyle( fontSize: 14 ),
+            ),
+          ],
+        ),
       ),
     );
 
@@ -768,14 +809,16 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Wilhelm Hallen',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Kopenhagener Str. 60-72'),
+            subtitle: Text('Kopenhagener Str. 60-72\nMetro: Wiilhelmsruh'),
             children: <Widget>[
               ListTile(
                   dense:true,
                   contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
                   visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text(
-                    '   • Conference Kickoff\n'
+                  title: Text('Activities at this venue:',
+                      style: TextStyle(fontSize: 14)),
+                  subtitle: Text(
+                    '\n   • Conference Kickoff\n'
                         '   • Midday Interactive Programming\n'
                         '   • GAS Market\n'
                         '   • Lectures\n'
@@ -806,14 +849,16 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Berlin Glas',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Provinzstraße 42a'),
+            subtitle: Text('Provinzstraße 42a\nMetro: Schönholz'),
             children: <Widget>[
               ListTile(
                   dense:true,
                   contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
                   visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text(
-                    '   • Hot Glass Demos\n'
+                  title: Text('Activities at this venue:',
+                      style: TextStyle(fontSize: 14)),
+                  subtitle: Text(
+                    '\n   • Hot Glass Demos\n'
                         '   • Kids Oasis\n',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
@@ -824,38 +869,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 80,
                 fit: BoxFit.fitWidth
             ),
-            title: Text('Monopol',
+            title: Text('Monopol & Provinzstraße Hub',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Provinzstraße 40-44'),
+            subtitle: Text('Provinzstraße 40-44\nMetro: Schönholz'),
             children: <Widget>[
               ListTile(
                   dense:true,
                   contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
                   visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text(
-                    '   • Lecmos\n'
+                  title: Text('Activities at this venue:',
+                      style: TextStyle(fontSize: 14)),
+                  subtitle: Text(
+                    '\n   • Flame and Neon Demonstrations\n'
+                        '   • Lecmos\n'
                         '   • Glass on the Go Rodeo (Mobile Hot Shops)\n',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-          ExpansionTile(
-            leading: Image.asset("images/Venues/BardBerlinLogo.png",
-                width: 80,
-                fit: BoxFit.fitWidth
-            ),
-            title: Text('Bard College Berlin',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Provinzstraße 40-44'),
-            children: <Widget>[
-              ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text(
-                    '   • Flame and Neon Demos\n',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
             ],
@@ -886,8 +914,91 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       );
 
+    Widget emergencyTitle = Container(
+      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /*2*/
+          Container(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: const Text(
+              'EMERGENCY INFORMATION\n',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    Widget emergencySection = Container(
+      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      child: RichText(
+        text: TextSpan(
+          style: Theme.of(context).textTheme.headline6,
+          children: [
+            const TextSpan(
+              text: 'Police: \n',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            const TextSpan(
+              text: 'Emergency in progress: 110\n'
+              'Non-Emergency: +49 30 9018 22010\n\n',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+
+            const TextSpan(
+              text: 'Ambulance: ',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            const TextSpan(
+              text: '112\n\n',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+
+            const TextSpan(
+              text: 'Hospitals: \n',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            const TextSpan(
+              text: 'Vivantes Humboldt-Klinikum\n'
+                  'Am Nordgraben 2 '
+                  '+49 30 130120\n\n',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+            const TextSpan(
+              text: 'Alexianer St. Hedwig Hospital\n'
+                  'Große Hamburger Str. 5-11'
+                  '+49 30 23110\n\n',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
+
+          ],
+        ),
+      ),
+    );
+
     Widget sponsorSection = Container(
-      padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: GridView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
@@ -954,6 +1065,8 @@ class _MyHomePageState extends State<MyHomePage> {
             buttonSection,
             textSection,
             myDivider,
+            registrationSection,
+            myDivider,
             buildTitleWidget(venueTitle, venueText),
             Container(
               margin: EdgeInsets.fromLTRB(24,0,20,0),
@@ -971,6 +1084,9 @@ class _MyHomePageState extends State<MyHomePage> {
             myDivider,
             sponsorTitle,
             sponsorSection,
+            myDivider,
+            emergencyTitle,
+            emergencySection,
           ],
         ),
       ),
