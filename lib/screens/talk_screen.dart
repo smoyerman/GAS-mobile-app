@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -12,19 +13,22 @@ class TalkScreen extends StatefulWidget {
 
   final List<SpeakerImage> images;
   final TalkTitleItem item;
-  TalkScreen({required this.images, required this.item});
+  final SharedPreferences sharedPreferences;
+  TalkScreen({required this.images, required this.item, required this.sharedPreferences});
 
   @override
   State<TalkScreen> createState() => _TalkScreenState(
     images: images,
     item:item,
+    sharedPreferences: sharedPreferences,
   );
 }
 
 class _TalkScreenState extends State<TalkScreen> {
   final List<SpeakerImage> images;
   final TalkTitleItem item;
-  _TalkScreenState({required this.item, required this.images});
+  final SharedPreferences sharedPreferences;
+  _TalkScreenState({required this.item, required this.images, required this.sharedPreferences});
 
   @override
   Widget build(BuildContext context) {
@@ -36,29 +40,10 @@ class _TalkScreenState extends State<TalkScreen> {
         => map.contains(item.returnSpeaker(context).split(" ")[0])).toList();
     }
 
-    //print('image links: ');
-    //print(imageLinks);
-
       Widget textSection = Container(
       padding: const EdgeInsets.fromLTRB(32,12,0,0),
       child: item.buildDescription(context),
     );
-
-    /*if (item.coPresenters.isNotEmpty) {
-      final coPresenterNames = <String>[];
-      final coPresenterIGs = <String>[];
-      int counter = 0;
-      for (var m in item.coPresenters.split(',')) {
-        if ( counter % 2 == 0 ) {
-          coPresenterNames.add(m.replaceAll('\(',''));
-        }
-        else {
-          coPresenterIGs.add(m.replaceAll('\(',''));
-        }
-        counter++;
-      }
-      print(coPresenterNames);
-    }*/
 
     Widget _buildCoPresenters() {
       final coPresenterNames = <String>[];
@@ -237,13 +222,14 @@ class _TalkScreenState extends State<TalkScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        isSelected: item.talkSaved,
+                        isSelected: null == sharedPreferences.getBool(item.talkSpeaker) ? item.talkSaved : sharedPreferences.getBool(item.talkSpeaker),
                         icon: const Icon(Icons.star_border_outlined),
                         selectedIcon: const Icon(Icons.star),
-                        onPressed: () {
+                        onPressed: () async {
                           setState(() {
                             item.switchSaved(context);
                           });
+                          await sharedPreferences.setBool(item.talkSpeaker, item.talkSaved);
                         },
                       ),
                     ],

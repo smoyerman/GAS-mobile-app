@@ -2,18 +2,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:multiselect/multiselect.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../data/talks.dart';
 import './talk_screen.dart';
 import '../main.dart';
 
 class ScheduleScreen extends StatelessWidget {
   final List<SpeakerImage> images;
+  final SharedPreferences sharedPreferences;
 
   // Sort talks by datetime
   final sortedTalksAsc = Day1.map((talk) => talk).toList()
     ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));
 
-  ScheduleScreen({required this.images});
+  ScheduleScreen({required this.images, required this.sharedPreferences});
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class ScheduleScreen extends StatelessWidget {
         child:
           ExpansionTileExample(
             images:images,
+            sharedPreferences: sharedPreferences,
           ),
       ),
     );
@@ -41,34 +44,46 @@ class ScheduleScreen extends StatelessWidget {
 class ExpansionTileExample extends StatefulWidget {
 
   final List<SpeakerImage> images;
-  ExpansionTileExample({required this.images});
+  final SharedPreferences sharedPreferences;
+  ExpansionTileExample({required this.images, required this.sharedPreferences});
 
   @override
   State<ExpansionTileExample> createState() => _ExpansionTileExampleState(
     images: images,
+    sharedPreferences: sharedPreferences,
   );
 
 }
 
 class _ExpansionTileExampleState extends State<ExpansionTileExample> {
   final List<SpeakerImage> images;
-  _ExpansionTileExampleState({required this.images});
+  final SharedPreferences sharedPreferences;
+  _ExpansionTileExampleState({required this.images, required this.sharedPreferences});
 
   List<TalkTitleItem> _sortedTalksFiltered = Day1.map((talk) => talk).toList()
     ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));
 
   // Function to filter list of talks
-  // TODO <-- Have to figure out a better way to present this; overflow right now
   void _filterSortedTalks() {
 
     setState(() {
       // Grab full list
       List<TalkTitleItem> sortedTalksAsc = Day1.map((talk) => talk).toList()
         ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));
+      // Get my filters right... sheesh this is a mess I need to cross check everywhere
+      for (var talk in sortedTalksAsc) {
+        if (sharedPreferences.getBool(talk.talkSpeaker) != null) {
+          talk.talkSaved = sharedPreferences.getBool(talk.talkSpeaker)!;
+        }
+      }
 
       // Saved Talks Only
-      _sortedTalksFiltered = sortedTalksAsc.where((map)
-      => map.talkSaved == savedOnly).toList();
+      if (savedOnly) {
+        _sortedTalksFiltered = sortedTalksAsc.where((map) => map.talkSaved == savedOnly).toList();
+      }
+      else {
+        _sortedTalksFiltered = sortedTalksAsc;
+      }
 
       // Focus of Talk Only
       if (selectedTypeFilters.length > 0) {
@@ -117,7 +132,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                                 'HISTORY','SOCIAL JUSTICE','CAREER','COMMUNITY',
                                   'TECHNOLOGY','EDUCATION','SUSTAINABILITY','OTHER'];
 
-  List<String> talkLocationFilters = ['Wilhelm','Berlin Glas','Provinzstraße','Green Pav','Niesen'];
+  List<String> talkLocationFilters = ['Wilhelm','Berlin Glas','Provinzstraße','Green Pav'];
 
   List<String> selectedTypeFilters = [];
   List<String> selectedTopicFilters = [];
@@ -133,6 +148,10 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
   }
   var days = <DateTime, List<TalkTitleItem>>{};
   for (var talk in _sortedTalksFiltered) {
+    // STEPH!!!! Why no workie?!
+    if (sharedPreferences.getBool(talk.talkSpeaker) != null) {
+      talk.talkSaved = sharedPreferences.getBool(talk.talkSpeaker)!;
+    }
     (days[dateOnly(talk.talkStartDateTime)] ??= []).add(talk);
   }
   var keys = days.keys.toList();
@@ -239,6 +258,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                           builder: (context) => TalkScreen(
                               item:item,
                               images:images,
+                              sharedPreferences: sharedPreferences,
                           ))).then(onGoBack);
                         },
                       shape: RoundedRectangleBorder(
@@ -253,13 +273,14 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           IconButton(
-                            isSelected: item.talkSaved,
+                            isSelected: null == sharedPreferences.getBool(item.talkSpeaker) ? item.talkSaved : sharedPreferences.getBool(item.talkSpeaker),
                             icon: const Icon(Icons.star_border_outlined),
                             selectedIcon: const Icon(Icons.star),
-                            onPressed: () {
+                            onPressed: () async {
                               setState(() {
                                 item.switchSaved(context);
                               });
+                              await sharedPreferences.setBool(item.talkSpeaker, item.talkSaved);
                             },
                           ),
                         ],
@@ -278,7 +299,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
 
 }
 
-class IconButtonExample extends StatefulWidget {
+/*class IconButtonExample extends StatefulWidget {
   //const IconButtonExample({super.key});
   final TalkTitleItem item;
   const IconButtonExample({super.key, required this.item});
@@ -287,9 +308,9 @@ class IconButtonExample extends StatefulWidget {
   State<IconButtonExample> createState() => _IconButtonExampleState(
     item: item,
   );
-}
+}*/
 
-class _IconButtonExampleState extends State<IconButtonExample> {
+/*class _IconButtonExampleState extends State<IconButtonExample> {
   final TalkTitleItem item;
   _IconButtonExampleState({required this.item});
 
@@ -303,12 +324,14 @@ class _IconButtonExampleState extends State<IconButtonExample> {
           icon: const Icon(Icons.star_border_outlined),
           selectedIcon: const Icon(Icons.star),
           onPressed: () {
-            setState(() {
+            setState(() async {
               item.switchSaved(context);
+              try {sharedPreferences.getBool(item.talkSpeaker);}
+              catch (e) {await sharedPreferences.setBool(item.talkSpeaker, item.talkSaved);}
             });
           },
         ),
       ],
     );
   }
-}
+}*/

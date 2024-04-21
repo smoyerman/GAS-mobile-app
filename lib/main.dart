@@ -1127,6 +1127,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _navigateToScheduleScreen(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScheduleScreen(
         images:images,
+      sharedPreferences: sharedPreferences,
     )));
   }
 
