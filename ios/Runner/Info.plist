@@ -32,6 +32,7 @@
 	<array>
 		<string>fetch</string>
 		<string>remote-notification</string>
+		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -50,6 +51,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSBonjourServices</key>
+    <array>
+        <string>_dartobservatory._tcp</string>
+    </array>
+    <key>FLTEnableImpeller</key>
+    <false />
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	 <key>LSApplicationQueriesSchemes</key>

@@ -622,9 +622,14 @@ class InfoScreen extends StatelessWidget {
                           fontSize: 14,
                         ),
                       ),
+                      WidgetSpan(
+                          child: Container(
+                            child: Text('• On view: Thursday, 16 May through Saturday, 18 May, 9:00–17:00 daily\n',
+                                style: TextStyle( fontSize: 14 )),
+                          )
+                      ),
                       TextSpan(
-                        text: '   • On view: Thursday, 16 May through Saturday, 18 May, 9:00–17:00 daily\n'
-                        '   • Conference Pass Holders: Included\n',
+                        text: '   • Conference Pass Holders: Included\n',
                         style: TextStyle( fontSize: 14 ),
                       ),
                     ],

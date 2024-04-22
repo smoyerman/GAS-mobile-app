@@ -12,7 +12,7 @@ import GoogleMaps
 
     // TODO: Add your Google Maps API key
     GMSServices.provideAPIKey("AIzaSyDtWzYAt_uG2ad_g304N4lt-OOFhXdYxwU")
-
+    UIApplication.shared.setMinimumBackgroundFetchInterval(TimeInterval(3600))
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

@@ -448,6 +448,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Future.delayed(Duration(seconds: 1));
 
   final messaging = FirebaseMessaging.instance;
   final manifestJson = await rootBundle.loadString('AssetManifest.json');
