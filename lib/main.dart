@@ -437,12 +437,14 @@ Future<void> main() async {
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
   // Init shared preferences; ensuring there's none from before
-  try {sharedPreferences.getStringList('messageTitle');}
-  catch (e) {await sharedPreferences.setStringList('messageTitle', <String>[]);}
-  try {sharedPreferences.getStringList('messageBody');}
-  catch (e) {await sharedPreferences.setStringList('messageBody', <String>[]);}
-  try {sharedPreferences.getStringList('messageSentTime');}
-  catch (e) {await sharedPreferences.setStringList('messageSentTime', <String>[]);}
+  if (sharedPreferences.getStringList('messageTitle') == null) {
+    await sharedPreferences.setStringList('messageTitle', <String>[]);}
+
+  if (sharedPreferences.getStringList('messageBody') == null) {
+    await sharedPreferences.setStringList('messageBody', <String>[]);}
+
+  if (sharedPreferences.getStringList('messageSentTime') == null) {
+    await sharedPreferences.setStringList('messageSentTime', <String>[]);}
 
   // Initialize the app
   await Firebase.initializeApp(
@@ -502,6 +504,7 @@ Future<void> main() async {
 
   runApp(
       MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Passing Data',
         home: MyApp(
           images: List<SpeakerImage>.from(imageList.map((s) => SpeakerImage(s)).toList()),
@@ -521,6 +524,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: '2024 GAS Conference',
       theme: ThemeData(
         colorSchemeSeed: const Color(0xff6750a4),
@@ -698,6 +702,12 @@ class _MyHomePageState extends State<MyHomePage> {
         fontSize: 14,
       ),
     ),
+            const TextSpan(
+              text: '*Only open until 16:00 on Wed, 15 May\n\n',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
             TextSpan(
               text: 'In addition to registration, the same site '
                   'will host Info, T-Shirt Sales, the Educational Resource Center, '
@@ -810,7 +820,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Wilhelm Hallen',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Kopenhagener Str. 60-72\nMetro: Wiilhelmsruh'),
+            subtitle: Text('Kopenhagener Str. 60-72\nMetro Stop: Wiilhelmsruh'),
             children: <Widget>[
               ListTile(
                   dense:true,
@@ -850,7 +860,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Berlin Glas',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Provinzstraße 42a\nMetro: Schönholz'),
+            subtitle: Text('Provinzstraße 42a\nMetro Stop: Schönholz'),
             children: <Widget>[
               ListTile(
                   dense:true,
@@ -860,6 +870,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle(fontSize: 14)),
                   subtitle: Text(
                     '\n   • Hot Glass Demos\n'
+                        '   • Lecmos\n'
                         '   • Kids Oasis\n',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
@@ -873,7 +884,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Monopol & Provinzstraße Hub',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            subtitle: Text('Provinzstraße 40-44\nMetro: Schönholz'),
+            subtitle: Text('Provinzstraße 40-44\nMetro Stop: Schönholz'),
             children: <Widget>[
               ListTile(
                   dense:true,
@@ -987,12 +998,63 @@ class _MyHomePageState extends State<MyHomePage> {
             const TextSpan(
               text: 'Alexianer St. Hedwig Hospital\n'
                   'Große Hamburger Str. 5-11'
-                  '+49 30 23110\n\n',
+                  '+49 30 23110',
               style: TextStyle(
                 fontSize: 14,
               ),
             ),
 
+          ],
+        ),
+      ),
+    );
+
+    Widget educationSponsorTitle = Container(
+      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /*2*/
+          Container(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: const Text(
+              'CONFERENCE SUPPORTERS\nEducation Programs and Classes',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    Widget educationSponsorSection = Container(
+      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      child: RichText(
+        text: TextSpan(
+          style: Theme.of(context).textTheme.headline6,
+          children: [
+            const TextSpan(
+              text: '\n',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
+            const TextSpan(
+              text: '   • Berlin Glas\n'
+                  '   • Glass School in partnership with Warm Glass UK\n'
+                  '   • Pilchuck Glass School\n'
+                  '   • Pittsburgh Glass Center\n'
+                  '   • Pratt Fine Arts Center\n'
+                  '   • The Glass Furnace\n'
+                  '   • The Studio at the Corning Museum of Glass\n'
+                  '   • Tulsa Glassblowing School\n'
+                  '   • Urban Glass\n\n',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
           ],
         ),
       ),
@@ -1034,6 +1096,7 @@ class _MyHomePageState extends State<MyHomePage> {
         indent: 32, endIndent: 32, height: 50);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'GAS Conference 2024 - Berlin',
       theme: ThemeData(
         primaryColor: primaryColor,
@@ -1079,15 +1142,15 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsets.fromLTRB(24,0,20,0),
               child: accomodationsContent,
             ),
-            //myDivider,
-            //marketTitle,
-            //marketSection,
+            myDivider,
+            emergencyTitle,
+            emergencySection,
             myDivider,
             sponsorTitle,
             sponsorSection,
             myDivider,
-            emergencyTitle,
-            emergencySection,
+            educationSponsorTitle,
+            educationSponsorSection,
           ],
         ),
       ),

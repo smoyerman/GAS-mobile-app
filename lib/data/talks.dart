@@ -219,8 +219,8 @@ List<TalkTitleItem> Day1 = [
           'available to offer a complete experience.',
       'https://ioanastelea.weebly.com/' , 'ioanastelea',
       '(Anne Wenzel, https://www.glasgravur-wenzel.de/)',
-      DateTime.parse('2024-05-16 15:00:00Z'),
-      DateTime.parse('2024-05-16 16:30:00Z'),
+      DateTime.parse('2024-05-16 15:30:00Z'),
+      DateTime.parse('2024-05-16 17:00:00Z'),
       false),
 
   TalkTitleItem('Lathe Riders - International Cold Working',
@@ -234,7 +234,7 @@ List<TalkTitleItem> Day1 = [
           'at their pop-up cold shop!',
       'http://lotharbottcher.com' , 'lotharbottcher',
       '(Samuel Weisenborn, https://www.instagram.com/samuelweisenborn), (Patrick Roth, https://www.instagram.com/patrick.roth.glass), (Simon Holm, https://www.instagram.com/simonholm_konstglassliperi)',
-      DateTime.parse('2024-05-18 10:00:00Z'),
+      DateTime.parse('2024-05-18 12:00:00Z'),
       DateTime.parse('2024-05-18 17:00:00Z'),
       false),
 
@@ -561,8 +561,8 @@ List<TalkTitleItem> Day1 = [
             'understandable? What are the pros and cons of this approach? And what is the role of '
             'the artist when working with sensitive and challenging aspects of their own history?',
       'http://www.alisonlowry.co.uk', 'Alison_lowry_glass',
-      '', DateTime.parse('2024-05-17 15:00:00Z'),
-        DateTime.parse('2024-05-17 16:00:00Z'),
+      '', DateTime.parse('2024-05-17 14:30:00Z'),
+        DateTime.parse('2024-05-17 15:30:00Z'),
       false),
 
     TalkTitleItem('Wholesale 101',
@@ -602,8 +602,8 @@ List<TalkTitleItem> Day1 = [
             'the obstacles encountered, what type of glass was used and how it was made. Daniel will '
             'try to keep you interested in some heavy glass stuff.',
       'http://www.bokart.art', '',
-      '', DateTime.parse('2024-05-18 15:30:00Z'),
-        DateTime.parse('2024-05-18 16:30:00Z'),
+      '', DateTime.parse('2024-05-18 16:00:00Z'),
+        DateTime.parse('2024-05-18 17:00:00Z'),
       false),
 
     TalkTitleItem('Reviving Iridescent Magic: A Contemporary Approach to a Centuries-Old Craft from Mesopotamia to the Present',
@@ -623,15 +623,15 @@ List<TalkTitleItem> Day1 = [
       false),
 
     TalkTitleItem('Why Glassblowing is Irrelevant',
-      'John Dillard', 'Wilhelm Hallen Lecture',
+      'John Dillard', 'Wilhelm Hallen Main Stage',
       'LECTURE', 'HISTORY',
         'Reimagining the previous hierarchal and pedagogical structure of glassmaking. Through the lens '
             'of contemporary practitioners, this lecture recontextualizes material* outside of the narrow'
             'preexisting discourse around methods of production.\n\n\n'
             '*(Defined as: the matter from which a thing can be created)',
       'http://johndillardprojects.com', 'johndillard__',
-      '', DateTime.parse('2024-05-18 14:00:00Z'),
-        DateTime.parse('2024-05-18 15:00:00Z'),
+      '', DateTime.parse('2024-05-18 16:00:00Z'),
+        DateTime.parse('2024-05-18 17:00:00Z'),
       false),
 
   TalkTitleItem('Traditional and non-traditional methods of imagery on glass',

@@ -126,6 +126,36 @@ final List<PhotoItem> items = [
       "Reichenbach Glass Logo",
       "https://glasscolor.com/glass-products/blowing-colors/reichenbach-colors"
   ),
+  PhotoItem(
+      "images/Sponsors/Monopol logo sq.png",
+      "Monopol Logo",
+      "https://monopol-berlin.com/de"
+  ),
+  PhotoItem(
+      "images/Sponsors/Wilhelm Studios.png",
+      "Wilhelm Studios Logo",
+      "https://www.wilhelmstudios.de/"
+  ),
+  PhotoItem(
+      "images/Sponsors/Flame Off.png",
+      "Flame Off Logo",
+      "https://www.facebook.com/p/Flame-Off-France-100067843531369/"
+  ),
+  PhotoItem(
+      "images/Sponsors/the_LR_logo_24.jpg",
+      "Lathe Riders Logo",
+      "https://www.instagram.com/the_latheriders/?hl=es"
+  ),
+  PhotoItem(
+      "images/Sponsors/logo_niesenglass_big.png",
+      "Niesen Glass Logo",
+      "https://niesenglass.ch/"
+  ),
+  PhotoItem(
+      "images/Sponsors/bomma_1.png",
+      "Bomma Logo",
+      "https://www.bomma.cz/"
+  ),
 ];
 
 /* ================ MARKET PHOTOS AND INFO ===================== */

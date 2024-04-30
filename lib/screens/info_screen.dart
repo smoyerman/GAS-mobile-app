@@ -358,7 +358,7 @@ class InfoScreen extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: '   • Conference Pass Holders: Included\n\n',
+                          text: '   • Free to the public\n\n',
                           style: TextStyle( fontSize: 14 ),
                         ),
                         TextSpan(
@@ -377,51 +377,6 @@ class InfoScreen extends StatelessWidget {
                 ),
               ]
           ),
-          /*ExpansionTile(
-              leading: Container(
-                  child: Icon(Icons.co_present,
-                    color: Colors.blue,
-                    size: 60.0,
-                  ),
-                  width: 80,
-                ),
-              title: Text('Research Presentations',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-              ),
-              children: <Widget>[
-                ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.headline6,
-                      children: [
-                        const TextSpan(
-                          text: 'Are you a researcher in the field of glass who has a paper, poster, or '
-                              'other research project to share? Are you coming to Berlin for the GAS Conference? '
-                              'GREAT! ',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        new TextSpan(
-                          text: 'Sign up here',
-                          style: new TextStyle(color: Colors.blue, fontSize: 14),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () { launch('https://docs.google.com/forms/d/e/1FAIpQLSf-zzP2gkhw_hUmhjaR1h4LhGRrqZ9ejCrQoBF7iwy1qJh6dg/viewform');
-                            },
-                        ),
-                        const TextSpan(
-                          text: ' to indicate your interest in presenting your research, and our team will '
-                              'reach out to you before April 2024 with options available for presenting or '
-                              'conducting your research at the conference.',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ]
-          ),*/
         ]
     );
 
@@ -567,6 +522,42 @@ class InfoScreen extends StatelessWidget {
               ),
             ],
           ),
+
+          ExpansionTile(
+            title: Text('International Meet-Up',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Wednesday, 15 May, 15:30-16:30\nThurs, 16 May – Sat, 18 May 12:00-14:00'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Wilhelm Hallen Beer Garden\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Join us for an enriching opportunity to connect and collaborate with members of '
+                  'the European Task Force. Explore all facets of Europe\'s glass scene, join in discussions, '
+                            'share knowledge, and foster stronger community bonds towards shaping our collective '
+                            'future.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
           ExpansionTile(
             title: Text('Conference Kick-Off',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -762,6 +753,41 @@ class InfoScreen extends StatelessWidget {
                     children: [
                       const TextSpan(
                         text: 'Get your flame on at Monopol as flameworkers take the stage.\n\n',
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '   • Conference Pass Holders: Included\n',
+                        style: TextStyle( fontSize: 14 ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          ExpansionTile(
+            title: Text('Research Presentations',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            subtitle: Text('Saturday, 18 May | 12:00–13:30'),
+            children: <Widget>[
+              ListTile(
+                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
+                title: Text('Wilhelm Hallen Lecture\n',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headline6,
+                    children: [
+                      const TextSpan(
+                        text: 'Hear from glass artists and scholars about their '
+                            'current projects in these ten-minute research presentations! '
+                            'Presenters include: Andrea da Ponte, Sara Hulkkonen, '
+                            'Mark Hursty, Riikka Latva-Somppi, Michael J Souza, and Franca Tasch.\n\n',
                         style: TextStyle(
                           fontSize: 14,
                         ),

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:115588830626:android:719a77f5bb2edece02cefb",
         "android_client_info": {
-          "package_name": "com.example.gas_conference"
+          "package_name": "com.gas.gas_conference"
         }
       },
       "oauth_client": [],
