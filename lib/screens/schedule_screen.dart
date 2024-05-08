@@ -97,9 +97,10 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
         List<String> LocFilters = [];
         for (var item in selectedLocationFilters) {
           if (item == "Wilhelm") {
-            List<String> Wilhelm = ["Wilhelm Hallen Lecture",
+            List<String> Wilhelm = [
               "Wilhelm Hallen Main Stage", "Wilhelm Hallen Panel",
-              "Wilhelm Hallen Cold Shop", "Wilhelm Hallen"
+              "Wilhelm Hallen Cold Shop", "Wilhelm Hallen",
+              "Wilhelm Hallen Flame Shop"
             ];
             LocFilters.addAll(Wilhelm);
           }
@@ -109,10 +110,13 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
             LocFilters.add("Berlin Glas");
           }
           if (item == "Provinzstraße") {
-            LocFilters.add("Provinzstraße Flame Shop");
+            LocFilters.add("Provinstrase Lecture");
           }
           if (item == "Green Pav") {
             LocFilters.add("Green Pavilion");
+          }
+          if (item == "Niesen") {
+            LocFilters.add("Niesen Furnaces");
           }
         }
         _sortedTalksFiltered = _sortedTalksFiltered.where((map) =>
@@ -132,7 +136,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                                 'HISTORY','SOCIAL JUSTICE','CAREER','COMMUNITY',
                                   'TECHNOLOGY','EDUCATION','SUSTAINABILITY','OTHER'];
 
-  List<String> talkLocationFilters = ['Wilhelm','Berlin Glas','Provinzstraße','Green Pav'];
+  List<String> talkLocationFilters = ['Wilhelm','Berlin Glas','Provinzstraße','Green Pav','Niesen'];
 
   List<String> selectedTypeFilters = [];
   List<String> selectedTopicFilters = [];

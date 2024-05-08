@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../data/events.dart';
 import '../globals.dart';
 import '../main.dart';
 import 'package:flutter/widgets.dart';
@@ -455,6 +457,97 @@ class InfoScreen extends StatelessWidget {
         ]
     );
 
+    List<BuildEventItem> _sortedEvents = EventList.map((event) => event).toList()
+      ..sort((a, b) => a.eventStartDateTime.compareTo(b.eventStartDateTime));
+    String usageDate = DateFormat('EEEE d LLLL').format(_sortedEvents[0].eventStartDateTime);
+
+    Widget _buildDate(DateTime eventStartDateTime) {
+      if (usageDate != DateFormat('EEEE d LLLL').format(eventStartDateTime) ) {
+        usageDate = DateFormat('EEEE d LLLL').format(eventStartDateTime);
+        return Container (
+          margin: EdgeInsets.fromLTRB(8, 0, 0, 0),
+          child: Column (
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [Text(
+            '\n' + DateFormat('EEEE d LLLL').format(eventStartDateTime),
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+            Divider(thickness: 2, color: Colors.blueGrey, indent: 0, endIndent: 64, height: 10),
+          ]
+          ),);
+      }
+      else { return SizedBox.shrink(); }
+    }
+
+    Widget specialEventDescriptions = Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container (
+                margin: EdgeInsets.fromLTRB(8, 0, 0, 0),
+                child: Column (
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text(
+                      '\n$usageDate',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                      Divider(thickness: 2, color: Colors.blueGrey, indent: 0, endIndent: 64, height: 10),
+                    ]
+                ),),
+              ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: _sortedEvents.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      _buildDate(_sortedEvents[index].eventStartDateTime),
+                      ExpansionTile(
+                    title: Text(_sortedEvents[index].eventTitle,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    subtitle: Text(
+                        DateFormat('EEEE d LLLL - HH:mm').format(_sortedEvents[index].eventStartDateTime) + '-' +
+                        DateFormat('HH:mm').format(_sortedEvents[index].eventEndDateTime)
+                    ),
+                    children: <Widget>[
+                      ListTile(
+                        contentPadding: EdgeInsets.fromLTRB(24, 4, 20, 4),
+                        title: Text(_sortedEvents[index].eventLocation + '\n',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: RichText(
+                          text: TextSpan(
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headline6,
+                            children: [
+                              TextSpan(
+                                text: _sortedEvents[index].eventDescription + '\n\n',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                              TextSpan(
+                                text: '   • ' + _sortedEvents[index].eventInclusion + '\n',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  ]);
+                }
+              )]
+          );
+
     Widget specialEventsContent = Column(
         children: <Widget>[
           ExpansionTile(
@@ -744,7 +837,7 @@ class InfoScreen extends StatelessWidget {
             children: <Widget>[
               ListTile(
                 contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
-                title: Text('Monopol Flame Shop\n',
+                title: Text('Berlin Glas Lecmo\n',
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 subtitle: RichText(
@@ -837,184 +930,6 @@ class InfoScreen extends StatelessWidget {
               ),
             ],
           ),
-          /*ExpansionTile(
-            title: Text('Stained Glass Workshop',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('by Lola Pradeilles'),
-            children: <Widget>[
-              ListTile(
-                contentPadding: EdgeInsets.fromLTRB(24,0,20,0),
-                title: Text('Berlin Glas Cold Shop\nTuesday, May 14th\n'
-                    'Two Sessions: 9:00-12:30 and 13:00-16:30\n',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                subtitle: RichText(
-                  text: TextSpan(
-                    style: Theme.of(context).textTheme.headline6,
-                    children: [
-                      const TextSpan(
-                        text: 'Join stained glass artist Lola Pradeilles for a half-day workshop where you '
-                            'will explore the use of stencils for painting on stained glass! Learn a new '
-                            'technique or sharpen your painting skills with grisaille and enamels. Lola '
-                            'works out of her studio in Occitane and has traveled throughout the world '
-                            'learning and teaching her craft. Her passion for stained glass and restoration '
-                            'are evident in the exquisite details of her works, and she is eager to share her '
-                            'tips and secrets with students in Berlin.\n\nOpen to all – conference '
-                            'registration not required.\n',
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                      TextSpan(
-                        text: '   • Members: \$75\n'
-                            '   • Non-Members: \$90\n',
-                        style: TextStyle( fontSize: 14 ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          ExpansionTile(
-            title: Text('Reichenbach Factory Tour',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Tuesday, May 14th'),
-            children: <Widget>[
-              ListTile(
-                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
-                title: Text('Depart Radisson Park Inn Alexanderplatz at 7 am, return at 6 pm\n',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                subtitle: RichText(
-                  text: TextSpan(
-                    style: Theme.of(context).textTheme.headline6,
-                    children: [
-                      const TextSpan(
-                        text: 'Please note: This tour includes a 3-hour bus ride each way from Berlin to '
-                  'Reichenbach and returning.\n\nFor the very first time, Reichenbach Glass is welcoming you '
-                  'to step inside their historic factory nestled in a picturesque town. With over 150 years '
-                  'of expertise in crafting exquisite colored glass, this is your chance to witness the magic '
-                  'unfold.\n\nSince the turn of the century, Reichenbach Glass has been a trusted source for '
-                  'glass artists worldwide, providing them with the finest materials to bring their visions '
-                  'to life. Now, you have the exclusive opportunity to go behind the scenes and discover '
-                  'the age-old techniques and traditions that have been passed down through generations.\n\nJoin '
-                    'us as we journey through every step of the glassmaking process, from the raw materials to '
-                    'the final product. Gain a deep appreciation for the craftsmanship that goes into creating '
-                    'your favorite glass products.\n\nDon’t miss out on this extraordinary experience to '
-                    'witness artistry, history, and innovation come together in one remarkable place. A '
-                  'hearty German lunch will be included along with your factory tour. It\’s an adventure '
-                  'you\’ll cherish forever.\n\nPlease note: This opportunity, generously sponsored by '
-                            'Reichenbach in partnership with Olympic Color Rods, is available exclusively '
-                            'to GAS Members! Space is limited, so register today!\n\n',
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'GAS Members only: \$150.\n',
-                        style: TextStyle( fontSize: 14 ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          ExpansionTile(
-            title: Text('Day Trip: Berlin',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Wednesday, May 15th  10:00-14:00'),
-            children: <Widget>[
-              ListTile(
-                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
-                title: Text('Pick up and Drop Off at Radisson Park Inn Alexanderplatz\n',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                subtitle: RichText(
-                  text: TextSpan(
-                    style: Theme.of(context).textTheme.headline6,
-                    children: [
-                      const TextSpan(
-                        text: 'Enjoy the morning before the Conference Kick-Off by saying “hallo” to some '
-                  'of Berlin’s most famous sites! This hop-on/hop-off bus tour will let you see the glass '
-                    'dome of the Reichstag, the grandeur of the Brandenburg Gate, and the world-famous '
-                  'murals painted on remnants of the Berlin Wall.\n\n',
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                      TextSpan(
-                        text: '   • Members: \$55\n'
-                            '   • Non-Members: \$70\n',
-                        style: TextStyle( fontSize: 14 ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          ExpansionTile(
-            title: Text('Overnight Trip: A Taste of Lauscha',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Sunday, May 19 - Monday, May 20'),
-            children: <Widget>[
-              ListTile(
-                contentPadding: EdgeInsets.fromLTRB(24,4,20,4),
-                title: Text('Pick up and Drop Off at Radisson Park Inn Alexanderplatz\n',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                ),
-                subtitle: RichText(
-                  text: TextSpan(
-                    style: Theme.of(context).textTheme.headline6,
-                    children: [
-                      const TextSpan(
-                        text: 'The glassy fun continues after the conference! Take an overnight trip to one of '
-                            'Germany’s historic glass hideaways! Led by Marcie Davis, this behind-the-scenes '
-                            'tour will take you into several flameworking studios in this charming German '
-                            'village.\n\nDetails: Nestled in the foothills of the Thüringen Wald lies the '
-                  'glassmaking village of Lauscha. For over 400 years, this tiny town of 3,500 residents has '
-                  'been creating astonishing works in glass, with a more profound influence on the world '
-                  'glass scene than its diminutive size would suggest. Blown stags, sculpted red devils, '
-                  'wedding goblets, and vessels of all sorts are regional specialties. The tremendously '
-                    'complex and magnificent montage technique originated here, and it’s hard to believe that '
-                    'more than 50 separate sections of tubing can be combined into one 12” vase!  As the '
-                    'birthplace of blown Christmas ornaments, Lauscha provides the world with sparkling '
-                    'hand-silvered joy, and at one time their ornaments made up 95% of the decorations on '
-                  'American Christmas trees. You’ll spend time enjoying demos at the home studios of a '
-                  'variety of local artists, have a guided tour of Farbglashütte Lauscha, the famed '
-                  'Lauscha factory where rods, tubes, and decorative glassware are made, and be inspired '
-                  'by the works on display at the world-class Museum für Glas Kunst. You’ll have the '
-                  'opportunity to create your own mold blown hand-silvered ornament during our time with '
-                  'Michael Haberland, a third generation Christbaumschmuck maker. You will also dine on '
-                    'tasty local fare, enjoy the hospitality of the some of the warmest, kookiest and most '
-                    'talented folks on earth, and spend a memorable evening at the Gollo, the local pub where '
-                    'the magic of Lauscha happens! It’s a trip you will never forget. Hotel, breakfast, lunches, '
-                    'dinner and admission to all venues and activities are included. You may want to bring a '
-                  'spare suitcase for the glass you will assuredly want to bring home!\n\nNote: Lauscha is a '
-                  'very hilly location where the ability to walk up steps is often necessary. It is '
-                  'unfortunately not handicapped accessible. Please bear this in mind. For information '
-                  'regarding transportation from Berlin to Lauscha, contact marciedavis@mac.com for details.',
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                      TextSpan(
-                        text: '   • Members: \$450\n'
-                            '   • Non-Members: \$550\n',
-                        style: TextStyle( fontSize: 14 ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),*/
         ]
     );
 
@@ -1167,7 +1082,10 @@ class InfoScreen extends StatelessWidget {
             fontWeight: FontWeight.w500,
           )),
           backgroundColor: primaryColor),
-      body: ListView(
+      body: SingleChildScrollView(
+        physics: ScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             GestureDetector(
             onTap: _launchURL,
@@ -1190,6 +1108,10 @@ class InfoScreen extends StatelessWidget {
         buildTitleWidget(specialEventsTitle, specialEventsText),
         Container(
           margin: EdgeInsets.fromLTRB(24,0,20,0),
+          child: specialEventDescriptions,
+        ),
+        /*Container(
+          margin: EdgeInsets.fromLTRB(24,0,20,0),
           child: specialEventsContent,
         ),
         myDivider,
@@ -1203,7 +1125,7 @@ class InfoScreen extends StatelessWidget {
       Container(
         margin: EdgeInsets.fromLTRB(24,0,20,0),
         child: middayInteractiveProgrammingContent, // <-- Maybe put these on collapsible
-      ),
+      ),*/
         myDivider,
         buildTitleWidget(exhibitionsTitle, exhibitionsText),
         Container(
@@ -1213,7 +1135,7 @@ class InfoScreen extends StatelessWidget {
         myDivider,
         ],
       ),
-    );
+      ));
 
   }
 }

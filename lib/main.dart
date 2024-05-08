@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,37 @@ class MarketItem {
   MarketItem(this.image, this.name, this.website, this.contact, this.email, this.ig);
 }
 
+
 /************* CLASS CONSTRUCTION TO ADD SPEAKER IMAGE LIST ***************/
 class SpeakerImage {
   final String imageLink;
   const SpeakerImage(this.imageLink);
+}
+
+abstract class EventItem {
+  Widget buildEventDescription(BuildContext context);
+}
+
+class BuildEventItem implements EventItem {
+
+  final DateTime eventStartDateTime;
+  final DateTime eventEndDateTime;
+  final String eventTitle;
+  final String eventLocation;
+  final String eventInclusion;
+  final String eventDescription;
+
+  BuildEventItem(this.eventStartDateTime, this.eventEndDateTime, this.eventTitle,
+      this.eventLocation, this.eventInclusion, this.eventDescription);
+
+    @override
+    Widget buildEventDescription(BuildContext context) {
+      return Text(eventLocation,
+        style: TextStyle(
+          color: Colors.grey[500],
+        ),
+      );
+    }
 }
 
 /**************** CLASS FOR TALK ITEMS *******************/
@@ -306,50 +334,6 @@ class TalkTitleItem implements ListItem {
                     ),
                   ),
                 ),
-
-               /*Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      socialMedia.isNotEmpty?IconButton(
-                        // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
-                          icon: FaIcon(FontAwesomeIcons.instagram,
-                            size: 20,
-                          ),
-                          onPressed: () async {
-                            var nativeUrl = "instagram://user?username=" + socialMedia;
-                            if (kDebugMode) {
-                              print(nativeUrl);
-                            }
-                            var webUrl = "https://www.instagram.com/" + socialMedia;
-                            if (await canLaunch(nativeUrl)) {
-                              await launch(nativeUrl);
-                            } else if (await canLaunch(webUrl)) {
-                              await launch(webUrl);
-                            } else {
-                              print("can't open Instagram");
-                            }
-                          }
-                      ):null,
-                      GestureDetector(
-                        onTap: () async {
-                          launch(website);
-                        },
-                        child: Container(
-                          //padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                          child: Text.rich(
-                            TextSpan(
-                              text: talkSpeaker,
-                              style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 16,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]
-                ),*/
                 Container(
                   padding: const EdgeInsets.fromLTRB(18, 6, 0, 0),
                   child: Text(DateFormat('EEEE LLLL d - HH:mm-').format(talkStartDateTime) +  //Text(DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime),
@@ -411,23 +395,69 @@ Future<void> _updateSharedPreferences(SharedPreferences sharedPreferences, Remot
 
 }
 
+@pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message,
     {SharedPreferences? sharedPreferences}) async {
 
-  await Firebase.initializeApp();
+  print("call pattern works");
+  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  if (kDebugMode) {
-    print("Handling a background message: ${message.messageId}");
-    print('Message data: ${message.data}');
-    print('Message notification: ${message.notification?.title}');
-    print('Message notification: ${message.notification?.body}');
-  }
+  // Initialize the app
+  //await Firebase.initializeApp(
+  //  options: DefaultFirebaseOptions.currentPlatform,
+  //);
+  //await Future.delayed(Duration(seconds: 1));
+
+  //await setupFlutterNotifications();
+  //showFlutterNotification(message);
+
+  print("Handling a background message: ${message.messageId}");
+  print('Message data: ${message.data}');
+  print('Message notification: ${message.notification?.title}');
+  print('Message notification: ${message.notification?.body}');
 
   // Store everything!
+  //_messageStreamController.sink.add(message);
   _updateSharedPreferences(sharedPreferences!, message);
-
 }
 
+/// Create a [AndroidNotificationChannel] for heads up notifications
+late AndroidNotificationChannel channel;
+bool isFlutterLocalNotificationsInitialized = false;
+Future<void> setupFlutterNotifications() async {
+  if (isFlutterLocalNotificationsInitialized) {
+    return;
+  }
+  channel = const AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    description:
+    'This channel is used for important notifications.', // description
+    importance: Importance.high,
+  );
+
+  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  /// Create an Android Notification Channel.
+  ///
+  /// We use this channel in the `AndroidManifest.xml` file to override the
+  /// default FCM channel to enable heads up notifications.
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+      AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  /// Update the iOS foreground notification presentation options to allow
+  /// heads up notifications.
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+  isFlutterLocalNotificationsInitialized = true;
+}
+
+late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 Future<void> main() async {
 
   // Put me FIRST unless you want everything to hang forever - have to bind first
@@ -491,17 +521,17 @@ Future<void> main() async {
     if (kDebugMode) {
       print('Handling a foreground message: ${message.messageId}');
       print('Message data: ${message.data}');
+      print('${message.contentAvailable}');
       print('Message notification: ${message.notification?.title}');
       print('Message notification: ${message.notification?.body}');
     }
 
-    _messageStreamController.sink.add(message);
+    //_messageStreamController.sink.add(message);
     _updateSharedPreferences(sharedPreferences, message);
 
   });
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
   runApp(
       MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -583,6 +613,39 @@ class _MyHomePageState extends State<MyHomePage> {
         }
       });
     });
+  }
+
+  Future<void> setupInteractedMessage() async {
+    // Get any messages which caused the application to open from
+    // a terminated state.
+    RemoteMessage? initialMessage =
+    await FirebaseMessaging.instance.getInitialMessage();
+
+    // If the message also contains a data property with a "type" of "chat",
+    // navigate to a chat screen
+    if (initialMessage != null) {
+      _handleMessage(initialMessage);
+    }
+
+    // Also handle any interaction when the app is in the background via a
+    // Stream listener
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+
+    // Perhaps open to messages?!
+  }
+
+  void _handleMessage(RemoteMessage message) {
+    print("----------- CLICKED REMOTE MESSAGE! SAVING! -----------");
+    _updateSharedPreferences(sharedPreferences, message);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Run code required to handle interacted messages in an async function
+    // as initState() must not be async
+    setupInteractedMessage();
   }
 
   @override
@@ -836,6 +899,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         '   • Panels\n'
                         '   • Lecmos\n'
                         '   • Cold Demonstrations\n'
+                        '   • Flame & Neon Demos\n'
                         '   • Green Pavillion\n'
                         '   • Beer Garden\n'
                         '   • Registration\n'
@@ -871,6 +935,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   subtitle: Text(
                     '\n   • Hot Glass Demos\n'
                         '   • Lecmos\n'
+                        '   • Flame Off\n'
                         '   • Kids Oasis\n',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),
@@ -893,8 +958,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: Text('Activities at this venue:',
                       style: TextStyle(fontSize: 14)),
                   subtitle: Text(
-                    '\n   • Flame and Neon Demonstrations\n'
-                        '   • Lecmos\n'
+                        '\n   • Lectures\n'
+                        '   • Performances\n'
                         '   • Glass on the Go Rodeo (Mobile Hot Shops)\n',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )),

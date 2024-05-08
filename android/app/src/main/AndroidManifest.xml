@@ -24,6 +24,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
 
+        android:enableOnBackInvokedCallback="true"
         <!-- TODO: Add your Google Maps API key here -->
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDtWzYAt_uG2ad_g304N4lt-OOFhXdYxwU"/>

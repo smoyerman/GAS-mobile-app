@@ -5,7 +5,8 @@ import '../globals.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:ui' as ui;
 import '../main.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:map_launcher/map_launcher.dart';
+
 
 Future<Uint8List> getBytesFromAsset(String path, int width) async {
   ByteData data = await rootBundle.load(path);
@@ -29,7 +30,17 @@ class _MyLocationState extends State<LocationScreen> {
   late GoogleMapController mapController;
   final Map<String, Marker> _markers = {};
 
-  void _onMapCreated(GoogleMapController controller) async {
+  openMapsSheet(context) async {
+    try {
+      final availableMaps = await MapLauncher.installedMaps;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+    void _onMapCreated(GoogleMapController controller) async {
+    final availableMaps = await MapLauncher.installedMaps;
+
     mapController = controller;
     final hotelIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/hotel.png", 132);
     final GASIcon = await getBitmapDescriptorFromAssetBytes("images/MapIcons/GAS.png", 132);
@@ -45,6 +56,13 @@ class _MyLocationState extends State<LocationScreen> {
           infoWindow: InfoWindow(
             title: loc["title"],
             snippet: loc["description"],
+            onTap: () async {
+              print("tap!");
+              await availableMaps.first.showMarker(
+                coords: loc["coords"],
+                title: loc["title"],
+              );
+            }
           ),
           icon: partyIcon,
         );
@@ -57,6 +75,13 @@ class _MyLocationState extends State<LocationScreen> {
           infoWindow: InfoWindow(
             title: loc["title"],
             snippet: loc["description"],
+              onTap: () async {
+                print("tap!");
+                await availableMaps.first.showMarker(
+                  coords: loc["coords"],
+                  title: loc["title"],
+                );
+              }
           ),
             icon: metroIcon,
         );
@@ -69,6 +94,13 @@ class _MyLocationState extends State<LocationScreen> {
           infoWindow: InfoWindow(
             title: loc["title"],
             snippet: loc["description"],
+              onTap: () async {
+                print("tap!");
+                await availableMaps.first.showMarker(
+                  coords: loc["coords"],
+                  title: loc["title"],
+                );
+              }
           ),
           icon: hotelIcon,
         );
@@ -81,6 +113,13 @@ class _MyLocationState extends State<LocationScreen> {
           infoWindow: InfoWindow(
             title: loc["title"],
             snippet: loc["description"],
+              onTap: () async {
+                print("tap!");
+                await availableMaps.first.showMarker(
+                  coords: loc["coords"],
+                  title: loc["title"],
+                );
+              }
           ),
           icon: GASIcon,
         );

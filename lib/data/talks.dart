@@ -53,7 +53,7 @@ List<TalkTitleItem> Day1 = [
       DateTime.parse('2024-05-18 17:30:00Z'),
       false),
 
-  TalkTitleItem('The Punished Head 14mm bowl', 'Zach Puchowitz', 'Provinzstraße Flame Shop',
+  TalkTitleItem('The Punished Head 14mm bowl', 'Zach Puchowitz', 'Wilhelm Hallen Flame Shop',
     'DEMO', 'FLAME',
       'The “American Pipe Maker” is keeping alive a tradition of functional object making that is becoming '
           'extinct in this modern world. There are not many craft objects today that are so desired '
@@ -65,8 +65,8 @@ List<TalkTitleItem> Day1 = [
           'creativity and imagination to make the coolest pipe out there. The Punished Head design shows '
           'how function combines with art.',
     'http://www.ouchkick.com ' , 'ouchkick', '',
-      DateTime.parse('2024-05-18 14:00:00Z'),
-      DateTime.parse('2024-05-18 15:30:00Z'),
+      DateTime.parse('2024-05-17 16:00:00Z'),
+      DateTime.parse('2024-05-17 17:30:00Z'),
       false),
 
   TalkTitleItem("Line's Main, Line Work, Flipping Ribbons, Glass Personified", 'Jack Gramann', 'Berlin Glas',
@@ -80,7 +80,7 @@ List<TalkTitleItem> Day1 = [
       DateTime.parse('2024-05-17 11:30:00Z'),
       false),
 
-  TalkTitleItem('No Barriers', 'Ondrej Novotny', 'Provinzstraße Flame Shop',
+  TalkTitleItem('No Barriers', 'Ondrej Novotny', 'Niesen Furnaces',
     'DEMO', 'HOT',
       'Novotny and Boyarinova will present a glass blowing and flameworking collaborative design '
           'themed on flying whales. In the beginning they will work in parallel in the hot shop and '
@@ -104,8 +104,8 @@ List<TalkTitleItem> Day1 = [
           'weight and visual lightness, Ned investigates properties of glass, both physical and '
           'conceptual, and how they influence his work.',
     'http://www.nyholmcantrell.dk' , 'nedcantrell', '',
-    DateTime.parse('2024-05-16 10:00:00Z'),
-      DateTime.parse('2024-05-16 11:30:00Z'),
+    DateTime.parse('2024-05-16 14:00:00Z'),
+      DateTime.parse('2024-05-16 15:30:00Z'),
       false),
 
   TalkTitleItem('Alchemy: Evolution of Glass ', 'Jahday Ford', 'Berlin Glas',
@@ -135,18 +135,16 @@ List<TalkTitleItem> Day1 = [
       DateTime.parse('2024-05-16 11:30:00Z'),
       false),
 
-  TalkTitleItem('Growing Hand', 'Karen Nyholm', 'Berlin Glas',
+  TalkTitleItem('Memory and Form', 'Jinya Zhao', 'Berlin Glas',
     'DEMO', 'HOT',
-      'Utiliting the techniques of cup casing, hot sculpting, and assembly, Karen will create one of '
-          'her distinctive Growing Hand sculptures. These works are situated in a changing world where '
-          'humans have to adapt and the boundary between body and nature is dissolved. Concerned with '
-          'humanity\'s role in the world, Karen\'s work interrogates the viewer with questions like, Are we '
-          'willing to give up our privileges to improve the living conditions of others? Or can change '
-          'only happen through coercion, forced by climate change or war? In addition to glassblowing, '
-          'Karen uses techniques from other disciplines such as silversmithing, oil painting, ink, '
-          'beadmaking, and ceramics. This stimulating cross-over opens up new ideas and possibilities '
-          'for artistic expression.',
-    'http://www.nyholmcantrell.dk' , 'karennyholm',
+      'During this demonstration, artist Jinya Zhao and the glassblowing team explore the profound '
+          'connections that blown glass sculpture can create between maker and viewer, drawing on '
+          'memories and sparking the imagination. Jinya&#39;s work delves into the expressive potential of '
+          'glass, harnessing its qualities of colour, obscurity, revelation, and form to embody themes of '
+          'emotion and personal experience. This session invites attendees into a visual and tangible '
+          'exploration of memory and form, offering attendees the unique opportunity to witness the '
+          'transformative process of glassblowing as personal recollections are shaped in real time.',
+    'https://www.jinyazhao.com/' , 'jinyaglass',
     '', DateTime.parse('2024-05-18 14:00:00Z'),
       DateTime.parse('2024-05-18 15:30:00Z'),
       false),
@@ -168,7 +166,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Something Old for Something New - Translating of Venetian Technique from the Renaissance into Borosilicate Glass',
-      'Simone Crestani', 'Provinzstraße Flame Shop',
+      'Simone Crestani', 'Wilhelm Hallen Flame Shop',
       'DEMO', 'FLAME',
       'In this demo, Simone Crestani, master artist in the art of borosilicate glass, will craft one of '
           'his iconic “Alchemica” bottles with precision and attention to details. In his '
@@ -183,7 +181,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Sculptural Recycled Glass Flameworking',
-      'Ivan Bestari', 'Provinzstraße Flame Shop',
+      'Ivan Bestari', 'Wilhelm Hallen Flame Shop',
       'DEMO', 'FLAME',
       'This demonstration will highlight Ivan\'s techniques for flameworking using scrap glass. '
           'Highlights will include how he turns scrap glass into usable color rods and then the '
@@ -191,12 +189,12 @@ List<TalkTitleItem> Day1 = [
           'uniquely sustainable practice which uses very minimal equipment and no annealers, pushing '
           'the conversation on responsible and forward-thinking adaptations in glass.',
       'https://www.deviantart.com/ivan12' , 'ivanoozz',
-      '', DateTime.parse('2024-05-17 15:00:00Z'),
-      DateTime.parse('2024-05-17 16:30:00Z'),
+      '', DateTime.parse('2024-05-17 14:00:00Z'),
+      DateTime.parse('2024-05-17 15:30:00Z'),
       false),
 
   TalkTitleItem('Glass Snowdrops',
-      'Tatyana Boyarinova', 'Provinzstraße Flame Shop',
+      'Tatyana Boyarinova', 'Wilhelm Hallen Flame Shop',
       'DEMO', 'FLAME',
       'Snowdrops. Early spring flowers. Beautiful and delicate, they are a perfect example to be '
           'made of glass. This live demonstration will consist of steps from idea to the final '
@@ -204,8 +202,8 @@ List<TalkTitleItem> Day1 = [
           'glass, Tatyana will explain her process and use heat control to create a lifelike bouquet. '
           'Some demo tricks will let you use this working way for your own ideas.',
       '' , 'tatyana_boyarinova',
-      '', DateTime.parse('2024-05-17 10:30:00Z'),
-      DateTime.parse('2024-05-17 12:00:00Z'),
+      '', DateTime.parse('2024-05-17 10:00:00Z'),
+      DateTime.parse('2024-05-17 11:30:00Z'),
       false),
 
   TalkTitleItem('Dialogue of Wheels, Contemporary Glass Engraving',
@@ -219,8 +217,8 @@ List<TalkTitleItem> Day1 = [
           'available to offer a complete experience.',
       'https://ioanastelea.weebly.com/' , 'ioanastelea',
       '(Anne Wenzel, https://www.glasgravur-wenzel.de/)',
-      DateTime.parse('2024-05-16 15:30:00Z'),
-      DateTime.parse('2024-05-16 17:00:00Z'),
+      DateTime.parse('2024-05-16 15:00:00Z'),
+      DateTime.parse('2024-05-16 16:30:00Z'),
       false),
 
   TalkTitleItem('Lathe Riders - International Cold Working',
@@ -254,7 +252,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Luminous Links',
-      'Victoria Ahmadizadeh Melendez', 'Provinzstraße Flame Shop',
+      'Victoria Ahmadizadeh Melendez', 'Wilhelm Hallen Flame Shop',
       'DEMO', 'NEON',
       'Blending traditional tube-bending techniques used to create neon signage with a three-dimensional '
           'approach, Victoria Ahmadizadeh Melendez will create an interwoven hollow glass chain that can '
@@ -262,8 +260,8 @@ List<TalkTitleItem> Day1 = [
           'chain links, Victoria will then build a form by interlocking and splicing the links together, '
           'pushing the boundaries of neon as both a functional light source and a sculptural medium.',
       'http://www.vahmadizadeh.com/' , 'internet___angel',
-      '', DateTime.parse('2024-05-16 10:00:00Z'),
-      DateTime.parse('2024-05-16 11:30:00Z'),
+      '', DateTime.parse('2024-05-16 16:00:00Z'),
+      DateTime.parse('2024-05-16 17:30:00Z'),
       false),
 
   TalkTitleItem('Design or Art? Creating of 3D Sculptures in Glass Fusing Technique',
@@ -374,7 +372,7 @@ List<TalkTitleItem> Day1 = [
       DateTime.parse('2024-05-17 15:30:00Z'),
       false),
 
-  TalkTitleItem('Glass Fabric: Development And Application Of Kente Patterns And Adinkra Symbols In Glass Art',
+  /*TalkTitleItem('Glass Fabric: Development And Application Of Kente Patterns And Adinkra Symbols In Glass Art',
       'Anthony Amoako Attah', 'Berlin Glas Lecmo',
       'LECMO', 'KILN',
       'This presentation investigates the philosophical, historical, and political representations '
@@ -393,7 +391,7 @@ List<TalkTitleItem> Day1 = [
       '' , 'kente_glass',
       '', DateTime.parse('2024-05-18 10:30:00Z'),
       DateTime.parse('2024-05-18 12:00:00Z'),
-      false),
+      false),*/
 
   TalkTitleItem('The Image Within',
       'Brenda Page', 'Berlin Glas Lecmo',
@@ -483,7 +481,7 @@ List<TalkTitleItem> Day1 = [
     false),
 
     TalkTitleItem('CAD and Glass Integration',
-      'Ryan Kuhns', 'Provinzstraße Flame Shop',
+      'Ryan Kuhns', 'Provinstrase Lecture',
       'LECTURE', 'TECHNOLOGY',
         'Whether it be multimedia adornments or custom tools, Computer Aided Design (CAD) plays '
             'an integral part in Ryan Kuhns\' process. He will lecture on ways to incorporate CAD '
@@ -502,7 +500,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
     TalkTitleItem('Glass: Hand Formed Matter; Perspectives of Manual Glass Making in Europe',
-      'Barbara Schmidt', 'Wilhelm Hallen Lecture',
+      'Barbara Schmidt', 'Provinstrase Lecture',
       'LECTURE', 'COMMUNITY',
         'Over a three-year period, the international project Glass – Hand Formed Matter brought together '
             'glass producers and cultural and higher education institutions from Sweden, Finland, and '
@@ -511,12 +509,12 @@ List<TalkTitleItem> Day1 = [
             'and knowledge transfer, as well as its network, the exhibition, book and project website, '
             'while looking deeper into some of the works.',
       'https://glass-handformedmatter.kh-berlin.de', 'glass_handformedmatter',
-      '', DateTime.parse('2024-05-16 15:00:00Z'),
-        DateTime.parse('2024-05-16 16:00:00Z'),
+      '', DateTime.parse('2024-05-16 14:30:00Z'),
+        DateTime.parse('2024-05-16 15:30:00Z'),
       false),
 
     TalkTitleItem('Translucent Narratives: A Journey through Romanian Glass Art.',
-      'Alexandra Muresan', 'Wilhelm Hallen Lecture',
+      'Alexandra Muresan', 'Provinstrase Lecture',
       'LECTURE', 'HISTORY',
         'Alexandra Muresan invites us to delve into the intriguing recent history of Romanian glass '
             'art through the narratives of three distinct glass works created by Romanian artists '
@@ -525,8 +523,8 @@ List<TalkTitleItem> Day1 = [
             'social shifts on their artistic creation and vision. This lecture broadens perspectives '
             'on global glass art while highlighting the alchemic qualities of the medium.',
       'https://www.instagram.com/alexandramuresanglass', 'alexandramuresanglass',
-      '', DateTime.parse('2024-05-16 10:30:00Z'),
-        DateTime.parse('2024-05-16 11:30:00Z'),
+      '', DateTime.parse('2024-05-16 10:00:00Z'),
+        DateTime.parse('2024-05-16 11:00:00Z'),
       false),
 
     TalkTitleItem('Is glass queer? Or is it just me?',
@@ -545,7 +543,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
     TalkTitleItem('Addressing the Past through a Glass Lens',
-      'Alison Lowry', 'Wilhelm Hallen Lecture',
+      'Alison Lowry', 'Provinstrase Lecture',
       'LECTURE', 'SOCIAL JUSTICE',
         'How do objects tell stories? Objects can hold a personal resonance-–of the wearer and maker within them. '
             'This lecture will investigate how these objects can ‘perform’ and how they can disseminate a '
@@ -576,12 +574,12 @@ List<TalkTitleItem> Day1 = [
             'is to highlight ways to make a living selling glass by recognizing the opportunities '
             'and challenges that exist while celebrating the medium.',
       'http://shops.cmog.org', 'corningmuseumshops',
-      '', DateTime.parse('2024-05-17 10:30:00Z'),
-        DateTime.parse('2024-05-17 11:30:00Z'),
+      '', DateTime.parse('2024-05-17 10:00:00Z'),
+        DateTime.parse('2024-05-17 11:00:00Z'),
       false),
 
     TalkTitleItem('Recycling of Glass into Pigmented Material for Arts Application',
-      'Andrew Ojonugwa Adejo', 'Wilhelm Hallen Main Stage',
+      'Andrew Ojonugwa Adejo', 'Provinstrase Lecture',
       'LECTURE', 'TECHNOLOGY',
         'Glass as a user-friendly material has accounted for its high usage by virtually every manufacturing '
             'industry for the production of consumer products. The post-consumer effect of this product gives'
@@ -590,24 +588,24 @@ List<TalkTitleItem> Day1 = [
             ' glass identification and collection, processing for application, and colouration into primary'
             ' pigments for artistic application which can double as substrate and pigments for cold glass design.',
       '', '',
-      '', DateTime.parse('2024-05-18 14:30:00Z'),
-        DateTime.parse('2024-05-18 15:30:00Z'),
+      '', DateTime.parse('2024-05-18 14:00:00Z'),
+        DateTime.parse('2024-05-18 15:00:00Z'),
       false),
 
     TalkTitleItem('How we Built the Heavies Glass Sculpture in World (probably)',
-      'Daniel Kvesic', 'Wilhelm Hallen Lecture',
+      'Daniel Kvesic', 'Provinstrase Lecture',
       'LECTURE', 'TECHNOLOGY',
         'Daniel Kvesic will give you insight surrounding a very interesting project built in Croatia: '
             'A super heavy glass sculpture, a complete wall of glass bricks! The lecture will include '
             'the obstacles encountered, what type of glass was used and how it was made. Daniel will '
             'try to keep you interested in some heavy glass stuff.',
       'http://www.bokart.art', '',
-      '', DateTime.parse('2024-05-18 16:00:00Z'),
-        DateTime.parse('2024-05-18 17:00:00Z'),
+      '', DateTime.parse('2024-05-17 16:00:00Z'),
+        DateTime.parse('2024-05-17 17:00:00Z'),
       false),
 
     TalkTitleItem('Reviving Iridescent Magic: A Contemporary Approach to a Centuries-Old Craft from Mesopotamia to the Present',
-      'Fatma Ciftci', 'Wilhelm Hallen Lecture',
+      'Fatma Ciftci', 'Provinstrase Lecture',
       'LECTURE', 'TECHNOLOGY',
         'The technique of paste luster is an ancient method of decorating glass. Evidence of its use by '
             'skilled Mesopotamian glass artisans has been found in archaeological excavations, '
@@ -623,7 +621,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
     TalkTitleItem('Why Glassblowing is Irrelevant',
-      'John Dillard', 'Wilhelm Hallen Main Stage',
+      'John Dillard', 'Provinstrase Lecture',
       'LECTURE', 'HISTORY',
         'Reimagining the previous hierarchal and pedagogical structure of glassmaking. Through the lens '
             'of contemporary practitioners, this lecture recontextualizes material* outside of the narrow'
@@ -785,7 +783,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('Melting Tension - The Benefits of Massage for Glassblowers',
-      'Hannah Guisewhite', 'Wilhelm Hallen Main Stage',
+      'Hannah Guisewhite', 'Education Resource Area',
       'WORKSHOP', '',
       'Join massage therapist and glass artist Hannah Guisewhite for this interactive midday program '
           'focused on massage therapy for glass artists. The audience will explore techniques that address '
@@ -872,7 +870,7 @@ List<TalkTitleItem> Day1 = [
       false),
 
   TalkTitleItem('What, Why, How Think Tank',
-      'Anna Mlasowsky', 'Wilhelm Hallen Lecture',
+      'Anna Mlasowsky', 'Provinstrase Lecture',
       'WORKSHOP', '',
       'What, Why, How is not a lecture but a platform for collective dialogue & resource sharing, for '
           'anyone with burning questions to ask the glass community. Anna Mlasowsky will facilitate the '
@@ -883,7 +881,7 @@ List<TalkTitleItem> Day1 = [
       'https://www.annamlasowsky.com/', 'annamlasowsky',
       '',
       DateTime.parse('2024-05-17 12:00:00Z'),
-      DateTime.parse('2024-05-17 14:00:00Z'),
+      DateTime.parse('2024-05-17 13:30:00Z'),
       false),
 
   // TODO: Finish his social media info
@@ -900,7 +898,3 @@ List<TalkTitleItem> Day1 = [
       false),
 
 ];
-
-/*Map days = {"May 5": Day1,
-  "May 6": Day1,
-  "May 7": Day1};*/

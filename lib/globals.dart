@@ -1,4 +1,5 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:map_launcher/map_launcher.dart';
 import './main.dart';
 
 
@@ -14,21 +15,25 @@ var zoom = 12.5;
 List<Map> PartyLocations =  [
   {"latlng": const LatLng(52.5161321,13.4090756),
     "title": "Alte Münze",
-    "description": "Closing Party"},
+    "description": "Closing Party",
+    "coords": Coords(52.5161321,13.4090756)},
 ];
 
 List<Map> MetroLocations = [
   {"latlng": const LatLng(52.52151, 13.41127),
     "title": "Alexanderplatz Station",
-    "description": "For Conference Hotel"},
+    "description": "For Conference Hotel",
+    "coords": Coords(52.52151, 13.41127)},
 
   {"latlng": const LatLng(52.5712685,13.3814606),
     "title": "Schönholz Station",
-    "description": "For Berlin Glas + Provinzstraße Hub"},
+    "description": "For Berlin Glas + Provinzstraße Hub",
+    "coords": Coords(52.5712685,13.3814606)},
 
   {"latlng": const LatLng(52.5813932,13.3603597),
     "title": "Wilhelmsruh Station",
-    "description": "For Wilhelm Hallen"},
+    "description": "For Wilhelm Hallen",
+    "coords": Coords(52.5813932,13.3603597)},
 
 ];
 
@@ -36,7 +41,8 @@ List<Map> GASLocations = [
   {"latlng": const LatLng(52.5795127, 13.3632827),
     "title": "Wilhelm Hallen", "description": "Conference Center",
   "address": "Kopenhagener Str. 60-72, 13407 Berlin, Germany",
-  "website": "https://wilhelm-hallen.de/"},
+  "website": "https://wilhelm-hallen.de/",
+    "coords": Coords(52.5795127, 13.3632827)},
 
   /*{"latlng": const LatLng(52.5680135,13.3766501),
     "title": "Monopol", "description": "Industrial Conference Cite",
@@ -46,20 +52,22 @@ List<Map> GASLocations = [
   {"latlng": const LatLng(52.567906,13.380952),
     "title": "Berlin Glas and Provinzstraße Hub", "description": "Conference Studio",
     "address": "Provinzstraße 42a, 13409 Berlin, Germany",
-    "website": "https://berlinglassworks.com/"},
+    "website": "https://berlinglassworks.com/",
+    "coords": Coords(52.567906,13.380952)},
 ];
 
 List<Map> HotelLocations = [
   {"latlng": const LatLng(52.523125,13.4127656),
     "title": "Park Inn by Radisson", "description": "Conference Hotel",
     "address": "Alexanderpl. 7, 10178 Berlin, Germany",
-    "website": "https://www.radissonhotels.com/en-us/hotels/park-inn-berlin-alexanderplatz"},
+    "website": "https://www.radissonhotels.com/en-us/hotels/park-inn-berlin-alexanderplatz",
+    "coords": Coords(52.523125,13.4127656)},
 
   {"latlng": const LatLng(52.5624676,13.3752243),
     "title": "Nena Hostel Berlin", "description": "Conference Hotel",
     "address": "Provinzstraße 16 Berlin, Germany",
-    "website": "https://www.nena-apartments.de/en/locations/berlin/nena-hostel-berlin-mitte/"},
-
+    "website": "https://www.nena-apartments.de/en/locations/berlin/nena-hostel-berlin-mitte/",
+    "coords": Coords(52.5624676,13.3752243)},
 ];
 
 List<Map> Contacts = [
@@ -156,6 +164,12 @@ final List<PhotoItem> items = [
       "Bomma Logo",
       "https://www.bomma.cz/"
   ),
+  PhotoItem(
+      "images/Sponsors/Screenshot 2024-04-30 at 4.44.07 PM.png",
+      "Thomas Wendler Studios Logo",
+      "https://neonardo.berlin/"
+  ),
+
 ];
 
 /* ================ MARKET PHOTOS AND INFO ===================== */
