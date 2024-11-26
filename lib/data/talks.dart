@@ -578,7 +578,21 @@ List<TalkTitleItem> Day1 = [
         DateTime.parse('2024-05-17 11:00:00Z'),
       false),
 
-    TalkTitleItem('Recycling of Glass into Pigmented Material for Arts Application',
+    TalkTitleItem('PANEL: Saxe Emerging Artists',
+      'Saxe Emerging Artist Awardees', 'Wilhelm Hallen Main Stage',
+      'PANEL', '',
+        'Established by Dorothy and George Saxe, the Saxe Emerging Artist Award recognizes emerging '
+            'talent in the glass community. Along with the opportunity to share their work with a '
+            'large audience of established artists, educators, peers, collectors, art historians, and '
+            'critics, recipients of the Saxe Emerging Artist Award receive a cash prize, a special '
+            'lecture slot at the next GAS Conference, a digital catalog and media coverage in our social '
+            'media channels, and more.',
+      'https://www.glassart.org/programs/awards/', '',
+      '', DateTime.parse('2024-05-18 10:00:00Z'),
+        DateTime.parse('2024-05-18 12:00:00Z'),
+      false),
+
+  /*TalkTitleItem('Recycling of Glass into Pigmented Material for Arts Application',
       'Andrew Ojonugwa Adejo', 'Provinstrase Lecture',
       'LECTURE', 'TECHNOLOGY',
         'Glass as a user-friendly material has accounted for its high usage by virtually every manufacturing '
@@ -590,7 +604,7 @@ List<TalkTitleItem> Day1 = [
       '', '',
       '', DateTime.parse('2024-05-18 14:00:00Z'),
         DateTime.parse('2024-05-18 15:00:00Z'),
-      false),
+      false),*/
 
     TalkTitleItem('How we Built the Heavies Glass Sculpture in World (probably)',
       'Daniel Kvesic', 'Provinstrase Lecture',

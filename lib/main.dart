@@ -22,7 +22,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 // Uncomment lines 3 and 6 to view the visual layout at runtime.
 // import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
 
-
 /************* CLASS CONSTRUCTION TO ADD SPONSOR PHOTO ITEMS ***************/
 class PhotoItem {
   final String image;
@@ -38,9 +37,9 @@ class MarketItem {
   final String contact;
   final String email;
   final String ig;
-  MarketItem(this.image, this.name, this.website, this.contact, this.email, this.ig);
+  MarketItem(
+      this.image, this.name, this.website, this.contact, this.email, this.ig);
 }
-
 
 /************* CLASS CONSTRUCTION TO ADD SPEAKER IMAGE LIST ***************/
 class SpeakerImage {
@@ -53,7 +52,6 @@ abstract class EventItem {
 }
 
 class BuildEventItem implements EventItem {
-
   final DateTime eventStartDateTime;
   final DateTime eventEndDateTime;
   final String eventTitle;
@@ -61,24 +59,29 @@ class BuildEventItem implements EventItem {
   final String eventInclusion;
   final String eventDescription;
 
-  BuildEventItem(this.eventStartDateTime, this.eventEndDateTime, this.eventTitle,
-      this.eventLocation, this.eventInclusion, this.eventDescription);
+  BuildEventItem(
+      this.eventStartDateTime,
+      this.eventEndDateTime,
+      this.eventTitle,
+      this.eventLocation,
+      this.eventInclusion,
+      this.eventDescription);
 
-    @override
-    Widget buildEventDescription(BuildContext context) {
-      return Text(eventLocation,
-        style: TextStyle(
-          color: Colors.grey[500],
-        ),
-      );
-    }
+  @override
+  Widget buildEventDescription(BuildContext context) {
+    return Text(
+      eventLocation,
+      style: TextStyle(
+        color: Colors.grey[500],
+      ),
+    );
+  }
 }
 
 /**************** CLASS FOR TALK ITEMS *******************/
 
 /// The base class for the different types of items the list can contain.
 abstract class ListItem {
-
   /// The time to show in a list item.
   Widget buildStartTime(BuildContext context);
 
@@ -122,7 +125,6 @@ abstract class ListItem {
   String returnCoPresenters(BuildContext context);
 
   //ListItem(this.image, this.name, this.website);
-
 }
 
 /// A ListItem that contains data to display a heading.
@@ -143,28 +145,49 @@ class TalkTitleItem implements ListItem {
 
   bool talkSaved;
 
-  TalkTitleItem(this.talkTitle, this.talkSpeaker, this.talkLocation,
-      this.talkType, this.talkFocus, this.talkDescription,
-      this.website, this.socialMedia, this.coPresenters,
-      this.talkStartDateTime, this.talkEndDateTime, this.talkSaved);
+  TalkTitleItem(
+      this.talkTitle,
+      this.talkSpeaker,
+      this.talkLocation,
+      this.talkType,
+      this.talkFocus,
+      this.talkDescription,
+      this.website,
+      this.socialMedia,
+      this.coPresenters,
+      this.talkStartDateTime,
+      this.talkEndDateTime,
+      this.talkSaved);
 
   @override
-  String returnSpeakerSite(BuildContext context){return website;}
+  String returnSpeakerSite(BuildContext context) {
+    return website;
+  }
 
   @override
-  String returnSpeakerIG(BuildContext context){return socialMedia;}
+  String returnSpeakerIG(BuildContext context) {
+    return socialMedia;
+  }
 
   @override
-  String returnTitle(BuildContext context) {return talkTitle;}
+  String returnTitle(BuildContext context) {
+    return talkTitle;
+  }
 
   @override
-  String returnLocation(BuildContext context) {return talkLocation;}
+  String returnLocation(BuildContext context) {
+    return talkLocation;
+  }
 
   @override
-  String returnSpeaker(BuildContext context) {return talkSpeaker;}
+  String returnSpeaker(BuildContext context) {
+    return talkSpeaker;
+  }
 
   @override
-  bool returnSaved(BuildContext context) {return talkSaved;}
+  bool returnSaved(BuildContext context) {
+    return talkSaved;
+  }
 
   @override
   String returnStartTime(BuildContext context) {
@@ -181,14 +204,18 @@ class TalkTitleItem implements ListItem {
 
   @override
   String returnFullTime(BuildContext context) {
-    return DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime);}
+    return DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime);
+  }
 
   @override
   String returnFocus(BuildContext context) {
-    return "$talkFocus - $talkType";}
+    return "$talkFocus - $talkType";
+  }
 
   @override
-  String returnType(BuildContext context) {return talkType;}
+  String returnType(BuildContext context) {
+    return talkType;
+  }
 
   @override
   String returnCoPresenters(BuildContext context) {
@@ -203,9 +230,10 @@ class TalkTitleItem implements ListItem {
 
   @override
   Widget buildLocation(BuildContext context) {
-    return Text(talkLocation,
+    return Text(
+      talkLocation,
       style: TextStyle(
-      color: Colors.grey[500],
+        color: Colors.grey[500],
       ),
     );
   }
@@ -214,16 +242,15 @@ class TalkTitleItem implements ListItem {
   Widget buildDescription(BuildContext context) {
     return Padding(
         padding: EdgeInsets.fromLTRB(10, 0, 32, 40),
-        child: Text(talkDescription,
-        softWrap: true)
-    );
+        child: Text(talkDescription, softWrap: true));
   }
 
   @override
   Widget buildTitle(BuildContext context) {
     return Text(
       talkTitle,
-      style: TextStyle(fontWeight: FontWeight.w500,
+      style: TextStyle(
+        fontWeight: FontWeight.w500,
         fontSize: 14,
         //color: Colors.blue,
       ),
@@ -233,8 +260,10 @@ class TalkTitleItem implements ListItem {
   @override
   Widget buildStartTime(BuildContext context) {
     return Text(
-        DateFormat('HH:mm').format(talkStartDateTime), //DateFormat.jm().format(talkStartDateTime)
-      style: TextStyle(fontWeight: FontWeight.bold,
+      DateFormat('HH:mm').format(
+          talkStartDateTime), //DateFormat.jm().format(talkStartDateTime)
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
         fontSize: 14,
       ),
     );
@@ -243,8 +272,10 @@ class TalkTitleItem implements ListItem {
   @override
   Widget buildEndTime(BuildContext context) {
     return Text(
-      DateFormat('HH:mm').format(talkEndDateTime), //DateFormat.jm().format(talkEndDateTime),
-      style: TextStyle(fontWeight: FontWeight.bold,
+      DateFormat('HH:mm')
+          .format(talkEndDateTime), //DateFormat.jm().format(talkEndDateTime),
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
         fontSize: 14,
       ),
     );
@@ -252,7 +283,8 @@ class TalkTitleItem implements ListItem {
 
   @override
   Widget buildSpeakerCard(BuildContext context) {
-    String talkDesc = "$talkLocation\n$talkType" + (talkFocus.isNotEmpty ? " - $talkFocus" : "");
+    String talkDesc = "$talkLocation\n$talkType" +
+        (talkFocus.isNotEmpty ? " - $talkFocus" : "");
     return Text.rich(
       TextSpan(
         children: <TextSpan>[
@@ -278,91 +310,100 @@ class TalkTitleItem implements ListItem {
   @override
   Widget buildTalkHeader(BuildContext context) {
     return Expanded(
-            /*1*/
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /*2*/
-                Container(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 32, 0),
-                  child: Text(
-                    talkTitle,
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
+      /*1*/
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /*2*/
+          Container(
+            padding: const EdgeInsets.fromLTRB(0, 0, 32, 0),
+            child: Text(
+              talkTitle,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
+              IconButton(
+                  icon: FaIcon(
+                    FontAwesomeIcons.instagram,
+                    size: 20,
                   ),
-                ),
-
-                ListTile(
-                  leading: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[ IconButton(
-                      icon: FaIcon(FontAwesomeIcons.instagram,
-                      size: 20,
-                      ),
-                      onPressed: () async {
-                      if (socialMedia.isNotEmpty) {
-                        var nativeUrl = "instagram://user?username=" + socialMedia;
+                  onPressed: () async {
+                    if (socialMedia.isNotEmpty) {
+                      var nativeUrl =
+                          "instagram://user?username=" + socialMedia;
                       var webUrl = "https://www.instagram.com/" + socialMedia;
                       if (await canLaunch(nativeUrl)) {
                         await launch(nativeUrl);
                       } else if (await canLaunch(webUrl)) {
                         await launch(webUrl);
                       } else {
-                      print("can't open Instagram");
+                        print("can't open Instagram");
                       }
-                      }}
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.link, size: 20),
-                        onPressed: () async {
-                        launch(website);
-                        },
-                      ),
-                      ]),
-                  title: Text(talkSpeaker,
-                      style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 16,
-                      color: Colors.black,
-                      ),
-                  ),
-                  subtitle: Text(DateFormat('EEEE LLLL d - HH:mm-').format(talkStartDateTime) +  //Text(DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime),
-                      DateFormat('HH:mm').format(talkEndDateTime),
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(18, 6, 0, 0),
-                  child: Text(DateFormat('EEEE LLLL d - HH:mm-').format(talkStartDateTime) +  //Text(DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime),
-                            DateFormat('HH:mm').format(talkEndDateTime),
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
-                  child: Text("$talkFocus - $talkType",
-                    style: TextStyle(
-                      color: Colors.grey[500],
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
-                  child: Text(talkLocation,
-                    style: TextStyle(
-                      color: Colors.grey[500],
-                    ),
-                  ),
-                ),
-
-              ],
+                    }
+                  }),
+              IconButton(
+                icon: Icon(Icons.link, size: 20),
+                onPressed: () async {
+                  launch(website);
+                },
+              ),
+            ]),
+            title: Text(
+              talkSpeaker,
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                fontSize: 16,
+                color: Colors.black,
+              ),
             ),
-          );
+            subtitle: Text(
+              DateFormat('EEEE LLLL d - HH:mm-').format(
+                      talkStartDateTime) + //Text(DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime),
+                  DateFormat('HH:mm').format(talkEndDateTime),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(18, 6, 0, 0),
+            child: Text(
+              DateFormat('EEEE LLLL d - HH:mm-').format(
+                      talkStartDateTime) + //Text(DateFormat('EEEE LLLL d -').add_jm().format(talkStartDateTime),
+                  DateFormat('HH:mm').format(talkEndDateTime),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
+            child: Text(
+              "$talkFocus - $talkType",
+              style: TextStyle(
+                color: Colors.grey[500],
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.fromLTRB(18, 0, 0, 0),
+            child: Text(
+              talkLocation,
+              style: TextStyle(
+                color: Colors.grey[500],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -372,33 +413,37 @@ FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 const primaryColor = Colors.blue;
 const headerTextColor = Colors.white;
 
-Future<void> _updateSharedPreferences(SharedPreferences sharedPreferences, RemoteMessage message) async {
+Future<void> _updateSharedPreferences(
+    SharedPreferences sharedPreferences, RemoteMessage message) async {
   // read the old lists, append data, and create new lists
-  final formerMessageTitleList = sharedPreferences.getStringList('messageTitle');
+  final formerMessageTitleList =
+      sharedPreferences.getStringList('messageTitle');
   final formerMessageBodyList = sharedPreferences.getStringList('messageBody');
-  final formerMessageTimeList = sharedPreferences.getStringList('messageSentTime');
+  final formerMessageTimeList =
+      sharedPreferences.getStringList('messageSentTime');
 
   // append the new data to it
   formerMessageTitleList?.add("${message.notification?.title}");
   formerMessageBodyList?.add("${message.notification?.body}");
-  formerMessageTimeList?.add(DateFormat('EEEE LLLL d - HH:mm').format(message.sentTime! as DateTime));
+  formerMessageTimeList?.add(
+      DateFormat('EEEE LLLL d - HH:mm').format(message.sentTime! as DateTime));
 
   // and save the new list back to storage
-  await sharedPreferences.setStringList('messageTitle', formerMessageTitleList!);
+  await sharedPreferences.setStringList(
+      'messageTitle', formerMessageTitleList!);
   await sharedPreferences.setStringList('messageBody', formerMessageBodyList!);
-  await sharedPreferences.setStringList('messageSentTime', formerMessageTimeList!);
+  await sharedPreferences.setStringList(
+      'messageSentTime', formerMessageTimeList!);
 
   if (kDebugMode) {
     final List<String>? items = sharedPreferences.getStringList('messageTitle');
     print(items);
   }
-
 }
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message,
     {SharedPreferences? sharedPreferences}) async {
-
   print("call pattern works");
   //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
@@ -432,7 +477,7 @@ Future<void> setupFlutterNotifications() async {
     'high_importance_channel', // id
     'High Importance Notifications', // title
     description:
-    'This channel is used for important notifications.', // description
+        'This channel is used for important notifications.', // description
     importance: Importance.high,
   );
 
@@ -444,7 +489,7 @@ Future<void> setupFlutterNotifications() async {
   /// default FCM channel to enable heads up notifications.
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-      AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
   /// Update the iOS foreground notification presentation options to allow
@@ -459,22 +504,25 @@ Future<void> setupFlutterNotifications() async {
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 Future<void> main() async {
-
   // Put me FIRST unless you want everything to hang forever - have to bind first
   WidgetsFlutterBinding.ensureInitialized();
 
   // Obtain shared preferences for logging messages.
-  final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
 
   // Init shared preferences; ensuring there's none from before
   if (sharedPreferences.getStringList('messageTitle') == null) {
-    await sharedPreferences.setStringList('messageTitle', <String>[]);}
+    await sharedPreferences.setStringList('messageTitle', <String>[]);
+  }
 
   if (sharedPreferences.getStringList('messageBody') == null) {
-    await sharedPreferences.setStringList('messageBody', <String>[]);}
+    await sharedPreferences.setStringList('messageBody', <String>[]);
+  }
 
   if (sharedPreferences.getStringList('messageSentTime') == null) {
-    await sharedPreferences.setStringList('messageSentTime', <String>[]);}
+    await sharedPreferences.setStringList('messageSentTime', <String>[]);
+  }
 
   // Initialize the app
   await Firebase.initializeApp(
@@ -484,7 +532,10 @@ Future<void> main() async {
 
   final messaging = FirebaseMessaging.instance;
   final manifestJson = await rootBundle.loadString('AssetManifest.json');
-  final imageList = json.decode(manifestJson).keys.where((String key) => key.startsWith('images/TalkImages'));
+  final imageList = json
+      .decode(manifestJson)
+      .keys
+      .where((String key) => key.startsWith('images/TalkImages'));
 
   final settings = await messaging.requestPermission(
     alert: true,
@@ -500,7 +551,8 @@ Future<void> main() async {
     print('Permission granted: ${settings.authorizationStatus}');
   }
 
-  const vapidKey = "BP74mvWwrdoIAtnc52k2lQYY4xrnsKfr-xhYBMgeG4ROmZi9bNIubaenBrKDyWCXAt8x3dK5s77c_6aerBnEWcs";
+  const vapidKey =
+      "BP74mvWwrdoIAtnc52k2lQYY4xrnsKfr-xhYBMgeG4ROmZi9bNIubaenBrKDyWCXAt8x3dK5s77c_6aerBnEWcs";
 
   // use the registration token to send messages to users from your trusted server environment
   String? token;
@@ -528,24 +580,23 @@ Future<void> main() async {
 
     //_messageStreamController.sink.add(message);
     _updateSharedPreferences(sharedPreferences, message);
-
   });
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(
-      MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Passing Data',
-        home: MyApp(
-          images: List<SpeakerImage>.from(imageList.map((s) => SpeakerImage(s)).toList()),
-          sharedPreferences: sharedPreferences,
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Passing Data',
+      home: MyApp(
+        images: List<SpeakerImage>.from(
+            imageList.map((s) => SpeakerImage(s)).toList()),
+        sharedPreferences: sharedPreferences,
       ),
-  ),
+    ),
   );
 }
 
 class MyApp extends StatelessWidget {
-
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
   MyApp({super.key, required this.images, required this.sharedPreferences});
@@ -570,25 +621,28 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
   final String title;
 
-  const MyHomePage({super.key, required this.title,
-    required this.images, required this.sharedPreferences});
+  const MyHomePage(
+      {super.key,
+      required this.title,
+      required this.images,
+      required this.sharedPreferences});
   // TODO: Pass sharedPreferences to the Updates page
   // TODO: Update sharedPreferences with message text
 
   @override
   State<MyHomePage> createState() => _MyHomePageState(
-    images:images,
-    sharedPreferences:sharedPreferences,
-  );
+        images: images,
+        sharedPreferences: sharedPreferences,
+      );
 }
 
 String venueTitle = 'VENUES';
-String venueText = 'Our conference presentations will be hosted at two hubs: Wilhelm Hallen and '
+String venueText =
+    'Our conference presentations will be hosted at two hubs: Wilhelm Hallen and '
     'Provinzstraße (Berlin Glas, Monopol, and Bard College Berlin)';
 String accomodationsTitle = 'ACCOMODATIONS';
 String accomodationsText = 'GAS Partner Hotels';
@@ -619,7 +673,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Get any messages which caused the application to open from
     // a terminated state.
     RemoteMessage? initialMessage =
-    await FirebaseMessaging.instance.getInitialMessage();
+        await FirebaseMessaging.instance.getInitialMessage();
 
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen
@@ -660,11 +714,11 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                    'Wednesday, May 15th - Saturday, May 18th',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                  'Wednesday, May 15th - Saturday, May 18th',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
                   ),
+                ),
                 Text(
                   'Berlin, Germany',
                   style: TextStyle(
@@ -707,16 +761,16 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          buildButtonColumn(Icons.info_outlined, 'EVENTS', (){
+          buildButtonColumn(Icons.info_outlined, 'EVENTS', () {
             _navigateToInfoScreen(context);
           }),
-          buildButtonColumn(Icons.calendar_month, 'SESSIONS', (){
+          buildButtonColumn(Icons.calendar_month, 'SESSIONS', () {
             _navigateToScheduleScreen(context);
           }),
-          buildButtonColumn(Icons.map_outlined, 'LOCATIONS', (){
+          buildButtonColumn(Icons.map_outlined, 'LOCATIONS', () {
             _navigateToLocationScreen(context);
           }),
-          buildButtonColumn(Icons.info_outlined, 'UPDATES', (){
+          buildButtonColumn(Icons.info_outlined, 'UPDATES', () {
             _navigateToUpdateScreen(context);
           }),
         ],
@@ -740,17 +794,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     Widget registrationSection = Container(
-    padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: RichText(
         text: TextSpan(
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           children: [
             const TextSpan(
-            text: 'REGISTRATION\n\n',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-            ),
+              text: 'REGISTRATION\n\n',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
             ),
             const TextSpan(
               text: 'Wilhelm Hallen Main Hall\n',
@@ -759,12 +813,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-      const TextSpan(
-        text: '15 - 18 May  |  09:00 – 12:30 + 13:30 – 17:00\n\n',
-        style: TextStyle(
-        fontSize: 14,
-      ),
-    ),
+            const TextSpan(
+              text: '15 - 18 May  |  09:00 – 12:30 + 13:30 – 17:00\n\n',
+              style: TextStyle(
+                fontSize: 14,
+              ),
+            ),
             const TextSpan(
               text: '*Only open until 16:00 on Wed, 15 May\n\n',
               style: TextStyle(
@@ -776,7 +830,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'will host Info, T-Shirt Sales, the Educational Resource Center, '
                   'Lounge and Charging Station, Goblet Grab Drop Off, and GAS Market '
                   'every day of the conference.',
-              style: TextStyle( fontSize: 14 ),
+              style: TextStyle(fontSize: 14),
             ),
           ],
         ),
@@ -785,7 +839,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     buildTitleWidget(titleText, subtitleText) {
       return Container(
-        padding: const EdgeInsets.fromLTRB(32,0,32,0),
+        padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -806,170 +860,180 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       );
-    };
+    }
 
-    Widget accomodationsContent = Column(
-        children: <Widget>[
-          ExpansionTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset("images/Accomodations/park-inn-by-radisson.webp",
-                  width: 80,
-                  fit: BoxFit.fitWidth,
-                ),
-              ],
-            ),
-            title: Text('Park Inn by Radisson',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Alexanderplatz 7, Berlin'),
-            children: <Widget>[
-              ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text(
-                    'The official conference hotel will be the best option for those wanting to explore '
-                        'all the cultural highlights of Berlin–it’s located in the center of the city!\n\n'
-                        'Park Inn at Alexanderplatz is less than two blocks from Alexanderplatz station. '
-                        'Alexanderplatz station is accessible via the U2, U5 and U8, the S3, S5, S7 and S9, '
-                        'and the regional (airport) train RE1.',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-          ExpansionTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset("images/Accomodations/nena_hostel-welcome-768x512.webp",
-                  width: 80,
-                  fit: BoxFit.contain,
-                ),
-              ],
-            ),
-            title: Text('Nena Hostel',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Provinzstraße 16, Berlin'),
-            children: <Widget>[
-              ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text(
-                    'Your choice for low-cost accommodations in Berlin close to the conference action, '
-                        'starting at €33 per night for a bed in a shared room.\n',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-        ]
-    );
+    ;
 
-    Widget venueContent = Column(
+    Widget accomodationsContent = Column(children: <Widget>[
+      ExpansionTile(
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              "images/Accomodations/park-inn-by-radisson.webp",
+              width: 80,
+              fit: BoxFit.fitWidth,
+            ),
+          ],
+        ),
+        title: Text(
+          'Park Inn by Radisson',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        subtitle: Text('Alexanderplatz 7, Berlin'),
         children: <Widget>[
-          ExpansionTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset("images/Venues/WilhelmHallenLogo.jpg",
-                  width: 80,
-                  fit: BoxFit.fitWidth,
-                ),
-              ],
+          ListTile(
+              dense: true,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
+              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+              title: Text(
+                'The official conference hotel will be the best option for those wanting to explore '
+                'all the cultural highlights of Berlin–it’s located in the center of the city!\n\n'
+                'Park Inn at Alexanderplatz is less than two blocks from Alexanderplatz station. '
+                'Alexanderplatz station is accessible via the U2, U5 and U8, the S3, S5, S7 and S9, '
+                'and the regional (airport) train RE1.',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+        ],
+      ),
+      ExpansionTile(
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              "images/Accomodations/nena_hostel-welcome-768x512.webp",
+              width: 80,
+              fit: BoxFit.contain,
             ),
-            title: Text('Wilhelm Hallen',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ],
+        ),
+        title: Text(
+          'Nena Hostel',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        subtitle: Text('Provinzstraße 16, Berlin'),
+        children: <Widget>[
+          ListTile(
+              dense: true,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
+              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+              title: Text(
+                'Your choice for low-cost accommodations in Berlin close to the conference action, '
+                'starting at €33 per night for a bed in a shared room.\n',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+        ],
+      ),
+    ]);
+
+    Widget venueContent = Column(children: <Widget>[
+      ExpansionTile(
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              "images/Venues/WilhelmHallenLogo.jpg",
+              width: 80,
+              fit: BoxFit.fitWidth,
             ),
-            subtitle: Text('Kopenhagener Str. 60-72\nMetro Stop: Wiilhelmsruh'),
-            children: <Widget>[
-              ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text('Activities at this venue:',
-                      style: TextStyle(fontSize: 14)),
-                  subtitle: Text(
-                    '\n   • Conference Kickoff\n'
-                        '   • Midday Interactive Programming\n'
-                        '   • GAS Market\n'
-                        '   • Lectures\n'
-                        '   • Panels\n'
-                        '   • Lecmos\n'
-                        '   • Cold Demonstrations\n'
-                        '   • Flame & Neon Demos\n'
-                        '   • Green Pavillion\n'
-                        '   • Beer Garden\n'
-                        '   • Registration\n'
-                        '   • GAS Film Festival Opening\n'
-                        '   • Trunk Show\n'
-                        '   • Goblet Grab\n'
-                        '   • Portfolio Review\n',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-          ExpansionTile(
-            leading: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Image.asset("images/Venues/BerlinGlasLogo.png",
-                  width: 80,
-                  fit: BoxFit.contain,
-                ),
-              ],
+          ],
+        ),
+        title: Text(
+          'Wilhelm Hallen',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        subtitle: Text('Kopenhagener Str. 60-72\nMetro Stop: Wiilhelmsruh'),
+        children: <Widget>[
+          ListTile(
+              dense: true,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
+              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+              title: Text('Activities at this venue:',
+                  style: TextStyle(fontSize: 14)),
+              subtitle: Text(
+                '\n   • Conference Kickoff\n'
+                '   • Midday Interactive Programming\n'
+                '   • GAS Market\n'
+                '   • Lectures\n'
+                '   • Panels\n'
+                '   • Lecmos\n'
+                '   • Cold Demonstrations\n'
+                '   • Flame & Neon Demos\n'
+                '   • Green Pavillion\n'
+                '   • Beer Garden\n'
+                '   • Registration\n'
+                '   • GAS Film Festival Opening\n'
+                '   • Trunk Show\n'
+                '   • Goblet Grab\n'
+                '   • Portfolio Review\n',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+        ],
+      ),
+      ExpansionTile(
+        leading: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              "images/Venues/BerlinGlasLogo.png",
+              width: 80,
+              fit: BoxFit.contain,
             ),
-            title: Text('Berlin Glas',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Provinzstraße 42a\nMetro Stop: Schönholz'),
-            children: <Widget>[
-              ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text('Activities at this venue:',
-                      style: TextStyle(fontSize: 14)),
-                  subtitle: Text(
-                    '\n   • Hot Glass Demos\n'
-                        '   • Lecmos\n'
-                        '   • Flame Off\n'
-                        '   • Kids Oasis\n',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-          ExpansionTile(
-            leading: Image.asset("images/Venues/MonopolLogo.jpg",
-                width: 80,
-                fit: BoxFit.fitWidth
-            ),
-            title: Text('Monopol & Provinzstraße Hub',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            subtitle: Text('Provinzstraße 40-44\nMetro Stop: Schönholz'),
-            children: <Widget>[
-              ListTile(
-                  dense:true,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-                  visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-                  title: Text('Activities at this venue:',
-                      style: TextStyle(fontSize: 14)),
-                  subtitle: Text(
-                        '\n   • Lectures\n'
-                        '   • Performances\n'
-                        '   • Glass on the Go Rodeo (Mobile Hot Shops)\n',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-        ]
-    );
+          ],
+        ),
+        title: Text(
+          'Berlin Glas',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        subtitle: Text('Provinzstraße 42a\nMetro Stop: Schönholz'),
+        children: <Widget>[
+          ListTile(
+              dense: true,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
+              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+              title: Text('Activities at this venue:',
+                  style: TextStyle(fontSize: 14)),
+              subtitle: Text(
+                '\n   • Hot Glass Demos\n'
+                '   • Lecmos\n'
+                '   • Flame Off\n'
+                '   • Kids Oasis\n',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+        ],
+      ),
+      ExpansionTile(
+        leading: Image.asset("images/Venues/MonopolLogo.jpg",
+            width: 80, fit: BoxFit.fitWidth),
+        title: Text(
+          'Monopol & Provinzstraße Hub',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        subtitle: Text('Provinzstraße 40-44\nMetro Stop: Schönholz'),
+        children: <Widget>[
+          ListTile(
+              dense: true,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
+              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+              title: Text('Activities at this venue:',
+                  style: TextStyle(fontSize: 14)),
+              subtitle: Text(
+                '\n   • Lectures\n'
+                '   • Performances\n'
+                '   • Glass on the Go Rodeo (Mobile Hot Shops)\n',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              )),
+        ],
+      ),
+    ]);
 
     Widget sponsorTitle = Container(
-      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -989,10 +1053,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      );
+    );
 
     Widget emergencyTitle = Container(
-      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1011,10 +1075,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     Widget emergencySection = Container(
-      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: RichText(
         text: TextSpan(
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           children: [
             const TextSpan(
               text: 'Police: \n',
@@ -1025,12 +1089,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const TextSpan(
               text: 'Emergency in progress: 110\n'
-              'Non-Emergency: +49 30 9018 22010\n\n',
+                  'Non-Emergency: +49 30 9018 22010\n\n',
               style: TextStyle(
                 fontSize: 14,
               ),
             ),
-
             const TextSpan(
               text: 'Ambulance: ',
               style: TextStyle(
@@ -1044,7 +1107,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 14,
               ),
             ),
-
             const TextSpan(
               text: 'Hospitals: \n',
               style: TextStyle(
@@ -1068,14 +1130,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 14,
               ),
             ),
-
           ],
         ),
       ),
     );
 
     Widget educationSponsorTitle = Container(
-      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -1094,10 +1155,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     Widget educationSponsorSection = Container(
-      padding: const EdgeInsets.fromLTRB(32,0,32,0),
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: RichText(
         text: TextSpan(
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.titleLarge,
           children: [
             const TextSpan(
               text: '\n',
@@ -1128,37 +1189,41 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget sponsorSection = Container(
       padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
       child: GridView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: items.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 1,
-        crossAxisSpacing: 0,
-        mainAxisSpacing: 0,
-      ),
-      itemBuilder: (ctx, index) {
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: items.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 1,
+          crossAxisSpacing: 0,
+          mainAxisSpacing: 0,
+        ),
+        itemBuilder: (ctx, index) {
           return GestureDetector(
-              onTap: () async {
-                var url = items[index].website;
-                launch(url);
-              }, // Image tapped
-        child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.scaleDown,
-                image: AssetImage(items[index].image),
+            onTap: () async {
+              var url = items[index].website;
+              launch(url);
+            }, // Image tapped
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.scaleDown,
+                  image: AssetImage(items[index].image),
+                ),
               ),
             ),
-          ),
           );
-      },
-    ),
+        },
+      ),
     );
 
-    Widget myDivider = Divider(thickness: 2, color: Colors.blue,
-        indent: 32, endIndent: 32, height: 50);
+    Widget myDivider = Divider(
+        thickness: 2,
+        color: Colors.blue,
+        indent: 32,
+        endIndent: 32,
+        height: 50);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -1171,11 +1236,12 @@ class _MyHomePageState extends State<MyHomePage> {
             iconTheme: IconThemeData(
               color: Colors.white, //change your color here
             ),
-            title: const Text('2024 GAS CONFERENCE', style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            )),
+            title: const Text('2024 GAS CONFERENCE',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                )),
             elevation: 2,
             backgroundColor: primaryColor),
         body: ListView(
@@ -1198,13 +1264,13 @@ class _MyHomePageState extends State<MyHomePage> {
             myDivider,
             buildTitleWidget(venueTitle, venueText),
             Container(
-              margin: EdgeInsets.fromLTRB(24,0,20,0),
+              margin: EdgeInsets.fromLTRB(24, 0, 20, 0),
               child: venueContent,
             ),
             myDivider,
             buildTitleWidget(accomodationsTitle, accomodationsText),
             Container(
-              margin: EdgeInsets.fromLTRB(24,0,20,0),
+              margin: EdgeInsets.fromLTRB(24, 0, 20, 0),
               child: accomodationsContent,
             ),
             myDivider,
@@ -1221,7 +1287,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
 
   _launchURL() async {
     const url = "https://www.glassart.org/conference/berlin-2024/";
@@ -1254,25 +1319,27 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _navigateToScheduleScreen(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ScheduleScreen(
-        images:images,
-      sharedPreferences: sharedPreferences,
-    )));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ScheduleScreen(
+              images: images,
+              sharedPreferences: sharedPreferences,
+            )));
   }
 
   void _navigateToLocationScreen(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => LocationScreen()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => LocationScreen()));
   }
 
   void _navigateToInfoScreen(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => InfoScreen()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => InfoScreen()));
   }
 
   void _navigateToUpdateScreen(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdateScreen(
-        sharedPreferences: sharedPreferences,
-    )));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => UpdateScreen(
+              sharedPreferences: sharedPreferences,
+            )));
   }
-
 }
-
