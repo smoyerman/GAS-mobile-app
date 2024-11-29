@@ -18,6 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Uncomment lines 3 and 6 to view the visual layout at runtime.
 // import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
@@ -410,6 +411,7 @@ class TalkTitleItem implements ListItem {
 // used to pass messages from event handler to the UI
 final _messageStreamController = BehaviorSubject<RemoteMessage>();
 FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
 const primaryColor = Colors.blue;
 const headerTextColor = Colors.white;
 
@@ -469,7 +471,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message,
 /// Create a [AndroidNotificationChannel] for heads up notifications
 late AndroidNotificationChannel channel;
 bool isFlutterLocalNotificationsInitialized = false;
-Future<void> setupFlutterNotifications() async {
+/*Future<void> setupFlutterNotifications() async {
   if (isFlutterLocalNotificationsInitialized) {
     return;
   }
@@ -500,7 +502,7 @@ Future<void> setupFlutterNotifications() async {
     sound: true,
   );
   isFlutterLocalNotificationsInitialized = true;
-}
+}*/
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 Future<void> main() async {
@@ -620,6 +622,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Firebase firestore
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+// Create a reference to the cities collection
+CollectionReference _presentersRef = firestore.collection("presenters");
+Future<void> _getPresenterData() async {
+  // Get docs from collection reference
+  QuerySnapshot querySnapshot = await _presentersRef.get();
+
+  // Get data from docs and convert map to List
+  final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+
+  print(allData);
+}
+
 class MyHomePage extends StatefulWidget {
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
@@ -700,6 +716,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // Run code required to handle interacted messages in an async function
     // as initState() must not be async
     setupInteractedMessage();
+
+    _getPresenterData();
   }
 
   @override
