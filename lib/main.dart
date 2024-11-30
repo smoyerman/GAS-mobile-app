@@ -725,13 +725,13 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Wednesday, May 15th - Saturday, May 18th',
+                  CONF_DATES,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Berlin, Germany',
+                  CONF_LOC,
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
@@ -1238,7 +1238,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'GAS Conference 2024 - Berlin',
+      title: APP_TITLE,
       theme: ThemeData(
         primaryColor: primaryColor,
       ),
@@ -1247,7 +1247,7 @@ class _MyHomePageState extends State<MyHomePage> {
             iconTheme: IconThemeData(
               color: Colors.white, //change your color here
             ),
-            title: const Text('2024 GAS CONFERENCE',
+            title: const Text(APP_TITLE,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -1260,7 +1260,7 @@ class _MyHomePageState extends State<MyHomePage> {
             GestureDetector(
               onTap: _launchURL,
               child: Image.asset(
-                'images/GAS Texas Splash - logo.png',
+                LOGO_IMAGE,
                 width: 900,
                 //height: 130,
                 fit: BoxFit.fitWidth,

@@ -1165,7 +1165,7 @@ class InfoScreen extends StatelessWidget {
               GestureDetector(
                 onTap: _launchURL,
                 child: Image.asset(
-                  'images/GAS Berlin Splash - logo only.png',
+                  LOGO_IMAGE,
                   width: 600,
                   //height: 130,
                   fit: BoxFit.contain,
