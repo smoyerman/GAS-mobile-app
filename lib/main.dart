@@ -5,11 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'globals.dart';
-import './screens/schedule_screen.dart';
-import './screens/location_screen.dart';
-import './screens/info_screen.dart';
-import './screens/update_screen.dart';
+import 'package:layout/data_structures.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +15,13 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'globals.dart';
+import 'services/database_service.dart';
+import './screens/schedule_screen.dart';
+import './screens/location_screen.dart';
+import './screens/info_screen.dart';
+import './screens/update_screen.dart';
 
 // Uncomment lines 3 and 6 to view the visual layout at runtime.
 // import 'package:flutter/rendering.dart' show debugPaintSizeEnabled;
@@ -530,6 +533,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+  );
   await Future.delayed(Duration(seconds: 1));
 
   final messaging = FirebaseMessaging.instance;
@@ -585,6 +591,7 @@ Future<void> main() async {
   });
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -608,32 +615,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '2024 GAS Conference',
+      title: APP_TITLE,
       theme: ThemeData(
         colorSchemeSeed: const Color(0xff6750a4),
         useMaterial3: true,
       ),
       home: MyHomePage(
-        title: '2024 GAS Conference',
+        title: APP_TITLE,
         images: images,
         sharedPreferences: sharedPreferences,
       ),
     );
   }
-}
-
-// Firebase firestore
-FirebaseFirestore firestore = FirebaseFirestore.instance;
-// Create a reference to the cities collection
-CollectionReference _presentersRef = firestore.collection("presenters");
-Future<void> _getPresenterData() async {
-  // Get docs from collection reference
-  QuerySnapshot querySnapshot = await _presentersRef.get();
-
-  // Get data from docs and convert map to List
-  final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-
-  print(allData);
 }
 
 class MyHomePage extends StatefulWidget {
@@ -668,6 +661,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<SpeakerImage> images;
   List<String> imagePaths = [];
   final SharedPreferences sharedPreferences;
+
+  final DatabaseService _databaseService = DatabaseService();
 
   // STEPH TODO: get rid of this and make the string to log
   _MyHomePageState({required this.images, required this.sharedPreferences}) {
@@ -716,8 +711,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // Run code required to handle interacted messages in an async function
     // as initState() must not be async
     setupInteractedMessage();
-
-    _getPresenterData();
   }
 
   @override
@@ -1267,13 +1260,14 @@ class _MyHomePageState extends State<MyHomePage> {
             GestureDetector(
               onTap: _launchURL,
               child: Image.asset(
-                'images/GAS Berlin Splash - logo only.png',
-                width: 600,
+                'images/GAS Texas Splash - logo.png',
+                width: 900,
                 //height: 130,
-                fit: BoxFit.contain,
+                fit: BoxFit.fitWidth,
                 alignment: Alignment.center,
               ),
             ),
+            //presentersListView,
             titleSection,
             buttonSection,
             textSection,
@@ -1315,7 +1309,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Column _buildButtonColumn(Color color, IconData icon, String label) {
+  /*Column _buildButtonColumn(Color color, IconData icon, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -1334,7 +1328,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ],
     );
-  }
+  }*/
 
   void _navigateToScheduleScreen(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
