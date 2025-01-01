@@ -650,13 +650,6 @@ class MyHomePage extends StatefulWidget {
       );
 }
 
-String venueTitle = 'VENUES';
-String venueText =
-    'Our conference presentations will be hosted at two hubs: Wilhelm Hallen and '
-    'Provinzstraße (Berlin Glas, Monopol, and Bard College Berlin)';
-String accomodationsTitle = 'ACCOMODATIONS';
-String accomodationsText = 'GAS Partner Hotels';
-
 class _MyHomePageState extends State<MyHomePage> {
   String _lastMessage = "";
   final List<SpeakerImage> images;
@@ -942,106 +935,45 @@ class _MyHomePageState extends State<MyHomePage> {
     ]);
 
     Widget venueContent = Column(children: <Widget>[
-      ExpansionTile(
-        leading: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              "images/Venues/WilhelmHallenLogo.jpg",
-              width: 80,
-              fit: BoxFit.fitWidth,
-            ),
-          ],
+      Container(
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: GASVenues.length,
+          itemBuilder: (ctx, index) {
+            return ExpansionTile(
+              leading: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    GASVenues[index]["logo"],
+                    width: 50,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ],
+              ),
+              title: Text(
+                GASVenues[index]["title"],
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              ),
+              subtitle: Text(GASVenues[index]["address"]),
+              children: <Widget>[
+                ListTile(
+                    dense: true,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
+                    visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                    title: Text('Activities at this venue:',
+                        style: TextStyle(fontSize: 14)),
+                    subtitle: Text(
+                      '\n   • ' +
+                          GASVenues[index]["activities"].join('\n   • '),
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+              ],
+            );
+          },
         ),
-        title: Text(
-          'Wilhelm Hallen',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        subtitle: Text('Kopenhagener Str. 60-72\nMetro Stop: Wiilhelmsruh'),
-        children: <Widget>[
-          ListTile(
-              dense: true,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-              title: Text('Activities at this venue:',
-                  style: TextStyle(fontSize: 14)),
-              subtitle: Text(
-                '\n   • Conference Kickoff\n'
-                '   • Midday Interactive Programming\n'
-                '   • GAS Market\n'
-                '   • Lectures\n'
-                '   • Panels\n'
-                '   • Lecmos\n'
-                '   • Cold Demonstrations\n'
-                '   • Flame & Neon Demos\n'
-                '   • Green Pavillion\n'
-                '   • Beer Garden\n'
-                '   • Registration\n'
-                '   • GAS Film Festival Opening\n'
-                '   • Trunk Show\n'
-                '   • Goblet Grab\n'
-                '   • Portfolio Review\n',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-        ],
-      ),
-      ExpansionTile(
-        leading: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              "images/Venues/BerlinGlasLogo.png",
-              width: 80,
-              fit: BoxFit.contain,
-            ),
-          ],
-        ),
-        title: Text(
-          'Berlin Glas',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        subtitle: Text('Provinzstraße 42a\nMetro Stop: Schönholz'),
-        children: <Widget>[
-          ListTile(
-              dense: true,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-              title: Text('Activities at this venue:',
-                  style: TextStyle(fontSize: 14)),
-              subtitle: Text(
-                '\n   • Hot Glass Demos\n'
-                '   • Lecmos\n'
-                '   • Flame Off\n'
-                '   • Kids Oasis\n',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-        ],
-      ),
-      ExpansionTile(
-        leading: Image.asset("images/Venues/MonopolLogo.jpg",
-            width: 80, fit: BoxFit.fitWidth),
-        title: Text(
-          'Monopol & Provinzstraße Hub',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        subtitle: Text('Provinzstraße 40-44\nMetro Stop: Schönholz'),
-        children: <Widget>[
-          ListTile(
-              dense: true,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-              title: Text('Activities at this venue:',
-                  style: TextStyle(fontSize: 14)),
-              subtitle: Text(
-                '\n   • Lectures\n'
-                '   • Performances\n'
-                '   • Glass on the Go Rodeo (Mobile Hot Shops)\n',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-        ],
       ),
     ]);
 

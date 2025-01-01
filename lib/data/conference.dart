@@ -13,6 +13,12 @@ const String CONF_LOC = "Arlington and Fort Worth, Texas";
 const String CONF_DESC =
     """Join members of the global glass community as we take the innovations of the present and transform them into the glassmaking traditions of the future! At the world-class facilities at the University of Texas at Arlington, conference attendees will have a unique opportunity to enjoy presentations that cover every facet of glassmaking in conversation with other artistic materials like prints and metal. The Arlington-Fort Worth glass community is a tight-knit network of glass organizations dedicated to uplifting each other, promoting all forms of diversity and inclusion, and exploring the latest innovations in glassmaking.""";
 
+String venueTitle = 'VENUES';
+String venueText =
+    """All conference venues will have signage that includes the GAS Texas logo.""";
+String accomodationsTitle = 'ACCOMODATIONS';
+String accomodationsText = 'GAS Partner Hotels';
+
 Widget ImageHeader = GestureDetector(
   onTap: _launchURL,
   child: Image.asset(

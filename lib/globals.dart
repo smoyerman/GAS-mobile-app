@@ -5,8 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 import './main.dart';
 
 /* ========== LOCATION MAP VARIABLES ============ */
-LatLng center = const LatLng(52.5500, 13.3900);
-var zoom = 12.5;
+LatLng center = const LatLng(32.745, -97.0590384);
+var zoom = 12.0;
 
 List<Map> PartyLocations = [
   {
@@ -38,49 +38,100 @@ List<Map> MetroLocations = [
   },
 ];
 
-List<Map> GASLocations = [
+List<Map> GASVenues = [
   {
-    "latlng": const LatLng(52.5795127, 13.3632827),
-    "title": "Wilhelm Hallen",
+    "latlng": const LatLng(32.7288676, -97.1274937),
+    "title": "Studio Arts Center",
     "description": "Conference Center",
-    "address": "Kopenhagener Str. 60-72, 13407 Berlin, Germany",
-    "website": "https://wilhelm-hallen.de/",
-    "coords": Coords(52.5795127, 13.3632827)
+    "address": "800-880 S Davis Dr, Arlington, TX 76013",
+    "website":
+        "https://www.uta.edu/academics/schools-colleges/liberal-arts/departments/art/department-info/facilities-maps",
+    "coords": Coords(32.7288676, -97.1274937),
+    "activities": [
+      "Conference Kick Off Demo",
+      "Hot Demos",
+      "Neon Demos",
+      "Kiln Lecmos",
+      "Cold Demos"
+    ],
+    "logo": "images/Venues/UTA_logo.jpg",
   },
-
-  /*{"latlng": const LatLng(52.5680135,13.3766501),
-    "title": "Monopol", "description": "Industrial Conference Cite",
-  "address": "Provinzstraße 40-44, 13409 Berlin, Germany",
-  "website": "https://monopol-berlin.com/en"},*/
-
   {
-    "latlng": const LatLng(52.567906, 13.380952),
-    "title": "Berlin Glas and Provinzstraße Hub",
-    "description": "Conference Studio",
-    "address": "Provinzstraße 42a, 13409 Berlin, Germany",
-    "website": "https://berlinglassworks.com/",
-    "coords": Coords(52.567906, 13.380952)
+    "latlng": const LatLng(32.7327592, -97.1196281),
+    "title": "University Commons",
+    "description": "Conference Center",
+    "address": "440 S Nedderman Dr, Arlington, TX 76013",
+    "website": "https://www.uta.edu/campus-ops/student-centers/the-commons",
+    "coords": Coords(32.7327592, -97.1196281),
+    "activities": [
+      "Registration",
+      "GAS Office",
+      "GAS Market",
+      "Lectures",
+      "Panels",
+      "Midday Interactive Programming",
+      "Portfolio Review",
+      "More TBD"
+    ],
+    "logo": "images/Venues/UTA_logo.jpg",
+  },
+  {
+    "latlng": const LatLng(32.7305006, -97.1177137),
+    "title": "Fine Arts Building",
+    "description": "Conference Center",
+    "address": "700 Greek Row Dr, Arlington, TX 76013",
+    "website":
+        "https://www.uta.edu/academics/schools-colleges/liberal-arts/departments/art/department-info/facilities-maps",
+    "coords": Coords(32.7305006, -97.1177137),
+    "activities": [
+      "Film Festival",
+      "Exhibitions",
+      "Goblet Grab",
+      "Jewelry Trunk Show"
+    ],
+    "logo": "images/Venues/UTA_logo.jpg",
+  },
+  {
+    "latlng": const LatLng(32.7296875, -97.1154709),
+    "title": "Central Library",
+    "description": "Conference Center",
+    "address": "702 Planetarium Pl, Arlington, TX 76019",
+    "website": "https://libraries.uta.edu/locations/cen",
+    "coords": Coords(32.7296875, -97.1154709),
+    "activities": ["Lecmos", "Recharge Station"],
+    "logo": "images/Venues/UTA_logo.jpg",
+  },
+  {
+    "latlng": const LatLng(32.7297044, -97.1182826),
+    "title": "Texas Hall",
+    "description": "Conference Center",
+    "address": "701 W Nedderman Dr, Arlington, TX 76010",
+    "website": "https://www.uta.edu/texashall/",
+    "coords": Coords(32.7297044, -97.1182826),
+    "activities": ["Conference Kick Off"],
+    "logo": "images/Venues/UTA_logo.jpg",
+  },
+  {
+    "latlng": const LatLng(32.7385012, -97.1536396),
+    "title": "Grey Area Studio",
+    "description": "Conference Center",
+    "address": "401 N Bowen Rd, Arlington, TX 76012",
+    "website": "https://www.uta.edu/texashall/",
+    "coords": Coords(32.7385012, -97.1536396),
+    "activities": ["Flame Demos", "Flame Performance"],
+    "logo": "images/Venues/grayarea_logo.png",
   },
 ];
 
 List<Map> HotelLocations = [
   {
-    "latlng": const LatLng(52.523125, 13.4127656),
-    "title": "Park Inn by Radisson",
+    "latlng": const LatLng(32.7605796, -97.0590384),
+    "title": "Crowne Plaza Suites Arlington",
     "description": "Conference Hotel",
-    "address": "Alexanderpl. 7, 10178 Berlin, Germany",
+    "address": "2700 E Lamar Blvd, Arlington, TX 76011",
     "website":
-        "https://www.radissonhotels.com/en-us/hotels/park-inn-berlin-alexanderplatz",
-    "coords": Coords(52.523125, 13.4127656)
-  },
-  {
-    "latlng": const LatLng(52.5624676, 13.3752243),
-    "title": "Nena Hostel Berlin",
-    "description": "Conference Hotel",
-    "address": "Provinzstraße 16 Berlin, Germany",
-    "website":
-        "https://www.nena-apartments.de/en/locations/berlin/nena-hostel-berlin-mitte/",
-    "coords": Coords(52.5624676, 13.3752243)
+        "https://www.ihg.com/crowneplaza/hotels/us/en/arlington/dalcp/hoteldetail?fromRedirect=true&qSrt=sBR&qIta=99801505&icdv=99801505&qSlH=DALCP&qGrpCd=GLA&setPMCookies=true&qSHBrC=CP&qDest=2700%20E.%20Lamar%20Boulevard%2C%20Arlington%2C%20TX%2C%20US&srb_u=1",
+    "coords": Coords(32.7605796, -97.0590384)
   },
 ];
 
