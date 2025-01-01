@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../data/conference.dart';
 import '../globals.dart';
 import '../main.dart';
 import 'package:flutter/widgets.dart';
@@ -34,20 +35,12 @@ class UpdateScreen extends StatelessWidget {
                 )),
             backgroundColor: primaryColor),
         body: SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
             physics: ScrollPhysics(),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: _launchURL,
-                    child: Image.asset(
-                      LOGO_IMAGE,
-                      width: 600,
-                      //height: 130,
-                      fit: BoxFit.contain,
-                      alignment: Alignment.center,
-                    ),
-                  ),
+                  ImageHeader,
                   Container(
                     margin: EdgeInsets.fromLTRB(24, 18, 20, 0),
                     child: Text(

@@ -17,6 +17,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'globals.dart';
+import './data/conference.dart';
 import 'services/database_service.dart';
 import './screens/schedule_screen.dart';
 import './screens/location_screen.dart';
@@ -716,7 +717,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.all(24),
       child: Row(
         children: [
           Expanded(
@@ -725,15 +726,24 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  CONF_DATES,
+                  CONF_TAGLINE,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
+                  CONF_DATES,
+                  style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.grey[600],
+                  ),
+                ),
+                Text(
                   CONF_LOC,
                   style: TextStyle(
-                    color: Colors.grey[500],
+                    fontStyle: FontStyle.italic,
+                    color: Colors.grey[600],
                   ),
                 ),
               ],
@@ -791,15 +801,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget textSection = Container(
       padding: const EdgeInsets.fromLTRB(32, 20, 32, 0),
       child: const Text(
-        'The annual GAS conference brings glass '
-        'enthusiasts from around the world to discover the vibrant energy '
-        'of Berlin, Germany. From the sparkling glass panes of the Reichstag '
-        'Dome to the iconic murals of Berlin’s East Side Gallery, conference '
-        'attendees will be dazzled by the host city and GAS’s conference '
-        'program in equal measure. The conference theme is Berlin: Where '
-        'Art + Design Meet, focusing on the space where art meets design, '
-        'the synergy between the two, and the relationships between artists '
-        'and designers.',
+        CONF_DESC,
         softWrap: true,
       ),
     );
@@ -1256,17 +1258,9 @@ class _MyHomePageState extends State<MyHomePage> {
             elevation: 2,
             backgroundColor: primaryColor),
         body: ListView(
+          padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
           children: <Widget>[
-            GestureDetector(
-              onTap: _launchURL,
-              child: Image.asset(
-                LOGO_IMAGE,
-                width: 900,
-                //height: 130,
-                fit: BoxFit.fitWidth,
-                alignment: Alignment.center,
-              ),
-            ),
+            ImageHeader,
             //presentersListView,
             titleSection,
             buttonSection,
@@ -1299,36 +1293,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-
-  _launchURL() async {
-    const url = "https://www.glassart.org/conference/berlin-2024/";
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  /*Column _buildButtonColumn(Color color, IconData icon, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: color),
-        Container(
-          margin: const EdgeInsets.only(top: 8),
-          child: Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: color,
-            ),
-          ),
-        ),
-      ],
-    );
-  }*/
 
   void _navigateToScheduleScreen(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(

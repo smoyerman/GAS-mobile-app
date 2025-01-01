@@ -1,11 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:map_launcher/map_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 import './main.dart';
-
-const String APP_TITLE = "2025 GAS Conference";
-const String LOGO_IMAGE = "images/GAS Texas Splash - logo.png";
-const String CONF_DATES = "Wednesday, May 14 – Saturday, May 17, 2025";
-const String CONF_LOC = "Arlington and Fort Worth, Texas";
 
 /* ========== LOCATION MAP VARIABLES ============ */
 LatLng center = const LatLng(52.5500, 13.3900);

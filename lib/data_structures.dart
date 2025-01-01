@@ -1,6 +1,7 @@
 class Event {
   Event(
-      {required this.title,
+      {required this.year,
+      required this.title,
       required this.presenter,
       required this.location,
       required this.type,
@@ -14,6 +15,7 @@ class Event {
 
   Event.fromJson(Map<String, Object?> json)
       : this(
+          year: json['year']! as String,
           title: json['title']! as String,
           presenter: json['presenter']! as Presenter,
           location: json['location']! as String,
@@ -27,6 +29,7 @@ class Event {
           talkSaved: json['talkSaved'] as bool,
         );
 
+  final String year;
   final String title;
   final Presenter presenter;
   final String location;
@@ -41,6 +44,7 @@ class Event {
 
   Map<String, Object?> toJson() {
     return {
+      'year': year,
       'title': title,
       'presenter': presenter,
       'location': location,

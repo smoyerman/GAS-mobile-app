@@ -4,10 +4,12 @@ import './../data_structures.dart';
 /* ========== Firestore Variables ============ */
 const String PRESENTER_COLLECTION_REF = "presenters";
 const String EVENT_COLLECTION_REF = "events";
+const String PRESENTATIONS_COLLECTION_REF = "presentations_2025";
 
 class DatabaseService {
   final _firestore = FirebaseFirestore.instance;
   late final CollectionReference _presentersRef;
+  //late final CollectionReference _presentationsRef;
 
   DatabaseService() {
     _presentersRef = _firestore
