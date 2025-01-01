@@ -18,6 +18,19 @@ String venueText =
     """All conference venues will have signage that includes the GAS Texas logo.""";
 String accomodationsTitle = 'ACCOMODATIONS';
 String accomodationsText = 'GAS Partner Hotels';
+String transportationTitle = 'PARKING + TRANSPORTATION';
+String transportationText =
+    """There will be a variety of transportation options available in Arlington-Fort Worth area including:
+\n   • Parking will be available at UTA, SiNaCa Studios, and the Crowne Plaza Arlington. 
+   • Do NOT park at Grey Area Studios. Take the shuttle from UTA to this venue.
+   • The GAS shuttle will run in a loop from the conference hotel to UTA Arlington to Grey Area Studios and back to the conference hotel; this shuttle does not stop at the different venues on the UTA campus. 
+   • The Mav Moover, UTA’s shuttle service, will run throughout the UTA campus sites on a special GAS route and schedule.
+   • Special shuttles will be available frm the Crowne Plaza Arlington to:
+       • SiNaCa Studios on Tuesday, May 13 for our Firestarter event 
+       • Fort Worth Gallery Hop on Thursday, May 15 (\$10 shuttle ticket)
+       • Arlington Museum of Art on Thursday, May 17 for the Closing Night Party
+   • Uber, Lyft, and incredibly affordable local ridesharing options! 
+   • Ride Trinity Metro in Fort Worth is \$2 per ride within the service area.""";
 
 Widget ImageHeader = GestureDetector(
   onTap: _launchURL,

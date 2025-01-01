@@ -5,15 +5,15 @@ import 'package:url_launcher/url_launcher.dart';
 import './main.dart';
 
 /* ========== LOCATION MAP VARIABLES ============ */
-LatLng center = const LatLng(32.745, -97.0590384);
+LatLng center = const LatLng(32.7480372, -97.1000684);
 var zoom = 12.0;
 
 List<Map> PartyLocations = [
   {
-    "latlng": const LatLng(52.5161321, 13.4090756),
-    "title": "Alte Münze",
-    "description": "Closing Party",
-    "coords": Coords(52.5161321, 13.4090756)
+    "latlng": const LatLng(32.7552354, -97.0819481),
+    "title": "Arlington Museum of Art",
+    "description": "Closing Night Party",
+    "coords": Coords(32.7552354, -97.0819481)
   },
 ];
 
@@ -131,7 +131,10 @@ List<Map> HotelLocations = [
     "address": "2700 E Lamar Blvd, Arlington, TX 76011",
     "website":
         "https://www.ihg.com/crowneplaza/hotels/us/en/arlington/dalcp/hoteldetail?fromRedirect=true&qSrt=sBR&qIta=99801505&icdv=99801505&qSlH=DALCP&qGrpCd=GLA&setPMCookies=true&qSHBrC=CP&qDest=2700%20E.%20Lamar%20Boulevard%2C%20Arlington%2C%20TX%2C%20US&srb_u=1",
-    "coords": Coords(32.7605796, -97.0590384)
+    "coords": Coords(32.7605796, -97.0590384),
+    "logo": "images/Accomodations/crown_plaza_logo.png",
+    "blurb":
+        """The official conference hotel is the Crowne Plaza Arlington. Book your stay at \$140/night with breakfast included. Every room in our conference hotel is a suite that includes a living room and restrooms within the suites are accessible."""
   },
 ];
 

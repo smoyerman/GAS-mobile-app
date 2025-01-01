@@ -871,66 +871,42 @@ class _MyHomePageState extends State<MyHomePage> {
     ;
 
     Widget accomodationsContent = Column(children: <Widget>[
-      ExpansionTile(
-        leading: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              "images/Accomodations/park-inn-by-radisson.webp",
-              width: 80,
-              fit: BoxFit.fitWidth,
-            ),
-          ],
-        ),
-        title: Text(
-          'Park Inn by Radisson',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        subtitle: Text('Alexanderplatz 7, Berlin'),
-        children: <Widget>[
-          ListTile(
-              dense: true,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
-              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+      Container(
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: HotelLocations.length,
+          itemBuilder: (ctx, index) {
+            return ExpansionTile(
+              leading: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    HotelLocations[index]["logo"],
+                    width: 50,
+                    fit: BoxFit.fitWidth,
+                  ),
+                ],
+              ),
               title: Text(
-                'The official conference hotel will be the best option for those wanting to explore '
-                'all the cultural highlights of Berlin–it’s located in the center of the city!\n\n'
-                'Park Inn at Alexanderplatz is less than two blocks from Alexanderplatz station. '
-                'Alexanderplatz station is accessible via the U2, U5 and U8, the S3, S5, S7 and S9, '
-                'and the regional (airport) train RE1.',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-        ],
-      ),
-      ExpansionTile(
-        leading: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset(
-              "images/Accomodations/nena_hostel-welcome-768x512.webp",
-              width: 80,
-              fit: BoxFit.contain,
-            ),
-          ],
+                HotelLocations[index]["title"],
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              subtitle: Text(HotelLocations[index]["address"]),
+              children: <Widget>[
+                ListTile(
+                    dense: true,
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 30.0, vertical: -10.0),
+                    visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                    title: Text(
+                      HotelLocations[index]["blurb"],
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+              ],
+            );
+          },
         ),
-        title: Text(
-          'Nena Hostel',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        subtitle: Text('Provinzstraße 16, Berlin'),
-        children: <Widget>[
-          ListTile(
-              dense: true,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20.0, vertical: -10.0),
-              visualDensity: VisualDensity(horizontal: 0, vertical: -4),
-              title: Text(
-                'Your choice for low-cost accommodations in Berlin close to the conference action, '
-                'starting at €33 per night for a bed in a shared room.\n',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              )),
-        ],
       ),
     ]);
 
@@ -997,86 +973,6 @@ class _MyHomePageState extends State<MyHomePage> {
             softWrap: true,
           ),
         ],
-      ),
-    );
-
-    Widget emergencyTitle = Container(
-      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /*2*/
-          Container(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: const Text(
-              'EMERGENCY INFORMATION\n',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-
-    Widget emergencySection = Container(
-      padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-      child: RichText(
-        text: TextSpan(
-          style: Theme.of(context).textTheme.titleLarge,
-          children: [
-            const TextSpan(
-              text: 'Police: \n',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-            ),
-            const TextSpan(
-              text: 'Emergency in progress: 110\n'
-                  'Non-Emergency: +49 30 9018 22010\n\n',
-              style: TextStyle(
-                fontSize: 14,
-              ),
-            ),
-            const TextSpan(
-              text: 'Ambulance: ',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-            ),
-            const TextSpan(
-              text: '112\n\n',
-              style: TextStyle(
-                fontSize: 14,
-              ),
-            ),
-            const TextSpan(
-              text: 'Hospitals: \n',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-              ),
-            ),
-            const TextSpan(
-              text: 'Vivantes Humboldt-Klinikum\n'
-                  'Am Nordgraben 2 '
-                  '+49 30 130120\n\n',
-              style: TextStyle(
-                fontSize: 14,
-              ),
-            ),
-            const TextSpan(
-              text: 'Alexianer St. Hedwig Hospital\n'
-                  'Große Hamburger Str. 5-11'
-                  '+49 30 23110',
-              style: TextStyle(
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
       ),
     );
 
@@ -1212,8 +1108,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: accomodationsContent,
             ),
             myDivider,
-            emergencyTitle,
-            emergencySection,
+            buildTitleWidget(transportationTitle, transportationText),
             myDivider,
             sponsorTitle,
             sponsorSection,
