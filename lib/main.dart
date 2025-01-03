@@ -138,6 +138,7 @@ class TalkTitleItem implements ListItem {
   final String talkSpeaker;
   final String talkLocation;
   final String talkType;
+  final String subType;
   final String talkFocus;
   final String talkDescription;
 
@@ -151,18 +152,63 @@ class TalkTitleItem implements ListItem {
   bool talkSaved;
 
   TalkTitleItem(
-      this.talkTitle,
-      this.talkSpeaker,
-      this.talkLocation,
-      this.talkType,
-      this.talkFocus,
-      this.talkDescription,
-      this.website,
-      this.socialMedia,
-      this.coPresenters,
-      this.talkStartDateTime,
-      this.talkEndDateTime,
-      this.talkSaved);
+      {required this.talkTitle,
+      required this.talkSpeaker,
+      required this.talkLocation,
+      required this.talkType,
+      required this.subType,
+      required this.talkFocus,
+      required this.talkDescription,
+      required this.website,
+      required this.socialMedia,
+      required this.coPresenters,
+      required this.talkStartDateTime,
+      required this.talkEndDateTime,
+      required this.talkSaved});
+
+  //fname: json['fname']! != null ? json['fname'] as String : "",
+  TalkTitleItem.fromJson(Map<String, Object?> json)
+      : this(
+          talkTitle: json['title'] != null ? json['title'] as String : "",
+          talkSpeaker:
+              json['presenter'] != null ? json['presenter'] as String : "",
+          talkLocation:
+              json['location'] != null ? json['location'] as String : "",
+          talkType: json['type'] != null ? json['type'] as String : "",
+          subType: json['subtype'] != null ? json['subtype'] as String : "",
+          website: json['website'] != null ? json['website'] as String : "",
+          socialMedia:
+              json['socialMedia'] != null ? json['socialMedia'] as String : "",
+          talkFocus: json['focus'] != null ? json['focus'] as String : "",
+          talkDescription:
+              json['description'] != null ? json['description'] as String : "",
+          coPresenters: json['coPresenters'] != null
+              ? json['coPresenters'] as String
+              : "",
+          talkStartDateTime: json['startTime'] != null
+              ? json['startTime'] as DateTime
+              : DateTime(1),
+          talkEndDateTime: json['endTime'] != null
+              ? json['endTime'] as DateTime
+              : DateTime(1),
+          talkSaved:
+              json['talkSaved'] != null ? json['talkSaved'] as bool : false,
+        );
+
+  Map<String, Object?> toJson() {
+    return {
+      'title': talkTitle,
+      'presenter': talkSpeaker,
+      'location': talkLocation,
+      'type': talkType,
+      'subtype': subType,
+      'focus': talkFocus,
+      'description': talkDescription,
+      'coPresenters': coPresenters,
+      'startTime': talkStartDateTime,
+      'endTime': talkEndDateTime,
+    };
+  }
 
   @override
   String returnSpeakerSite(BuildContext context) {
@@ -475,38 +521,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message,
 /// Create a [AndroidNotificationChannel] for heads up notifications
 late AndroidNotificationChannel channel;
 bool isFlutterLocalNotificationsInitialized = false;
-/*Future<void> setupFlutterNotifications() async {
-  if (isFlutterLocalNotificationsInitialized) {
-    return;
-  }
-  channel = const AndroidNotificationChannel(
-    'high_importance_channel', // id
-    'High Importance Notifications', // title
-    description:
-        'This channel is used for important notifications.', // description
-    importance: Importance.high,
-  );
-
-  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-  /// Create an Android Notification Channel.
-  ///
-  /// We use this channel in the `AndroidManifest.xml` file to override the
-  /// default FCM channel to enable heads up notifications.
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-
-  /// Update the iOS foreground notification presentation options to allow
-  /// heads up notifications.
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
-  isFlutterLocalNotificationsInitialized = true;
-}*/
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 Future<void> main() async {
@@ -593,6 +607,22 @@ Future<void> main() async {
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+  var db = FirebaseFirestore.instance;
+  final presentations = db.collection('presentations_2025').withConverter(
+        fromFirestore: (snapshot, _) =>
+            TalkTitleItem.fromJson(snapshot.data()!),
+        toFirestore: (talkTitleItem, _) => talkTitleItem.toJson(),
+      );
+  QuerySnapshot querySnapshot = await presentations.get();
+
+  List<TalkTitleItem> presentationList =
+      querySnapshot.docs.map((doc) => doc.data() as TalkTitleItem).toList();
+
+  final sortedTalksAsc = presentationList.map((talk) => talk).toList()
+    ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));
+
+  //print(sortedTalksAsc);
+
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -601,6 +631,7 @@ Future<void> main() async {
         images: List<SpeakerImage>.from(
             imageList.map((s) => SpeakerImage(s)).toList()),
         sharedPreferences: sharedPreferences,
+        sortedTalksAsc: sortedTalksAsc,
       ),
     ),
   );
@@ -609,7 +640,13 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
-  MyApp({super.key, required this.images, required this.sharedPreferences});
+  //final List<TalkTitleItem> Day1;
+  final List<TalkTitleItem> sortedTalksAsc;
+  MyApp(
+      {super.key,
+      required this.images,
+      required this.sharedPreferences,
+      required this.sortedTalksAsc});
 
   // This widget is the root of your application.
   @override
@@ -625,6 +662,7 @@ class MyApp extends StatelessWidget {
         title: APP_TITLE,
         images: images,
         sharedPreferences: sharedPreferences,
+        sortedTalksAsc: sortedTalksAsc,
       ),
     );
   }
@@ -634,19 +672,20 @@ class MyHomePage extends StatefulWidget {
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
   final String title;
+  final List<TalkTitleItem> sortedTalksAsc;
 
   const MyHomePage(
       {super.key,
       required this.title,
       required this.images,
-      required this.sharedPreferences});
-  // TODO: Pass sharedPreferences to the Updates page
-  // TODO: Update sharedPreferences with message text
+      required this.sharedPreferences,
+      required this.sortedTalksAsc});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState(
         images: images,
         sharedPreferences: sharedPreferences,
+        sortedTalksAsc: sortedTalksAsc,
       );
 }
 
@@ -655,11 +694,13 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<SpeakerImage> images;
   List<String> imagePaths = [];
   final SharedPreferences sharedPreferences;
-
-  final DatabaseService _databaseService = DatabaseService();
+  final List<TalkTitleItem> sortedTalksAsc;
 
   // STEPH TODO: get rid of this and make the string to log
-  _MyHomePageState({required this.images, required this.sharedPreferences}) {
+  _MyHomePageState(
+      {required this.images,
+      required this.sharedPreferences,
+      required this.sortedTalksAsc}) {
     _messageStreamController.listen((message) {
       setState(() {
         if (message.notification != null) {
@@ -1089,7 +1130,6 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
           children: <Widget>[
             ImageHeader,
-            //presentersListView,
             titleSection,
             buttonSection,
             textSection,
@@ -1126,6 +1166,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) => ScheduleScreen(
               images: images,
               sharedPreferences: sharedPreferences,
+              sortedTalksAsc: sortedTalksAsc,
             )));
   }
 

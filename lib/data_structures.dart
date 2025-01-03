@@ -72,20 +72,20 @@ class Presenter {
 
   Presenter.fromJson(Map<String, Object?> json)
       : this(
-          fname: json['fname']! as String,
-          lname: json['lname']! as String,
-          pronoun: json['pronoun']! as String,
-          email: json['email']! as String,
-          website: json['website']! as String,
-          handle: json['handle']! as String,
+          fname: json['fname'] != null ? json['fname'] as String : "",
+          lname: json['lname'] != null ? json['lname'] as String : "",
+          pronoun: json['pronoun'] != null ? json['pronoun'] as String : "",
+          email: json['email'] != null ? json['email'] as String : "",
+          website: json['website'] != null ? json['website'] as String : "",
+          handle: json['handle'] != null ? json['handle'] as String : "",
         );
 
-  final String fname;
-  final String lname;
-  final String pronoun;
-  final String email;
-  final String website;
-  final String handle;
+  final String? fname;
+  final String? lname;
+  final String? pronoun;
+  final String? email;
+  final String? website;
+  final String? handle;
 
   Map<String, Object?> toJson() {
     return {

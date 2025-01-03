@@ -11,53 +11,21 @@ import '../main.dart';
 import '../services/database_service.dart';
 import '../data_structures.dart';
 
-/*Widget presentersListView = SizedBox(
-  height: MediaQuery.sizeOf(context).height * 0.5,
-  width: MediaQuery.sizeOf(context).width,
-  child: StreamBuilder(
-    stream: _databaseService.getPresenters(),
-    builder: (context, snapshot) {
-      List presenters = snapshot.data?.docs ?? [];
-      if (presenters.isEmpty) {
-        return const Center(
-          child: Text("No Presenters!"),
-        );
-      }
-      return ListView.builder(
-        itemCount: presenters.length,
-        itemBuilder: (context, index) {
-          Presenter presenter = presenters[index].data();
-          String presenterId = presenters[index].id;
-          print(presenterId);
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 5,
-              horizontal: 10,
-            ),
-            child: ListTile(
-              title: Text(presenter.fname + " " + presenter.lname),
-              subtitle: Text(presenter.handle),
-              trailing: Checkbox(
-                value: false,
-                onChanged: (value) {},
-              ),
-            ),
-          );
-        },
-      );
-    },
-  ),
-);*/
-
 class ScheduleScreen extends StatelessWidget {
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
+  //final QuerySnapshot querySnapshot;
+  final List<TalkTitleItem> sortedTalksAsc;
+
+  ScheduleScreen(
+      {required this.images,
+      required this.sharedPreferences,
+      required this.sortedTalksAsc});
 
   // Sort talks by datetime
+  /*List<TalkTitleItem> Day1 = querySnapshot.docs.map((doc) => doc.data() as TalkTitleItem).toList();
   final sortedTalksAsc = Day1.map((talk) => talk).toList()
-    ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));
-
-  ScheduleScreen({required this.images, required this.sharedPreferences});
+    ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));*/
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +45,7 @@ class ScheduleScreen extends StatelessWidget {
         child: ExpansionTileExample(
           images: images,
           sharedPreferences: sharedPreferences,
+          sortedTalksAsc: sortedTalksAsc,
         ),
       ),
     );
@@ -86,30 +55,48 @@ class ScheduleScreen extends StatelessWidget {
 class ExpansionTileExample extends StatefulWidget {
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
-  ExpansionTileExample({required this.images, required this.sharedPreferences});
+  final List<TalkTitleItem> sortedTalksAsc;
+
+  ExpansionTileExample(
+      {required this.images,
+      required this.sharedPreferences,
+      required this.sortedTalksAsc});
 
   @override
   State<ExpansionTileExample> createState() => _ExpansionTileExampleState(
         images: images,
         sharedPreferences: sharedPreferences,
+        sortedTalksAsc: sortedTalksAsc,
       );
 }
 
 class _ExpansionTileExampleState extends State<ExpansionTileExample> {
   final List<SpeakerImage> images;
   final SharedPreferences sharedPreferences;
-  _ExpansionTileExampleState(
-      {required this.images, required this.sharedPreferences});
+  final List<TalkTitleItem> sortedTalksAsc;
+  late List<TalkTitleItem> _sortedTalksFiltered;
 
-  List<TalkTitleItem> _sortedTalksFiltered = Day1.map((talk) => talk).toList()
-    ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));
+  _ExpansionTileExampleState({
+    required this.images,
+    required this.sharedPreferences,
+    required this.sortedTalksAsc,
+  }) {
+    _sortedTalksFiltered = List.from(sortedTalksAsc);
+  }
+
+  //var _sortedTalksFiltered = sortedTalksAsc.map((v) => v).toList();
+
+  //List<TalkTitleItem> _sortedTalksFiltered = sortedTalksAsc;
+
+  /*Day1.map((talk) => talk).toList()
+    ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));*/
 
   // Function to filter list of talks
-  void _filterSortedTalks() {
+  void _filterSortedTalks(sortedTalksAsc) {
     setState(() {
       // Grab full list
-      List<TalkTitleItem> sortedTalksAsc = Day1.map((talk) => talk).toList()
-        ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));
+      /*List<TalkTitleItem> sortedTalksAsc = Day1.map((talk) => talk).toList()
+        ..sort((a, b) => a.talkStartDateTime.compareTo(b.talkStartDateTime));*/
       // Get my filters right... sheesh this is a mess I need to cross check everywhere
       for (var talk in sortedTalksAsc) {
         if (sharedPreferences.getBool(talk.talkSpeaker) != null) {
@@ -260,7 +247,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                 onChanged: (value) {
                   setState(() {
                     selectedTypeFilters = value;
-                    _filterSortedTalks();
+                    _filterSortedTalks(sortedTalksAsc);
                   });
                 },
               ),
@@ -280,7 +267,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
               onChanged: (value) {
                 setState(() {
                   selectedLocationFilters = value;
-                  _filterSortedTalks();
+                  _filterSortedTalks(sortedTalksAsc);
                 });
               },
             ),
@@ -295,7 +282,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
                 onPressed: () {
                   setState(() {
                     savedOnly = !savedOnly;
-                    _filterSortedTalks();
+                    _filterSortedTalks(sortedTalksAsc);
                   });
                 },
               ),
@@ -303,6 +290,7 @@ class _ExpansionTileExampleState extends State<ExpansionTileExample> {
           ),
         ],
       ),
+      //presentersListView,
       ListView.builder(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
