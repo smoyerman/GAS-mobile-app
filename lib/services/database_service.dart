@@ -7,7 +7,7 @@ const String PRESENTER_COLLECTION_REF = "presenters";
 const String EVENT_COLLECTION_REF = "events";
 const String PRESENTATIONS_COLLECTION_REF = "presentations_2025";
 
-class DatabaseService {
+/*class DatabaseService {
   final _firestore = FirebaseFirestore.instance;
   late final CollectionReference _presentationsRef;
 
@@ -35,4 +35,4 @@ class DatabaseService {
   void updatePresenter(String presenterId, Presenter presenter) {
     _presentationsRef.doc(presenterId).update(presenter.toJson());
   }
-}
+}*/

@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../data_structures.dart';
 
 //import 'package:layout/screens/schedule_screen.dart';
 

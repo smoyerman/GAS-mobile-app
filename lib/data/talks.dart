@@ -1,4 +1,5 @@
 import '../main.dart';
+import '../data_structures.dart';
 
 /* ========== SESSION / SCHEDULE VARIABLES ============ */
 
